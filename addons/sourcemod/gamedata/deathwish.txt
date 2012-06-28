@@ -1,0 +1,33 @@
+"Games"
+{
+    "left4dead2"
+    {
+        "Signatures"
+        {
+            /*
+             * Infected::GetFlowDistance(void)const
+             *
+             * for finding: Is called twice in
+             * 56 8B 74 ? ? 57 8B F9 8B CE E8 ? ? ? ? 83 F8 ? 0F ? ? ? ? ? 85 F6 74
+             */
+            "Infected_GetFlowDistance"
+            {
+                "library"    "server"
+                "linux"    "@_ZNK8Infected15GetFlowDistanceEv"
+                "windows" "\x8B\x01\x8B\x90\x2A\x2A\x2A\x2A\xFF\xD2\x85\xC0\x74\x2A\xD9\x80\x2A\x2A\x2A\x2A\xC3"
+                /* 8B 01 8B 90 ? ? ? ? FF D2 85 C0 74 ? D9 80 ? ? ? ? C3 */
+            }
+            
+            /*
+             * CTerrorPlayer::GetFlowDistance(TerrorNavArea::FlowType)const
+             */
+            "CTerrorPlayer_GetFlowDistance"
+            {
+                "library"    "server"
+                "linux"    "@_ZNK13CTerrorPlayer15GetFlowDistanceEN13TerrorNavArea8FlowTypeE"
+                "windows" "\x8B\x01\x8B\x90****\xFF\xD2\x85\xC0\x74*\x8B\x4C**\xD9\x84"
+                /* 8B 01 8B 90 ? ? ? ? FF D2 85 C0 74 ? 8B 4C ? ? D9 84 */
+            }
+        }
+    }
+}

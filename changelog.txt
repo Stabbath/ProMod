@@ -1,0 +1,145 @@
+Pro Mod
+-------------------------------------------------------------------
+Developer - Jacob
+Co-Dev - CircleSquared
+Plugins - CanadaRox, ProdigySim, Blade, Jahze, Jacob, Tabun, Vintik
+Scripts - Jacob, Tabun, CircleSquared
+-------------------------------------------------------------------
+
+1.0-
+Created Pro Mod.
+
+1.1-
+Changed pills density to 3.
+Limit uzis to 2.
+Removed Scout buff against tanks.
+Updated Tabun's exploit blocks to version 19.
+Changed Death Toll 4 Horde Intensity in hopes of further balancing it.
+Removed props from DaC4 near event and BH4 bridge.
+Blocked Tank on Death Toll 1 immediately out of saferoom.
+Removed medkits in Death Toll 1 saferoom. (Thanks Tabun)
+
+1.2-
+Updated Tabun's exploit blocks to v20.
+Replaced 2 uzi limit with a 3 ranged weapon limit.
+Attempt to fix long lasting problem from meta, where on occasion 4 sets of pills could spawn on certain maps.(excluding saferoom pills)
+Disabled Game Instructor for all players.
+Changed Parish 1 map distance to 300.
+Update to the way we block multiple scouts, reducing the chance that the scout will disappear when you try to pick it up if someone already has a scout.
+Fixed Custom Max Distance spam. (Thanks Jahze)
+Removed props from DA4 event and starting saferoom area.
+Created a side config 'Pro Mod HR'.
+Changed HR clip size to 12.
+
+1.3-
+Reduced map distance on a couple maps; DaC3 = 600, NM2 = 500
+Added survival bonus. Basically extra points for surviving the map.
+Fixed hard rain 2 glitched tank spawn from meta.
+Removed custom max distance being shown in health if the map distance is default.
+Added support for Detour Ahead.
+Updated Tabun's Exploit Blocks to v21.
+Removed Scout from Pro Mod.
+Replaced all snipers in Pro Mod with shotguns. (Pro Mod HR still has the HR of course.)
+
+1.4-
+Increased shotgun ammo to 100.
+Reduced uzi ammo to 550.
+Replaced military sniper with uzi instead of shotgun, do to complaints of not finding enough uzi ammo.
+Removed static survival bonus, returning the health bonus system to how it was in other configs.
+Fixed up some mapinfo stuff.
+Updated tabun's exploit blocks to version 23.
+Removed Dark Carnival 5 "Everything Or Nothing" Forklift.
+
+1.5-
+Reduced shotgun ammo back to 80.
+Restored uzi ammo to 650.
+Replaced hunting rifle with pumpshotgun, and military sniper with silenced uzi.
+More mapinfo fixes.
+Blocked tank on Dead Center 1 up to 76% due to complaints of a glitched tank spawn.
+Tweaked props on No Mercy 1.
+
+2.0-
+Fixed parish finale for those who still play it.
+Fixed Tank spawning in the sugar field on c4m3.
+Updated mapinfo to include support for custom campaigns; I hate mountains 2, Death Aboard 2, Dark Parish.
+Removed bile bomb from Dead Center finale.
+Slightly increased horde during 2nd event on Dead Air 4.
+Changed Dead Center max distances to default values.
+Fixed confogl_off for all configs.
+Fixed "Jockey Glitch" thanks to Tabun's plugin.
+Updated Metafogl's 1v1, 2v2, 3v3, and hunters configs.
+Created a new config "Jockeys".
+Blocked Tank spawning right as survivors start the event on Dead Center 3.
+Changed Deagle limit to 1 in Pro Mod.
+Unblocked Bunny Hopping for survivors in Pro Mod 1v1, 2v2, and 3v3. NOT the main config.
+Added the mp5. It will spawn in the place of the Scar.
+Updated Tank Damage Announce with colored text. (Thanks CircleSquared)
+Updated Tank Percent with colored text. (Thanks CircleSquared)
+Updated Tabun's exploit blocks to v24.
+Re-Added Props to the end of Dead Air 3. (Glass Hallway)
+Re-Added Props to the beginning of Dead Air 4. (Rocks)
+
+2.1-
+Re-Added board allowing SI to get on top of the saferoom on Parish 2 that was accidentally removed in 2.0.
+Removed all uncommon infected except for "Mud Men".
+Fixed colors in Tank Damage Announce plugin.
+Replaced Military Sniper with MP5, and Autoshotgun with Chrome.
+Updated Survivor MVP plugin.
+
+2.2-
+Finally fixed the mp5. It will now spawn in the place of the Hunting Rifle and Military Sniper.
+Added l4d_tank_control from EQ. Players who have already played the tank will not get a chance to be the tank again until all other players have had a turn. Tanks no longer pass between players, their rage meter is reset once instead.
+Added Jockey Hang fix. Jockeys will now have a 10 second cooldown after hanging a player off a ledge.
+Updated Car Alarm Equaliser.
+Fixed extra pills spawning in side configs.
+Removed a few outdated lines from confogl.cfg.
+
+2.3-
+Updated uncommon blocker to replace the uncommon infected with a regular common.
+Updated Survivor MVP plugin. Will no longer show FF stats as it causes server lag.
+Updated SI FF Block to fix SI not dying when entering kill zones while spawned.
+Updated exploit blocks to v25.
+Fixed 4 player hordes spawning in 3v3/2v2/1v1 configs.
+Buffed mp5 damage to 28 (26 to tank) and limited to 1.
+Changed grace period when you first get tank to 25. Tanks now have the same amount of rage as normal tanks.
+All saferooms will now have at least 1 shotgun. (Parish 5, No Mercy 4, Passing 3)
+Added Silent Jockey fix.
+Added Skeet Stats to 1v1 config in place of mvp.
+Added new config "Retro". L4D1 style config. Thanks to CircleSquared for making this config.
+
+2.4-
+Removed mp5.
+Re-added HR as an ammo pick up only.
+Removed bile bombs.
+Nerfed adrenaline. Run speed is now the same as when you are not on adrenaline. Reviving someone takes 3 seconds, instead of 2 while on adren. (4 while not on adren)
+Added quad caps to retro. For now they are random, and not based on sack order. We are working on a plugin for that.
+Removed water slowdown in Retro.
+Enabled bhops for EVERYTHING in Retro.
+Added vscript for BH4 finally removing all dependencies on metafogl.
+
+2.5-
+Updated l4d2lib using confogl natives so mapinfo.txt is loaded from each cfgogl directory.
+Updated Skeetstats plugin to latest version.
+Updatd Tabun's exploit blocker package to v26.
+Fixed Chargers getting stuck on the ledge lip of Dark Darnival 2 ladder-roof area.
+Fixed bot Chargers becoming heat seeking at survivors.
+Reduced common infected a bit more for 4v4 static hordes for 1v1-3v3.
+Vscripts for L4D1 maps on 1v1-3v3 configs to prevent 4v4 horde. (Dead Air 4 glitchy still, starts large but does dissipate)
+Fixed typo causing silent jockey fix plugin from not loading.
+Fixed quadcaps in Retro to follow normal sac order rules.
+Readded HR in standard spots for Retro for ammo pickup. (limited to 0)
+Cleaned up all the configs and stripper cfgs to be more readable and remove outdated cvars.
+Blocked cheap camping spots in Hunters/Jockeys/Retro configs.
+Weapons outside HR1 dinner changed to uzi/pump with weapons inside changed to silenced uzi/chrome.
+Updated 1v1 plugin to remove some error output and show promod1v1 and various messages depending on health left.
+Fixed HR from spawning randomly on c5m2 in promodhr to spawn near the horse statue and steps past the hall choke.
+Fixed tier 1 uzi/shotgun not appearing in saferoom of c1m1 for Retro.
+Reduced m2s for 1v1 to match Hunters config.
+Reduced gas can pour time to 1 second on scavenge-type finale for 1v1.
+Replaced added saferoom shotguns with code to make already spawned weapons always produce at least 1 uzi and 1 shotgun. (c2m5, c5m2, c5m5, c6m3, c8m4, and c8m5)
+Fixed pills issues on some finale maps. Pills now always spawn where finale first aid kits normally do. (c5m5, c10m5, c11m5, c12m5, c13m4)
+Fixed adrenaline/throwables appearing in some spots in 1v1-3v3 configs.
+Readded and updated Deadman config.
+Updated tank control plugin to inform all SI when tank rage refills in hint text and in chat in color
+Updated tank percent plugin to match EQ's boss percent plugin formatting
+Fixed 'No Boomer Glitch'.

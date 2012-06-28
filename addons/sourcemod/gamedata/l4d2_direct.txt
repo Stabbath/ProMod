@@ -1,0 +1,433 @@
+"Games"
+{
+	"left4dead2"
+	{
+		"Addresses"
+		{
+			"CDirector"
+			{
+				"windows"
+				{
+					"signature" "DirectorMusicBanks_OnRoundStart"				
+					"read" "8"					
+				}
+				"linux"
+				{
+					"signature" "TheDirector"
+				}
+				"read" "0"
+			}
+			"TerrorNavMesh"
+			{
+				"windows"
+				{
+					"signature" "CommandNavSave"
+					"read" "11"
+				}
+				"linux"
+				{
+					"signature" "TheNavMesh"
+				}
+				"read" "0"
+			}
+		}
+		
+		"Offsets"
+		{
+			/* Virtual Table Offsets */
+			"CBaseEntity::GetBaseEntity"
+			{
+				"windows" 	"5"
+				"linux"		"6"
+			}
+
+			/* Offsets into CDirector of other CDirector class pointers */
+
+			"CDirectorTacticalServices"
+			{
+				"windows"	"1424"
+				"linux"		"1444"
+			}
+
+			"CDirectorItemManager"
+			{
+				"windows"	"1428"
+				"linux"		"1448"
+			}
+
+			"CDirectorMusicBanks"
+			{
+				"windows"	"1432"
+				"linux"		"1452"
+			}
+
+			"CDirectorSessionManager"
+			{
+				"windows"	"1436"
+				"linux"		"1456"
+			}
+
+			"CDirectorScriptedEventManager"
+			{
+				"windows"	"1440"
+				"linux"		"1460"
+			}
+
+			"CDirectorVersusMode"
+			{
+				"windows" 	"1444"
+				"linux"		"1464"
+			}
+
+			"CDirectorSurvivalMode"
+			{
+				"windows"	"1448"
+				"linux"		"1468"
+			}
+
+			"CDirectorScavengeMode"
+			{
+				"windows"	"1452"
+				"linux"		"1472"
+			}
+
+			"CDirectorChallengeMode"
+			{
+				"windows"	"1464"
+				"linux"		"1484"
+			}
+			
+			/* CDirector Variable Offsets */
+			
+			"CDirector::m_iTankCount"
+			{
+				"windows"	"256"
+				"linux"		"256"
+			}
+
+			"CDirector::m_fTankFlowDistance"
+			{
+				"windows"	"260"
+				"linux"		"260"
+			}
+
+			"CDirector::MobSpawnTimer"
+			{
+				"windows"	"468"
+				"linux"		"468"
+			}
+
+			"CDirector::ClassDeathTimers"
+			{
+				"windows"	"500"
+				"linux"		"500"
+			}
+
+			"CDirector::ClassSpawnTimers"
+			{
+				"windows"	"564"
+				"linux"		"564"
+			}
+
+			"CDirector::m_fMobSpawnSize"
+			{
+				"windows"	"712"
+				"linux"		"712"
+			}
+
+			"CDirector::m_bIsFirstRoundFinished"
+			{
+				"windows"	"1121"
+				"linux"		"1121"
+			}
+
+			"CDirector::m_bIsSecondroundFinished"
+			{
+				"windows"	"1122"
+				"linux"		"1122"
+			}
+			
+			"CDirector::m_iTankPassedCount"
+			{
+				"windows"	"88"
+				"linux"		"88"
+			}
+			
+			/* CDirectorVersusMode Variable Offsets */
+			
+			"CDirectorVersusMode::m_bVersusRoundInProgress"
+			{
+				"windows"	"4"
+				"linux"		"4"
+			}
+			
+			"CDirectorVersusMode::m_bFirstMap"
+			{
+				"windows"	"5"
+				"linux"		"5"
+			}
+			
+			"CDirectorVersusMode::m_bTransitioning"
+			{
+				"windows"	"6"
+				"linux"		"6"
+			}
+			
+
+			"CDirectorVersusMode::m_iCampaignScores"
+			{
+				"windows"	"8"
+				"linux"		"8"
+			}
+			
+			"CDirectorVersusMode::VersusStartTimer"
+			{
+				"windows" 	"28"
+				"linux"		"28"
+			}
+
+			"CDirectorVersusMode::m_fTankSpawnFlowPercent"
+			{
+				"windows"	"40"
+				"linux"		"40"
+			}
+			
+			"CDirectorVersusMode::m_fWitchSpawnFlowPercent"
+			{
+				"windows"	"48"
+				"linux"		"48"
+			}
+
+			"CDirectorVersusMode::m_bTankThisRound"
+			{
+				"windows"	"56"
+				"linux"		"56"
+			}
+			
+			"CDirectorVersusMode::m_bWitchThisRound"
+			{
+				"windows"	"58"
+				"linux"		"58"
+			}
+
+			"CDirectorVersusMode::m_fFinaleTravelCompletionValue"
+			{
+				"windows"	"60"
+				"linux"		"60"
+			}
+
+			"CDirectorVersusMode::m_bInFinaleMap"
+			{
+				"windows"	"68"
+				"linux"		"68"
+			}
+
+			"CDirectorVersusMode::m_iNumMarkersReached"
+			{
+				"windows"	"72"
+				"linux"		"72"
+			}
+
+			"CDirectorVersusMode::m_iMarkersCount"
+			{
+				"windows"	"76"
+				"linux"		"76"
+			}
+
+			"CDirectorVersusMode::UpdateMarkersTimer"
+			{
+				"windows"	"80"
+				"linux"		"80"
+			}
+
+			/* CDirectorScavengeMode Offsets */
+
+			"CDirectorScavengeMode::m_bScavengeRoundInProgress"
+			{
+				"windows"	"8"
+				"linux"		"8"
+			}
+
+			"CDirectorScavengeMode::m_bAreTeamsSwapped"
+			{
+				"windows"	"10"
+				"linux"		"10"
+			}
+
+			"CDirectorScavengeMode::m_bInOvertime"
+			{
+				"windows"	"11"
+				"linux"		"11"
+			}
+
+			"CDirectorScavengeMode::m_bInOvertime2"
+			{
+				"windows"	"12"
+				"linux"		"12"
+			}
+
+			"CDirectorScavengeMode::RoundSetupTimer"
+			{
+				"windows"	"16"
+				"linux"		"16"
+			}
+			
+			"CDirectorScavengeMode::OvertimeGraceTimer"
+			{
+				"windows"	"28"
+				"linux"		"28"
+			}
+
+			/* TerrorNavMesh Offsets */
+			
+			"TerrorNavMesh::m_fMapMaxFlowDistance"
+			{
+				"windows"	"1528"
+				"linux"		"1524"
+			}
+			
+			/* Structure Sizes */
+			/* Look for InitGameSystems(), NavMeshFactory(), and CDirector::CDirector() to find sizes */
+			
+			"sizeof_CDirector"
+			{
+				"windows"	"1460"
+				"linux"		"1480"
+			}
+			
+			/* Google: sizeof empty */
+			"sizeof_CDirectorTacticalServices"
+			{
+				"windows"	"1"
+				"linux"		"1"
+			}
+			
+			"sizeof_CDirectorItemManager"
+			{
+				"windows"	"1128"
+				"linux"		"1128"
+			}
+			
+			"sizeof_CDirectorMusicBanks"
+			{
+				"windows"	"92"
+				"linux"		"92"
+			}
+			
+			"sizeof_CDirectorSessionManager"
+			{
+				"windows"	"76"
+				"linux"		"76"
+			}
+			
+			"sizeof_CDirectorScriptedEventManager"
+			{
+				"windows"	"156"
+				"linux"		"156"
+			}
+			
+			"sizeof_CDirectorVersusMode"
+			{
+				"windows"	"92"
+				"linux"		"92"
+			}
+			
+			"sizeof_CDirectorSurvivalMode"
+			{
+				"windows"	"160"
+				"linux"		"160"
+			}
+			
+			"sizeof_CDirectorScavengeMode"
+			{
+				"windows"	"104"
+				"linux"		"104"
+			}
+			
+			"sizeof_CDirectorChallengeMode"
+			{
+				"windows"	"8"
+				"linux"		"8"
+			}
+			
+			"sizeof_TerrorNavMesh"
+			{
+				"windows"	"1748"
+				"linux"		"1744"
+			}
+			
+			/* CTerrorPlayer Variable Offsets */
+			
+			"CTerrorPlayer::SpawnTimer"
+			{
+				"windows"	"11260"
+				"linux"		"11244"
+			}
+			
+			"CTerrorPlayer::m_iTankTickets"
+			{
+				"windows"	"12424"
+				"linux"		"12408"
+			}
+			
+			/* TerrorNavArea Variable Offsets */
+			
+			"TerrorNavArea::m_flow"
+			{
+				"windows"	"332"
+				"linux"		"340"
+			}
+		}
+		
+		"Signatures"
+		{
+			/* Used solely to get the offset for TheDirector */
+			"DirectorMusicBanks_OnRoundStart"
+			{
+				"library"	"server"
+				"windows"       "\x83\xEC\x14\x57\x8B\xF9\x8B\x0D\x2A\x2A\x2A\x2A\xE8\x2A\x2A\x2A\x2A\x84\xC0\x0F\x2A\x2A\x2A\x2A\x2A\x53\x55\x6A\x24\xE8"
+				/* 83 EC 14 57 8B F9 8B 0D ? ? ? ? E8 ? ? ? ? 84 C0 0F ? ? ? ? ? 53 55 6A 24 E8 */
+			}
+			
+			/* Used solely to get the offset for TheNavMesh 
+			   Look for string "Navigation map '%s' saved.\n" in a short function */
+			"CommandNavSave"
+			{
+				"library"	"server"
+				"windows"	"\xE8\x2A\x2A\x2A\x2A\x84\xC0\x74\x49\x8B\x0D\x2A\x2A\x2A\x2A\x8B\x01"
+				/* E8 ? ? ? ? 84 C0 74 49 8B 0D ? ? ? ? 8B 01 */
+			}
+
+			/* Find the Director/ZombieManager singleton classes */
+			
+			"TheDirector"
+			{
+				"library"	"server"
+				"linux"		"@TheDirector"
+			}
+			
+			"TheNavMesh"
+			{
+				"library"	"server"
+				"linux"		"@TheNavMesh"
+			}
+
+			"CNavMesh::GetNavArea"
+			{
+				"library"	"server"
+				"windows"	"\x83\xEC\x10\x56\x8B\xF1\x83\x7E\x2A\x2A\x75\x2A\x33\xC0\x5E\x83\xC4\x10\xC2\x08"
+				/* 83 EC 10 56 8B F1 83 7E ? ? 75 ? 33 C0 5E 83 C4 10 C2 08 */
+				"linux"		"@_ZNK8CNavMesh10GetNavAreaERK6Vectorf"
+			}
+			
+			"CDirector::TryOfferingTankBot"
+			{
+				"library"	"server"
+				"linux"		"@_ZN9CDirector18TryOfferingTankBotEP11CBaseEntityb"
+				"windows"	"\x51\x83\x7C\x24\x08\x00\x55\x8B\xE9\x0F\x84"
+				/* 51 83 7C 24 08 00 55 8B E9 0F 84  - No addresses-fairly unique call*/
+			}
+		}
+		
+	}
+}
