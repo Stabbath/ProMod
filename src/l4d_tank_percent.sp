@@ -14,8 +14,8 @@ new String:sTankFlowMsg[128];
 
 public Plugin:myinfo = {
     name        = "L4D2 Tank Percent",
-    author      = "Jahze + CircleSquared",
-    version     = "1.2a",
+    author      = "Jahze",
+    version     = "1.2",
     description = "Tell players when the tank will spawn"
 };
 
@@ -70,7 +70,7 @@ public Action:DeathwishPlayerLeftStartArea( Handle:event, const String:name[], b
         // Block certain tank spawns based on map info
         AdjustTankFlow();
         
-        Format(sTankFlowMsg, sizeof(sTankFlowMsg), "\x01[Tank] The tank will spawn at [\x04%d%s\x01] through the map.", iTankFlow, "%%");
+        Format(sTankFlowMsg, sizeof(sTankFlowMsg), "\x01Tank spawn: [\x04%d%s\x01]", iTankFlow, "%%");
     }
     
     PrintToChatAll(sTankFlowMsg);

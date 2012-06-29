@@ -96,8 +96,9 @@
         Changelog
         ---------
         
-            0.1a
-                
+            0.1d
+                - melee accuracy now hidden by default
+                - built in some better safeguards against client index out of bounds probs
  */
 
 
@@ -106,7 +107,7 @@ public Plugin:myinfo =
     name = "1v1 SkeetStats",
     author = "Tabun",
     description = "Shows 1v1-relevant info at end of round.",
-    version = "0.1b",
+    version = "0.1d",
     url = "nope"
 };
 
@@ -207,9 +208,9 @@ public OnPluginStart()
     //HookEvent("hunter_headshot", HunterHeadshot_Event, EventHookMode_Post);           <== doesn't work, doesn't fire ever
     
     // Cvars
-    hCountTankDamage =  CreateConVar("sm_skeetstat_counttank",  "0",  "Damage on tank counts towards totals if enabled.", FCVAR_PLUGIN, true, 0.0, true, 1.0);
-    hCountWitchDamage = CreateConVar("sm_skeetstat_countwitch", "0",  "Damage on witch counts towards totals if enabled.", FCVAR_PLUGIN, true, 0.0, true, 1.0);
-    hBrevityFlags =     CreateConVar("sm_skeetstat_brevity",    "0",  "Flags for setting brevity of the report (hide 1:SI, 2:CI, 4:Accuracy, 8:Skeets/Deadstops, 32: melee acc, 64: damage count).", FCVAR_PLUGIN, true, 0.0);
+    hCountTankDamage =  CreateConVar("sm_skeetstat_counttank",    "0",  "Damage on tank counts towards totals if enabled.", FCVAR_PLUGIN, true, 0.0, true, 1.0);
+    hCountWitchDamage = CreateConVar("sm_skeetstat_countwitch",   "0",  "Damage on witch counts towards totals if enabled.", FCVAR_PLUGIN, true, 0.0, true, 1.0);
+    hBrevityFlags =     CreateConVar("sm_skeetstat_brevity",     "32",  "Flags for setting brevity of the report (hide 1:SI, 2:CI, 4:Accuracy, 8:Skeets/Deadstops, 32: melee acc, 64: damage count).", FCVAR_PLUGIN, true, 0.0);
     
     bCountTankDamage =  GetConVarBool(hCountTankDamage);
     bCountWitchDamage = GetConVarBool(hCountWitchDamage);
@@ -548,6 +549,7 @@ public PlayerDeath_Event(Handle:event, const String:name[], bool:dontBroadcast)
     new attacker = GetClientOfUserId(attackerId);
     
     if (attacker != iClientPlaying)                             { return; }     // ignore shots fired by anyone but survivor player
+    if (!IsClientAndInGame(victim))                             { return; }     // safeguard
     if (GetClientTeam(victim) != TEAM_INFECTED)                 { return; }     // safeguard
     
     new damagetype = GetEventInt(event, "type");
@@ -591,9 +593,11 @@ public InfectedDeath_Event(Handle:event, const String:name[], bool:dontBroadcast
     new attackerId = GetEventInt(event, "attacker");
     new attacker = GetClientOfUserId(attackerId);
     
-    if (attackerId && IsClientAndInGame(attacker) && GetClientTeam(attacker) == TEAM_SURVIVOR)
+    if (attackerId && IsClientAndInGame(attacker))
     {
-        iGotCommon[attacker]++;
+        if ((GetClientTeam(attacker) == TEAM_SURVIVOR)) {
+            iGotCommon[attacker]++;
+        }
     }
 }
 

@@ -21,9 +21,9 @@ new             Handle: g_hCvarSurvivorLimit        = INVALID_HANDLE;
 public Plugin:myinfo =
 {
         name = "Tank Damage Announce L4D2",
-        author = "Griffin + Blade + CircleSquared",
+        author = "Griffin and Blade",
         description = "Announce damage dealt to tanks by survivors",
-        version = "0.6.5e"
+        version = "0.6.5d"
 };
      
 public OnPluginStart()
