@@ -19,7 +19,7 @@ new Handle:hTeamBTanks;
 public Plugin:myinfo = {
     name = "L4D2 Tank Control",
     author = "Jahze",
-    version = "1.0",
+    version = "1.1",
     description = "Forces each player to play the tank once before resetting the pool."
 };
 
@@ -43,7 +43,7 @@ public Action:L4D_OnTryOfferingTankBot(tank_index, &bool:enterStatis) {
             PrintToChat(i, "\x01[Tank Control] (\x03%N\x01) \x04Rage Meter Refilled", tank_index);
         }
         SetTankFrustration(tank_index, 100);
-        L4D2Direct_SetTankPassedCount(L4D2Direct_GetTankPassedCount() + 2);
+        L4D2Direct_SetTankPassedCount(L4D2Direct_GetTankPassedCount() + 1);
         return Plugin_Handled;
     }
 
