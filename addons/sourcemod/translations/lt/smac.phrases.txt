@@ -1,0 +1,137 @@
+"Phrases"
+{
+	"SMAC_Banned"
+	{
+		"lt"		"Jūs buvot užbanintas už čytinimą"
+	}
+	
+	"SMAC_GlobalBanned"
+	{
+		"lt"		"Jūs esate {1} globaliam sąraše. {2} rasite daugiau informacijos"
+	}
+	
+	"SMAC_CommandSpamKick"
+	{
+		"lt"		"Jūs buvot iškikintas už komandų spaminimą"
+	}
+	
+	"SMAC_PleaseWait"
+	{
+		"lt"		"Prašome palaukti minutę prieš bandant iš naujo prisijungti"
+	}
+	
+	"SMAC_FailedToReply"
+	{
+		"lt"		"Jūsų klientas laiku neatsakė į užklausą. Prašom iš naujo prisijunkti arba paleisti žaidimą"
+	}
+	
+	"SMAC_FailedAuth"
+	{
+		"lt"		"Jūsų kliento autorizacija nepavyko reikiamu laiku. Prašom iš naujo prisijunkti arba paleisti žaidimą"
+	}
+	
+	"SMAC_ClientCorrupt"
+	{
+		"lt"		"Jūsų klientas tapo sugadintas. Prašom paleisti žaidimą iš naujo prieš jungiantis"
+	}
+	
+	"SMAC_RemovePlugins"
+	{
+		"lt"		"Prašom pašalinti bet kokius trečios šalies pluginus iš savo kliento prieš vėl jungiantis į šį serverį"
+	}
+	
+	"SMAC_HasPlugin"
+	{
+		"lt"		"{1} turi veikianti pluginą, grąžino {2}."
+	}
+	
+	"SMAC_Muted"
+	{
+		"lt"		"{1} buvo užmutintas SourceMod Anti-Cheat."
+	}
+	
+	"SMAC_HasNotEqual"
+	{
+		"lt"		"{1} grąžino netinka {2} reikšmę (reikšmė {3}, turėtu būti {4})."
+	}
+	
+	"SMAC_ShouldEqual"
+	{
+		"lt"		"Jūsų kintamasis {1}, turėtų būti lygus {2}, bet jis buvo nustatytas į {3}. Prašom tai ištaisyti prieš jungiantis iš naujo"
+	}
+	
+	"SMAC_HasNotGreater"
+	{
+		"lt"		"{1} turi kintamąjį {2} nustatytą į {3}, nors jis turėtu būti didesnis arba lygus {4}."
+	}
+	
+	"SMAC_ShouldBeGreater"
+	{
+		"lt"		"Jūsų kintamasis {1}, turėtų būti didesnis arba lygus {2}, bet jis buvo nustatytas į {3}. Prašom tai ištaisyti prieš jungiantis iš naujo"
+	}
+	
+	"SMAC_HasNotLess"
+	{
+		"lt"		"{1} turi kintamąjį {2} nustatytą į {3}, nors jis turėtu būti mažesnis arba lygus {4}."
+	}
+	
+	"SMAC_ShouldBeLess"
+	{
+		"lt"		"Jūsų kintamasis {1}, turėtų būti mažesnis arba lygus {2}, bet jis buvo nustatytas į {3}. Prašom tai ištaisyti prieš jungiantis iš naujo"
+	}
+	
+	"SMAC_HasNotBound"
+	{
+		"lt"		"{1} turi kintamąjį {2} nustatytą į {3}, nors jis turėtu būti tarp {4} ir {5}."
+	}
+	
+	"SMAC_ShouldBound"
+	{
+		"lt"		"Jūsų kintamasis {1}, turėtų būti tarp {2} ir {3}, bet buvo nustatytas į {4}. Prašom tai ištaisyti prieš jungiantis iš naujo"
+	}
+	
+	"SMAC_ChangeName"
+	{
+		"lt"		"Prašom pasikeisti savo vardą"
+	}
+	
+	"SMAC_CmdBanned"
+	{
+		"lt"		"Jūs buvot užbanintas už piknaudžiavimą komandom"
+	}
+	
+	"SMAC_SayBlock"
+	{
+		"lt"		"Jūsų žinutė buvo užblokuota dėl netinkamų raidžių."
+	}
+	
+	"SMAC_AimbotDetected"
+	{
+		"lt"		"{1} įtariamas aimbot'o naudojimų. (Rasta #{2} | Devijacija: {3}° | Ginklas: {4})"
+	}
+	
+	"SMAC_AutoTriggerDetected"
+	{
+		"lt"		"{1} įtariamas auto-trigger cheat naudojimų: {2}"
+	}
+	
+	"SMAC_SpinhackDetected"
+	{
+		"lt"		"{1} įtariamas spinhack'o naudojimų."
+	}
+	
+	"SMAC_SpeedhackDetected"
+	{
+		"lt"		"{1} įtariamas speedhack'o naudojimų."
+	}
+	
+	"SMAC_EyetestDetected"
+	{
+		"lt"		"{1} įtariamas akies laipsnių čytų naudojimų."
+	}
+	
+	"SMAC_WelcomeMsg"
+	{
+		"lt"		"Šis serveris yra apsaugotas SourceMod Anti-Cheat."
+	}
+}

@@ -1,0 +1,137 @@
+"Phrases"
+{
+	"SMAC_Banned"
+	{
+		"da"		"Du er blevet udelukket på grund af brud på reglerne"
+	}
+	
+	"SMAC_GlobalBanned"
+	{
+		"da"		"Du er blevet opført i {1} globale Ban Liste. Se {2} for mere information"
+	}
+	
+	"SMAC_CommandSpamKick"
+	{
+		"da"		"Du er blevet smidt ud på grund af kommando spam"
+	}
+	
+	"SMAC_PleaseWait"
+	{
+		"da"		"Vent et minut, før du forsøger at genoprette forbindelsen"
+	}
+	
+	"SMAC_FailedToReply"
+	{
+		"da"		"Din klient har ikke reageret på serverens forespørgsel. Venligst log in igen eller genstart dit spil"
+	}
+	
+	"SMAC_FailedAuth"
+	{
+		"da"		"Din klient har undladt at godkende i tide. Venligst igen eller genstarte dit spil"
+	}
+	
+	"SMAC_ClientCorrupt"
+	{
+		"da"		"Din klient er blevet beskadiget. Genstart dit spil, før du tilslutter igen"
+	}
+	
+	"SMAC_RemovePlugins"
+	{
+		"da"		"Fjern venligst tredjeparts plugins fra din klient, før du deltager i denne server igen"
+	}
+	
+	"SMAC_HasPlugin"
+	{
+		"da"		"{1} har et plugin kørende, resultat {2}."
+	}
+	
+	"SMAC_Muted"
+	{
+		"da"		"{1} er blevet dæmpet af SourceMod Anti-Cheat."
+	}
+	
+	"SMAC_HasNotEqual"
+	{
+		"da"		"{1} gav ringe værdi {2} (værdi {3}, bør være {4})."
+	}
+	
+	"SMAC_ShouldEqual"
+	{
+		"da"		"Din convar {1} burde være {2}, men er {3}. Ret venligst dette, før du tilslutter igen."
+	}
+	
+	"SMAC_HasNotGreater"
+	{
+		"da"		"{1} har convar {2} indstillet til {3}, når det skal være større end eller lig med {4}."
+	}
+	
+	"SMAC_ShouldBeGreater"
+	{
+		"da"		"Din convar {1} skal være større end eller lig med {2}, men det blev sat til {3}. Ret venligst dette, før du tilslutter igen."
+	}
+	
+	"SMAC_HasNotLess"
+	{
+		"da"		"{1} har convar {2} indstillet til {3}, når det skal være mindre end eller lig med {4}."
+	}
+	
+	"SMAC_ShouldBeLess"
+	{
+		"da"		"Din convar {1} skal være mindre end eller lig med {2}, men det blev sat til {3}. Ret venligst dette, før du tilslutter igen."
+	}
+	
+	"SMAC_HasNotBound"
+	{
+		"da"		"{1} har convar {2} indstillet til {3}, når det skal være mellem {4} og {5}."
+	}
+	
+	"SMAC_ShouldBound"
+	{
+		"da"		"Din convar {1} skal være mellem {2} og {3}, men det blev sat til {4}. Ret venligst dette, før du tilslutter igen."
+	}
+	
+	"SMAC_ChangeName"
+	{
+		"da"		"Vær venlig at ændre dit navn"
+	}
+	
+	"SMAC_CmdBanned"
+	{
+		"da"		"Du er blevet udelukket for brug af misbrug kommandoer"
+	}
+	
+	"SMAC_SayBlock"
+	{
+		"da"		"Din besked er blevet blokeret på grund af et ugyldigt tegn."
+	}
+	
+	"SMAC_AimbotDetected"
+	{
+		"da"		"{1} er mistænkt for at bruge aimbot. (Detection #{2} | Afvigelse: {3}° | Våben: {4})"
+	}
+	
+	"SMAC_AutoTriggerDetected"
+	{
+		"da"		"{1} er mistænkt for at auto-trigger cheat: {2}"
+	}
+	
+	"SMAC_SpinhackDetected"
+	{
+		"da"		"{1} er mistænkt for at bruge spinhack."
+	}
+	
+	"SMAC_SpeedhackDetected"
+	{
+		"da"		"{1} er mistænkt for at bruge speedhack."
+	}
+	
+	"SMAC_EyetestDetected"
+	{
+		"da"		"{1} er mistænkt for at snyde med deres syn."
+	}
+	
+	"SMAC_WelcomeMsg"
+	{
+		"da"		"Denne server er beskyttet af SourceMod Anti-Cheat."
+	}
+}
