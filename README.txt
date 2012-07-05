@@ -1,7 +1,7 @@
 Pro Mod, a competitive config based off of Metafogl.
 Edited by Jacob, Designed by the l4d2 community!
 
-Version 2.5
+Version 2.6
 
 If you have any problems installing, add me at: http://steamcommunity.com/id/jacob404
 
