@@ -12,12 +12,6 @@
         "tank_warpto"       "2168.357666 5803.427734 2464.031250"
         "tank_ban_flow_min" "0"
         "tank_ban_flow_max" "76"
-        "ItemLimits"
-        {
-            "molotov"       "0"
-            "pipe_bomb"     "0"
-            "vomitjar"      "0"
-        }
     }
     "c1m2_streets"
     {
@@ -26,10 +20,6 @@
         "start_dist"        "50.000000"
         "start_extra_dist"  "250.000000"
         "end_dist"          "200.000000"
-        "ItemLimits"
-        {
-            "molotov"       "0"
-        }
     }
     "c1m3_mall"
     {
@@ -40,10 +30,6 @@
         "end_dist"          "200.000000"
         "tank_ban_flow_min" "64"
         "tank_ban_flow_max" "68"
-        "ItemLimits"
-        {
-            "molotov"       "0"
-        }
     }
     "c1m4_atrium"
     {
@@ -54,7 +40,7 @@
         "end_dist"          "150.000000"
         "ItemLimits"
         {
-            "vomitjar"      "0"
+            "pain_pills"    "0"
         }
     }
     "c2m1_highway"
@@ -64,12 +50,6 @@
         "start_dist"        "50.000000"
         "start_extra_dist"  "0.000000"
         "end_dist"          "150.000000"
-        "ItemLimits"
-        {
-            "molotov"       "0"
-            "pipe_bomb"     "0"
-            "vomitjar"      "0"
-        }
     }
     "c2m2_fairgrounds"
     {
@@ -89,11 +69,6 @@
         "end_dist"          "150.000000"
         "tank_ban_flow_min" "55"
         "tank_ban_flow_max" "100"
-    "ItemLimits"
-        {
-            "pain_pills"    "0"
-            "adrenaline"    "0"
-        }
     }
     "c2m4_barns"
     {
@@ -103,12 +78,6 @@
         "start_extra_dist"  "150.000000"
         "end_dist"          "250.000000"
         "max_distance"      "600"
-        "ItemLimits"
-        {
-            "molotov"       "0"
-            "pipe_bomb"     "0"
-            "vomitjar"      "0"
-        }
     }
     "c2m5_concert"
     {
@@ -120,7 +89,6 @@
         "ItemLimits"
         {
             "pain_pills"    "0"
-            "adrenaline"    "0"
         }
     }
     "c3m1_plankcountry"
@@ -161,7 +129,6 @@
         "ItemLimits"
         {
             "pain_pills"    "0"
-            "adrenaline"    "0"
         }
     }
     "c4m1_milltown_a"
@@ -171,12 +138,6 @@
         "start_dist"        "100.000000"
         "start_extra_dist"  "500.000000"
         "end_dist"          "275.000000"
-        "ItemLimits"
-        {
-            "molotov"       "0"
-            "pipe_bomb"     "0"
-            "vomitjar"      "0"
-        }
     }
     "c4m2_sugarmill_a"
     {
@@ -219,7 +180,6 @@
         "ItemLimits"
         {
             "pain_pills"    "0"
-            "adrenaline"    "0"
         }
     }
     "c5m1_waterfront"
@@ -232,12 +192,6 @@
         "max_distance"      "300"
         "tank_ban_flow_min" "0"
         "tank_ban_flow_max" "38"
-        "ItemLimits"
-        {
-            "molotov"       "0"
-            "pipe_bomb"     "0"
-            "vomitjar"      "0"
-        }
     }
     "c5m2_park"
     {
@@ -275,12 +229,6 @@
         "end_point"         "3001.944092 6272.879395 494.284149"
         "end_dist"          "130.807541"
         "max_distance"      "400"
-        "ItemLimits"
-        {
-            "molotov"       "0"
-            "pipe_bomb"     "0"
-            "vomitjar"      "0"
-        }
     }
     "c6m1_riverbank"
     {
@@ -290,12 +238,6 @@
         "start_extra_dist"  "0.000000"
         "end_dist"          "50.000000"
         "max_distance"      "600"
-        "ItemLimits"
-        {
-            "molotov"       "0"
-            "pipe_bomb"     "0"
-            "vomitjar"      "0"
-        }
     }
     "c6m2_bedlam"
     {
@@ -315,7 +257,7 @@
         "end_dist"          "50.000000"
         "ItemLimits"
         {
-            "vomitjar"      "0"
+            "pain_pills"    "0"
         }
     }
     "c7m1_docks"
@@ -326,12 +268,6 @@
         "start_extra_dist"  "0.000000"
         "end_dist"          "50.000000"
         "max_distance"      "600"
-        "ItemLimits"
-        {
-            "molotov"       "0"
-            "pipe_bomb"     "0"
-            "vomitjar"      "0"
-        }
     }
     "c7m2_barge"
     {
@@ -349,6 +285,10 @@
         "start_dist"        "75.000000"
         "start_extra_dist"  "0.000000"
         "end_dist"          "75.000000"
+        "ItemLimits"
+        {
+            "pain_pills"    "0"
+        }
     }
     "c8m1_apartment"
     {
@@ -359,12 +299,6 @@
         "end_dist"          "336.442200"
         "tank_ban_flow_min" "0"
         "tank_ban_flow_max" "54"
-        "ItemLimits"
-        {
-            "molotov"       "0"
-            "pipe_bomb"     "0"
-            "vomitjar"      "0"
-        }
     }
     "c8m2_subway"
     {
@@ -402,6 +336,10 @@
         "start_extra_dist"  "421.803650"
         "end_point"         "5675.121582 8443.446289 6142.031250"
         "end_dist"          "100.000000"
+        "ItemLimits"
+        {
+            "pain_pills"    "0"
+        }
     }
 	"c9m1_alleys"
 	{
@@ -418,9 +356,10 @@
 		"start_extra_dist"  "301.270020"
 		"end_point"         "7095.529297 6474.146484 45.645901"
 		"end_dist"          "1387.183838"
+        "max_distance"      "800"
         "ItemLimits"
         {
-            "adrenaline"    "2"
+            "pain_pills"    "0"
         }
 	}
     "c10m1_caves"
@@ -431,13 +370,7 @@
         "end_point"         "-10784.895508 -4906.771973 318.224670"
         "end_dist"          "403.989594"
         "tank_ban_flow_min" "0"
-        "tank_ban_flow_max" "60"
-        "ItemLimits"
-        {
-            "molotov"       "0"
-            "pipe_bomb"     "0"
-            "vomitjar"      "0"
-        }
+        "tank_ban_flow_max" "70"
     }
     "c10m2_drainage"
     {
@@ -470,7 +403,10 @@
         "start_extra_dist"  "317.183868"
         "end_point"         "3805.135254 -4660.525391 -151.968750"
         "end_dist"          "795.922058"
-
+        "ItemLimits"
+        {
+            "pain_pills"    "0"
+        }
     }
     "c11m1_greenhouse"
     {
@@ -479,12 +415,6 @@
         "start_extra_dist"  "577.638000"
         "end_point"         "5274.120605 2715.548584 88.261955"
         "end_dist"          "314.896759"
-        "ItemLimits"
-        {
-            "molotov"       "0"
-            "pipe_bomb"     "0"
-            "vomitjar"      "0"
-        }
     }
     "c11m2_offices"
     {
@@ -519,6 +449,10 @@
         "start_extra_dist"  "344.831299"
         "end_point"         "-5196.772949 9229.695312 -191.968750"
         "end_dist"          "538.437988"
+        "ItemLimits"
+        {
+            "pain_pills"    "0"
+        }
     }
     "c12m1_hilltop"
     {
@@ -529,12 +463,6 @@
         "end_dist"          "275.937225"
         "tank_ban_flow_min" "0"
         "tank_ban_flow_max" "57"
-        "ItemLimits"
-        {
-            "molotov"       "0"
-            "pipe_bomb"     "0"
-            "vomitjar"      "0"
-        }
     }
     "c12m2_traintunnel"
     {
@@ -570,6 +498,10 @@
         "start_extra_dist"  "315.198547"
         "end_point"         "6972.038086 1354.824463 274.312256"
         "end_dist"          "183.031281"
+        "ItemLimits"
+        {
+            "pain_pills"    "0"
+        }
     }
     "c13m1_alpinecreek"
     {
@@ -578,12 +510,6 @@
         "start_extra_dist"  "437.938110"
         "end_point"         "1186.061401 -1247.817627 389.251373"
         "end_dist"          "604.894531"
-        "ItemLimits"
-        {
-            "molotov"       "0"
-            "pipe_bomb"     "0"
-            "vomitjar"      "0"
-        }
     }
     "c13m2_southpinestream"
     {
@@ -647,7 +573,6 @@
         "start_dist"        "191.200378"
         "start_extra_dist"  "269.938385"
     }
-
     "l4d_deathaboard01_prison"
     {
         "start_point"       "1172.334229 3525.726318 264.031250"
@@ -733,12 +658,6 @@
         "start_extra_dist"  "804.191406"
         "end_point"         "-4351.050293 -1135.742554 -343.968750"
         "end_dist"          "591.145630"
-        "ItemLimits"
-        {
-            "molotov"       "0"
-            "pipe_bomb"     "0"
-            "vomitjar"      "0"
-        }
     }
     "c5m2_darkpark"
     {
