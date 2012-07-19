@@ -645,6 +645,8 @@
         "start_extra_dist"  "445.357971"
         "end_point"         "7204.936523 1781.486450 268.031250"
         "end_dist"          "129.135315"
+        "tank_ban_flow_min" "25"
+        "tank_ban_flow_max" "50"
     }
     "l4d_deathaboard04_ship"
     {
@@ -653,6 +655,8 @@
         "start_extra_dist"  "95.611107"
         "end_point"         "3464.061279 -922.227356 -263.968750"
         "end_dist"          "229.138062"
+        "tank_ban_flow_min" "0"
+        "tank_ban_flow_max" "40"
     }
     "l4d_deathaboard05_light"
     {
@@ -783,6 +787,8 @@
         "start_extra_dist"  "410.564026"
         "end_point"         "6162.972168 -814.121765 -3936.968750"
         "end_dist"          "133.006638"
+        "tank_ban_flow_min" "0"
+        "tank_ban_flow_max" "45"
     }
     "l4d2_vs_stadium2_riverwalk"
     {
@@ -799,6 +805,8 @@
         "start_extra_dist"  "162.199844"
         "end_point"         "6849.338867 6643.520020 -390.850189"
         "end_dist"          "298.808014"
+        "tank_ban_flow_min" "0"
+        "tank_ban_flow_max" "40"
     }
     "l4d2_stadium4_city2"
     {
@@ -981,6 +989,8 @@
         "start_extra_dist"  "203.035721"
         "end_point"         "696.980591 8058.962891 0.031250"
         "end_dist"          "164.379135"
+        "tank_ban_flow_min" "60"
+        "tank_ban_flow_max" "100"
     }
     "uf3_harbor"
     {
@@ -1005,6 +1015,8 @@
         "start_extra_dist"  "241.007614"
         "end_point"         "1011.257202 -496.456573 -1408.878540"
         "end_dist"          "353.211945"
+        "tank_ban_flow_min" "30"
+        "tank_ban_flow_max" "62"
     }
     "l4d_149_2"
     {
@@ -1021,6 +1033,8 @@
         "start_extra_dist"  "209.354187"
         "end_point"         "9071.968750 1457.948853 -1434.025269"
         "end_dist"          "269.195496"
+        "tank_ban_flow_min" "0"
+        "tank_ban_flow_max" "75"
     }
     "l4d_149_4"
     {
@@ -1029,6 +1043,8 @@
         "start_extra_dist"  "218.735062"
         "end_point"         "6017.462402 -3480.372070 -1356.947998"
         "end_dist"          "146.841553"
+        "tank_ban_flow_min" "45"
+        "tank_ban_flow_max" "85"
     }
     "l4d_149_5"
     {
@@ -1057,6 +1073,8 @@
         "start_extra_dist"  "189.860016"
         "end_point"         "-799.900696 2543.301758 -1549.968750"
         "end_dist"          "286.437347"
+        "tank_ban_flow_min" "55"
+        "tank_ban_flow_max" "100"
     }
     "eu03_oldtown_b16"
     {
