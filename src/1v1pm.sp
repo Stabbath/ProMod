@@ -45,8 +45,8 @@ public Plugin:myinfo =
         name = "1v1 Pro Mod",
         author = "Blade + Confogl Team, Tabun",
         description = "A plugin designed to support 1v1.",
-        version = "6.0b",
-        url = "http://code.google.com/p/metafogl/"
+        version = "6.0c",
+        url = "https://github.com/malathion/promod/"
 }
 
 
@@ -78,7 +78,7 @@ public Action:Event_PlayerHurt(Handle:event, const String:name[], bool:dontBroad
         if (GetClientTeam(attacker) == TEAM_INFECTED && zombie_class != _:TANK_CLASS && damage >= GetConVarInt(hCvarDmgThreshold))
         {
                 new remaining_health = GetClientHealth(attacker);
-                PrintToChatAll("\x01[ProMod 1v1] Hunter (\x03%N\x01) health remaining: \x05%d\x01", attacker, remaining_health);
+                PrintToChatAll("\x01[ProMod 1v1] Infected (\x03%N\x01) health remaining: \x05%d\x01", attacker, remaining_health);
                 
                 ForcePlayerSuicide(attacker);    
                 

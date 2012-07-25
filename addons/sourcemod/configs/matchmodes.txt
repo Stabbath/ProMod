@@ -1,0 +1,76 @@
+"MatchModes"
+{
+
+// You can delete any section. Or add your own, for example:
+//
+//	"Scavenge"
+//	{
+//		"scavogl"				//config's directory
+//		{
+//			"name" "Scavogl"	//that appears in the menu
+//		}
+//		//.... (list of other configs)
+//	}
+
+	"4v4"
+	{
+		"promod"
+		{
+			"name" "Pro Mod"
+		}
+		"promodhr"
+		{
+			"name" "Pro Mod HR"
+		}
+		"retro"
+		{
+			"name" "Retro"
+		}
+		"hunters"
+		{
+			"name" "Hunters"
+		}
+		"jockeys"
+		{
+			"name" "Jockeys"
+		}
+	}
+	"3v3"
+	{
+		"pm3v3"
+		{
+			"name" "3v3 Pro Mod"
+		}
+		"hunters3v3"
+		{
+			"name" "3v3 Hunters"
+		}
+	}
+	"2v2"
+	{
+		"pm2v2"
+		{
+			"name" "2v2 Pro Mod"
+		}
+		"hunters2v2"
+		{
+			"name" "2v2 Hunters"
+		}
+	}
+	"1v1"
+	{
+		"pm1v1"
+		{
+			"name" "1v1 Pro Mod"
+		}
+		"hunters1v1"
+		{
+			"name" "1v1 Hunters"
+		}
+		"deadman"
+		{
+			"name" "1v1 Deadman"
+		}
+	}
+
+}
