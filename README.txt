@@ -70,7 +70,7 @@ make sure you use this one and NOT the one on bailopan.net or elsewhere! Extract
 files into the same directory structure of your server. Stripper: Source is now
 installed.
 
-Download: http://promod.webege.com
+Download: http://promod.webege.com/downloads.html
 ---------------------------------------------------------------------------------------
 
 
@@ -80,7 +80,7 @@ on the Pro Mod website, the one on the google code page contains outdated files 
 might cause conflicts. Extract all of the files into the same directory structure of
 your server. Confogl is now installed.
 
-Download: http://promod.webege.com
+Download: http://promod.webege.com/downloads.html
 --------------------------------------------------------------------------------------
 
 
@@ -111,7 +111,7 @@ less make sure Pro Mod 2.6 plugins aren't overwritten by them as they are the la
 Equilibrium 1.4 and greater (when released) will have no conflicts when overwriting
 each other.
 
-Download: http://promod.webege.com
+Download: http://promod.webege.com/downloads.html
 ---------------------------------------------------------------------------------------
 
 
