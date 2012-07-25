@@ -191,6 +191,7 @@ Changelog
 - Fixed all instances where pills would spawn more than the limit on finales
 - Finales now always have 4 pills except Crash Course which has 6 (4 at event, 2 randomly in map)
 - Changed Crash Course finale distance bonus to 800
+- Added tier 1 weapons to Dead Center 1 saferoom and removed 2 melee
 - Nerfed Retro shotgun very slightly (272 to 256 damage)
 - Increased tank spawning ban distance slightly for Death Toll 1 from 60% to 70%
 - Added tank spawning ban for the Blood Harvest 5 cornfield event
