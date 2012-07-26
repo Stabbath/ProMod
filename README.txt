@@ -168,7 +168,7 @@ Additional Q/A
 Changelog
 =======================================================================================
 2.6
-- Updatd Tabun's exploit blocker package to v27
+- Updated Tabun's exploit blocker package to v27
 - Updated confoglcompmod to prevent the config display issue
 - Added Vintik's match vote plugin which adds/augments two new commands:
     !match - Brings up a menu of available configs (editable by server admin) to vote on loading
