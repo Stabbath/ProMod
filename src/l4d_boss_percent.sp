@@ -10,8 +10,8 @@
 
 public Plugin:myinfo = {
     name = "L4D2 Boss Flow Announce",
-    author = "ProdigySim, Jahze, Stabby",
-    version = "1.1",
+    author = "ProdigySim, Jahze, Stabby, CircleSquared",
+    version = "1.2",
     description = "Announce boss flow percents!"
 };
 
@@ -21,11 +21,16 @@ new iTankPercent	= 0;
 new Handle:g_hVsBossBuffer;
 new Handle:g_hVsBossFlowMax;
 new Handle:g_hVsBossFlowMin;
+new Handle:hCvarTankPercent;
+new Handle:hCvarWitchPercent;
 
 public OnPluginStart() {
     g_hVsBossBuffer = FindConVar("versus_boss_buffer");
     g_hVsBossFlowMax = FindConVar("versus_boss_flow_max");
     g_hVsBossFlowMin = FindConVar("versus_boss_flow_min");
+    
+    hCvarTankPercent = CreateConVar("l4d_tank_percent", "1", "Display Tank flow percentage in chat", FCVAR_PLUGIN);
+    hCvarWitchPercent = CreateConVar("l4d_witch_percent", "1", "Display Witch flow percentage in chat", FCVAR_PLUGIN);
     
     RegConsoleCmd("sm_boss", BossCmd);
     RegConsoleCmd("sm_tank", BossCmd);
@@ -35,35 +40,46 @@ public OnPluginStart() {
     HookEvent("round_start", EventHook:RoundStartEvent, EventHookMode_PostNoCopy);
 }
 
-public LeftStartAreaEvent( ) {
-    new iRoundNumber = InSecondHalfOfRound() ? 1 : 0;
-    
-    iTankPercent = RoundToNearest(GetTankFlow(iRoundNumber)*100);
-    if (L4D2Direct_GetVSWitchToSpawnThisRound(iRoundNumber)) {
-        iWitchPercent = RoundToNearest(GetWitchFlow(iRoundNumber)*100);
+public LeftStartAreaEvent() {
+    if(GetConVarBool(hCvarTankPercent)) {
+        if (iTankPercent) {
+            PrintToChatAll("\x01Tank spawn: [\x04%d%%\x01]", iTankPercent);
+        }
+        else {
+            PrintToChatAll("\x01Tank spawn: [\x04None\x01]");
+        }
     }
-    else {
-        iWitchPercent = 0;
-    }
-	
-    PrintToChatAll("\x01Tank spawn: [\x04%d%%\x01]", iTankPercent);
-
-    if (iWitchPercent) {
-        PrintToChatAll("\x01Witch spawn: [\x04%d%%\x01]", iWitchPercent);
+    if(GetConVarBool(hCvarWitchPercent)) {
+        if (iWitchPercent) {
+            PrintToChatAll("\x01Witch spawn: [\x04%d%%\x01]", iWitchPercent);
+        }
+        else {
+            PrintToChatAll("\x01Witch spawn: [\x04None\x01]");
+        }
     }
 }
 
 public RoundStartEvent() {
     CreateTimer(0.5, AdjustBossFlow);
+    CreateTimer(1.0, GetBossFlow);
 }
 
 PrintBossPercents(client) {
-    if (iTankPercent) {
-        PrintToChat(client, "\x01Tank spawn: [\x04%d%%\x01]", iTankPercent);
+    if(GetConVarBool(hCvarTankPercent)) {
+        if (iTankPercent) {
+            PrintToChat(client, "\x01Tank spawn: [\x04%d%%\x01]", iTankPercent);
+        }
+        else {
+            PrintToChat(client, "\x01Tank spawn: [\x04None\x01]");
+        }
     }
-    
-    if (iWitchPercent) {
-        PrintToChat(client, "\x01Witch spawn: [\x04%d%%\x01]", iWitchPercent);
+    if(GetConVarBool(hCvarWitchPercent)) {
+        if (iWitchPercent) {
+            PrintToChat(client, "\x01Witch spawn: [\x04%d%%\x01]", iWitchPercent);
+        }
+        else {
+            PrintToChat(client, "\x01Witch spawn: [\x04None\x01]");
+        }
     }
 }
 
@@ -128,4 +144,21 @@ public Action:AdjustBossFlow(Handle:timer) {
     
     L4D2Direct_SetVSTankFlowPercent(0, fFlow);
     L4D2Direct_SetVSTankFlowPercent(1, fFlow);
+}
+
+public Action:GetBossFlow(Handle:timer) {
+    new iRoundNumber = InSecondHalfOfRound() ? 1 : 0;
+
+    if (L4D2Direct_GetVSWitchToSpawnThisRound(iRoundNumber)) {
+        iWitchPercent = RoundToNearest(GetWitchFlow(iRoundNumber)*100);
+    }
+    else {
+        iWitchPercent = 0;
+    }
+    if (L4D2Direct_GetVSTankToSpawnThisRound(iRoundNumber)) {
+        iTankPercent = RoundToNearest(GetTankFlow(iRoundNumber)*100);
+    }
+    else {
+        iTankPercent = 0;
+    }
 }
