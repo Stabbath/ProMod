@@ -12,9 +12,9 @@
 public Plugin:myinfo =
 {
 	name = "L4D Weapon Limits",
-	author = "CanadaRox",
+	author = "CanadaRox, Stabby",
 	description = "Restrict weapons individually or together",
-	version = "1.1a",
+	version = "1.2",
 	url = "https://www.github.com/CanadaRox/sourcemod-plugins/tree/master/weapon_limits"
 }
 
@@ -27,6 +27,7 @@ enum LimitArrayEntry
 new Handle:hSDKGiveDefaultAmmo;
 new Handle:hLimitArray;
 new bIsLocked;
+new bIsIncappedWithMelee [MAXPLAYERS + 1];
 new iAmmoPile;
 
 public OnPluginStart()
@@ -54,6 +55,9 @@ public OnPluginStart()
 	RegServerCmd("l4d_wlimits_add", AddLimit_Cmd, "Add a weapon limit");
 	RegServerCmd("l4d_wlimits_lock", LockLimits_Cmd, "Locks the limits to improve search speeds");
 	RegServerCmd("l4d_wlimits_clear", ClearLimits_Cmd, "Clears all weapon limits (limits must be locked to be cleared)");
+
+	HookEvent("player_incapacitated_start", OnIncap);
+	HookEvent("revive_success", OnRevive);
 }
 
 public OnPluginEnd()
@@ -151,6 +155,7 @@ public Action:WeaponCanUse(client, weapon)
 			if (!player_wepid || wepid == player_wepid || !(arrayEntry[LAE_WeaponArray][_:player_wepid/32] & (1 << (_:player_wepid % 32))))
 			{
 				if (wep_slot == 0) GiveDefaultAmmo(client);
+				if (player_wepid == WEPID_MELEE) return Plugin_Continue;
 				if (player_wepid) PrintToChat(client, "[Weapon Limits] This weapon group has reached its max of %d", arrayEntry[LAE_iLimit]);
 				return Plugin_Handled;
 			}
@@ -159,6 +164,23 @@ public Action:WeaponCanUse(client, weapon)
 	return Plugin_Continue;
 }
 
+public Action:OnIncap(Handle:event, const String:name[], bool:dontBroadcast)
+{
+	new client = GetClientOfUserId(GetEventInt(event, "userid"));
+	if (GetClientTeam(client) == 2 && IdentifyWeapon(GetPlayerWeaponSlot(client, 1)) == WEPID_MELEE)
+	{
+		bIsIncappedWithMelee[client] = true;
+	}
+}
+
+public Action:OnRevive(Handle:event, const String:name[], bool:dontBroadcast)
+{
+	new client = GetClientOfUserId(GetEventInt(event, "subject"));
+	if (bIsIncappedWithMelee[client])
+	{
+		bIsIncappedWithMelee[client] = false;
+	}
+}
 
 stock GetWeaponCount(const mask[])
 {
@@ -171,7 +193,7 @@ stock GetWeaponCount(const mask[])
 			for (j = 0; j < 5; ++j)
 			{
 				wepid = IdentifyWeapon(GetPlayerWeaponSlot(i, j));
-				if (mask[_:wepid/32] & (1 << (_:wepid % 32)))
+				if (mask[_:wepid/32] & (1 << (_:wepid % 32)) || (j == 1 && bIsIncappedWithMelee[i]))
 				{
 					++count;
 				}
