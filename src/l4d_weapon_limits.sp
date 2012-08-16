@@ -3,7 +3,7 @@
 #include <sourcemod>
 #include <sdktools>
 #include <sdkhooks>
-#include "../weapons.inc"
+#include <weapons.inc>
 
 #define MAX_WEAPON_NAME_LENGTH 32
 #define GAMEDATA_FILE          "l4d_wlimits"
