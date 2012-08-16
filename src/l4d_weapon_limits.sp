@@ -14,7 +14,7 @@ public Plugin:myinfo =
 	name = "L4D Weapon Limits",
 	author = "CanadaRox, Stabby",
 	description = "Restrict weapons individually or together",
-	version = "1.2",
+	version = "1.2a",
 	url = "https://www.github.com/CanadaRox/sourcemod-plugins/tree/master/weapon_limits"
 }
 
@@ -155,7 +155,7 @@ public Action:WeaponCanUse(client, weapon)
 			if (!player_wepid || wepid == player_wepid || !(arrayEntry[LAE_WeaponArray][_:player_wepid/32] & (1 << (_:player_wepid % 32))))
 			{
 				if (wep_slot == 0) GiveDefaultAmmo(client);
-				if (player_wepid == WEPID_MELEE) return Plugin_Continue;
+				if (player_wepid == WEPID_MELEE && wepid == WEPID_MELEE) return Plugin_Continue;
 				if (player_wepid) PrintToChat(client, "[Weapon Limits] This weapon group has reached its max of %d", arrayEntry[LAE_iLimit]);
 				return Plugin_Handled;
 			}
@@ -193,7 +193,7 @@ stock GetWeaponCount(const mask[])
 			for (j = 0; j < 5; ++j)
 			{
 				wepid = IdentifyWeapon(GetPlayerWeaponSlot(i, j));
-				if (mask[_:wepid/32] & (1 << (_:wepid % 32)) || (j == 1 && bIsIncappedWithMelee[i]))
+				if (mask[_:wepid/32] & (1 << (_:wepid % 32)) || (j == 1 && bIsIncappedWithMelee[i] && wepid != WEPID_PISTOL_MAGNUM))
 				{
 					++count;
 				}
