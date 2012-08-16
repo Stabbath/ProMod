@@ -55,7 +55,7 @@ public OnPluginStart()
 								"How long should godframes after a pull or choke last?",
 								FCVAR_PLUGIN, true, 0.0, true, 3.0 );
 	hCharger	= CreateConVar( "gfc_charger_duration",		"2.0",
-								"How long should godframes after a pummel or carry last?",
+								"How long should godframes after a pummel last?",
 								FCVAR_PLUGIN, true, 0.0, true, 3.0 );
 	
 	HookEvent("tongue_release", 		PostSurvivorRelease);
