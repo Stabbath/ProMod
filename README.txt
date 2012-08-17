@@ -1,5 +1,5 @@
 Pro Mod
-Version 2.6
+Version 3.0
 Website: http://promod.webege.com
 
 Pro Mod is a configuration for Left 4 Dead 2 built for Confogl with the purpose of
@@ -107,7 +107,7 @@ same directory structure of your server and overwrite anything that it asks to. 
 is now installed. If you intend to install additional configs such as Equilibrium, then
 remember to remove any mapinfo.txt in the l4d2lib path and place it directly into the
 directory of the config itself (see below). If you're installing Equilibrium 1.3 or
-less make sure Pro Mod 2.6 plugins aren't overwritten by them as they are the latest.
+less make sure Pro Mod 3.0 plugins aren't overwritten by them as they are the latest.
 Equilibrium 1.4 and greater (when released) will have no conflicts when overwriting
 each other.
 
@@ -167,6 +167,9 @@ Additional Q/A
 =======================================================================================
 Changelog
 =======================================================================================
+3.0
+- TBA
+
 2.6
 - Updated Tabun's exploit blocker package to v27
 - Updated confoglcompmod to prevent the config display issue
