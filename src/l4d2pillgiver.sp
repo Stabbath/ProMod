@@ -2,8 +2,7 @@
 
 #include <sourcemod>
 #include <sdktools>
-#include <left4downtown>
-#include <l4d2lib> 
+
 public Plugin:myinfo =
 {
 	name = "L4D2 Pill Giver",
@@ -20,11 +19,17 @@ public OnPluginStart()
 
 public Action:PlayerLeftStartArea(Handle:event, const String:name[], bool:dontBroadcast)
 {
-	new flags = GetCommandFlags("give");	
-	SetCommandFlags("give", flags & ~FCVAR_CHEAT);	
+	decl entity;
+	decl Float:clientOrigin[3];
 	for (new i = 1; i <= MaxClients; i++)
 	{
-		if (IsClientInGame(i) && GetClientTeam(i)==2) FakeClientCommand(i, "give pain_pills");
+		if (IsClientInGame(i) && GetClientTeam(i)==2)
+		{
+			entity = CreateEntityByName("weapon_pain_pills");
+			GetClientAbsOrigin(i, clientOrigin);
+			TeleportEntity(entity, clientOrigin, NULL_VECTOR, NULL_VECTOR);
+			DispatchSpawn(entity);
+			EquipPlayerWeapon(i, entity);
+		}
 	}
-	SetCommandFlags("give", flags|FCVAR_CHEAT);
 }
