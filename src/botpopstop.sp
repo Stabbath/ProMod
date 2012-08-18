@@ -44,18 +44,18 @@ public Action:Event_PlayerJoined(Handle:event, const String:name[], bool:dontBro
 
 	if (iBotHad[leavingBot])
 	{
-		RestoreItem(GetClientOfUserId(GetEventInt(event), leavingbot));
+		RestoreItem(GetClientOfUserId(GetEventInt(event, "player")), leavingBot);
 		iBotHad[leavingBot] = 0;
 	}
 }
 
-RestoreItem(client, leavingbot)
+RestoreItem(client, leavingBot)
 {
 	// manually create entity and the equip it since GivePlayerItem() doesn't work in L4D2
 	new entity = CreateEntityByName(iBotHad[leavingBot] == WP_PAIN_PILLS ? "weapon_pain_pills" : "weapon_adrenaline");
-	decl Float:clientOrigin;
+	decl Float:clientOrigin[3];
 	GetClientAbsOrigin(client, clientOrigin);
 	TeleportEntity(entity, clientOrigin, NULL_VECTOR, NULL_VECTOR);
-	DispatchSpawn(entity)
+	DispatchSpawn(entity);
 	EquipPlayerWeapon(client, entity);
 }
