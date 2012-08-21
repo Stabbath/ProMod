@@ -8,6 +8,11 @@
 
 #define CLASS_LENGTH		64
 
+#define SI_FLAG_HUNTER	1
+#define SI_FLAG_SMOKER	1
+#define SI_FLAG_JOCKEY	1
+#define SI_FLAG_CHARGER	1
+
 //cvars
 new Handle:	hHittable 				= INVALID_HANDLE;
 new Handle:	hWitch 					= INVALID_HANDLE;
@@ -17,19 +22,20 @@ new Handle:	hHunter 				= INVALID_HANDLE;
 new Handle:	hSmoker 				= INVALID_HANDLE;
 new Handle:	hJockey 				= INVALID_HANDLE;
 new Handle:	hCharger 				= INVALID_HANDLE;
+new Handle: hSpitFlags				= INVALID_HANDLE;
+new Handle: hCommonFlags			= INVALID_HANDLE;
 
 //fake godframes
-new Float:	fFakeGodframeEnd		[MAXPLAYERS + 1];
+new Float:	fFakeGodframeEnd[MAXPLAYERS + 1];
+new			iLastSI			[MAXPLAYERS + 1];
 
 public Plugin:myinfo = 
 {
 	name = "L4D2 Godframes Control (starring Austin Powers, Baby Yeah!)",
 	author = "Stabby, CircleSquared",
-	version = "0.2",
+	version = "0.2.1",
 	description = "Allow for control of what gets godframed and what doesnt."
 };
-
-//make a second pin from another SI after the first one is cleared remove godframes?
 
 public OnPluginStart()
 {
@@ -57,6 +63,12 @@ public OnPluginStart()
 	hCharger	= CreateConVar( "gfc_charger_duration",		"2.0",
 								"How long should godframes after a pummel last?",
 								FCVAR_PLUGIN, true, 0.0, true, 3.0 );
+	hSpitFlags  = CreateConVar( "gfc_spit_zc_flags",     "0",
+								"Which classes will be affected by extra spit protection time. 1 - Hunter. 2 - Smoker. 4 - Jockey. 8 - Charger.",
+								FCVAR_PLUGIN, true,  0.0, true, 15.0 );
+	hCommonFlags  = CreateConVar( "gfc_common_zc_flags",     "0",
+								"Which classes will be affected by extra common protection time. 1 - Hunter. 2 - Smoker. 4 - Jockey. 8 - Charger.",
+								FCVAR_PLUGIN, true,  0.0, true, 15.0 );
 	
 	HookEvent("tongue_release", 		PostSurvivorRelease);
 	HookEvent("pounce_end", 			PostSurvivorRelease);
@@ -69,37 +81,33 @@ public PostSurvivorRelease(Handle:event, const String:name[], bool:dontBroadcast
 	new victim = GetClientOfUserId(GetEventInt(event,"victim"));
 
 	if (!IsClientAndInGame(victim))	{ return; }	//just in case
-		
-//	CreateTimer(0.01, Timed_WaitForGodframes, victim);
 	
 	//sets fake godframe time based on cvars for each ZC
 	if (StrContains(name, "tongue") != -1)
 	{
 		fFakeGodframeEnd[victim] = GetGameTime() + GetConVarFloat(hSmoker);
+		iLastSI[victim] = 2;
 		return;
 	}
 	if (StrContains(name, "pounce") != -1)
 	{
 		fFakeGodframeEnd[victim] = GetGameTime() + GetConVarFloat(hHunter);
+		iLastSI[victim] = 1;
 		return;
 	}
 	if (StrContains(name, "jockey") != -1)
 	{
 		fFakeGodframeEnd[victim] = GetGameTime() + GetConVarFloat(hJockey);
+		iLastSI[victim] = 4;
 		return;
 	}
 	if (StrContains(name, "charger") != -1)
 	{
 		fFakeGodframeEnd[victim] = GetGameTime() + GetConVarFloat(hCharger);
+		iLastSI[victim] = 8;
 	}
 	return;	
 }
-/*
-public Action:Timed_WaitForGodframes(Handle:thisTimer, any:victim)
-{	//doing it OnTakeDamage wasnt working for some reason, dunno
-	new CountdownTimer:cTimerGod = L4D2Direct_GetInvulnerabilityTimer(victim);
-	if (cTimerGod != CTimer_Null) { CTimer_Invalidate(cTimerGod); }
-}*/
 
 public OnClientPutInServer(client)
 {
@@ -118,11 +126,11 @@ public Action:OnTakeDamage(victim, &attacker, &inflictor, &Float:damage, &damage
 	
 	new Float:fTimeLeft = fFakeGodframeEnd[victim] - GetGameTime();
 		
-	if (StrEqual(sClassname, "infected"))		//commons
+	if (StrEqual(sClassname, "infected") && (iLastSI[victim] & GetConVarInt(hCommonFlags)))		//commons
 	{
 		fTimeLeft += GetConVarFloat(hCommon);
 	}
-	if (StrEqual(sClassname, "insect_swarm"))	//spit
+	if (StrEqual(sClassname, "insect_swarm") && (iLastSI[victim] & GetConVarInt(hSpitFlags)))	//spit
 	{
 		fTimeLeft += GetConVarFloat(hSpit);
 	}
@@ -142,7 +150,10 @@ public Action:OnTakeDamage(victim, &attacker, &inflictor, &Float:damage, &damage
 		}
 		return Plugin_Handled;
 	}
-	
+	else
+	{
+		iLastSI[victim] = 0;
+	}
 	return Plugin_Continue;
 }
 
