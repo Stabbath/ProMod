@@ -14,7 +14,7 @@ public Plugin:myinfo =
 	name = "L4D Weapon Limits",
 	author = "CanadaRox, Stabby",
 	description = "Restrict weapons individually or together",
-	version = "1.2a",
+	version = "1.2b",
 	url = "https://www.github.com/CanadaRox/sourcemod-plugins/tree/master/weapon_limits"
 }
 
@@ -58,6 +58,15 @@ public OnPluginStart()
 
 	HookEvent("player_incapacitated_start", OnIncap);
 	HookEvent("revive_success", OnRevive);
+	HookEvent("round_end", OnRoundEnd);
+}
+
+public OnRoundEnd(Handle:event, const String:name[], bool:dontBroadcast)
+{
+	for (new i = 1; i <= MAXPLAYERS; i++)
+	{
+	bIsIncappedWithMelee[i] = false;
+	}
 }
 
 public OnPluginEnd()
