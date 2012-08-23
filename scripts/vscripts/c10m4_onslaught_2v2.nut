@@ -8,9 +8,9 @@ DirectorOptions <-
 	PreferredMobDirection = SPAWN_IN_FRONT_OF_SURVIVORS
 	MobSpawnMinTime = 5
 	MobSpawnMaxTime = 5
-	MobMaxPending = 12
-	MobMinSize = 12
-	MobMaxSize = 12
+	MobMaxPending = 10
+	MobMinSize = 10
+	MobMaxSize = 10
 	SustainPeakMinTime = 3
 	SustainPeakMaxTime = 3
 	IntensityRelaxThreshold = 0.90

@@ -2,11 +2,11 @@
 {
 	"c1m4_atrium"
 	{
-		"z_common_limit"	"18"
+		"z_common_limit"	"15"
 	}
 	"c5m5_bridge"
 	{
-		"z_common_limit"	"16"
+		"z_common_limit"	"12"
 	}
 	"c6m3_port"
 	{
@@ -22,6 +22,6 @@
 	}
 	"c13m4_cutthroatcreek"
 	{
-		"z_common_limit"	"16"
+		"z_common_limit"	"12"
 	}
 }
