@@ -3,7 +3,7 @@
 #include <sourcemod>
 #include <sdktools>
 #include <sdkhooks>
-#include <weapons.inc>
+#include <weapons>
 
 #define MAX_WEAPON_NAME_LENGTH 32
 #define GAMEDATA_FILE          "l4d_wlimits"
@@ -14,20 +14,21 @@ public Plugin:myinfo =
 	name = "L4D Weapon Limits",
 	author = "CanadaRox, Stabby",
 	description = "Restrict weapons individually or together",
-	version = "1.2b",
+	version = "1.3",
 	url = "https://www.github.com/CanadaRox/sourcemod-plugins/tree/master/weapon_limits"
 }
 
 enum LimitArrayEntry
 {
 	LAE_iLimit,
+	LAE_iGiveAmmo,
 	LAE_WeaponArray[_:WeaponId/32+1]
 }
 
 new Handle:hSDKGiveDefaultAmmo;
 new Handle:hLimitArray;
 new bIsLocked;
-new bIsIncappedWithMelee [MAXPLAYERS + 1];
+new bIsIncappedWithMelee[MAXPLAYERS + 1];
 new iAmmoPile;
 
 public OnPluginStart()
@@ -63,9 +64,9 @@ public OnPluginStart()
 
 public OnRoundEnd(Handle:event, const String:name[], bool:dontBroadcast)
 {
-	for (new i = 1; i <= MAXPLAYERS; i++)
+	for (new i = 1; i <= MaxClients; i++)
 	{
-	bIsIncappedWithMelee[i] = false;
+		bIsIncappedWithMelee[i] = false;
 	}
 }
 
@@ -101,9 +102,9 @@ public Action:AddLimit_Cmd(args)
 		PrintToServer("Limits have been locked");
 		return Plugin_Handled;
 	}
-	else if (args < 2)
+	else if (args < 3)
 	{
-		PrintToServer("Usage: l4d_wlimits_add <limit> <weapon1> <weapon2> ... <weaponN>");
+		PrintToServer("Usage: l4d_wlimits_add <limit> <ammo> <weapon1> <weapon2> ... <weaponN>\nAmmo: -1: Given for primary weapon spawns only, 0: no ammo given ever, else: ammo always given");
 		return Plugin_Handled;
 	}
 
@@ -114,7 +115,10 @@ public Action:AddLimit_Cmd(args)
 	decl WeaponId:wepid;
 	newEntry[LAE_iLimit] = StringToInt(sTempBuff);
 
-	for (new i = 2; i <= args; ++i)
+	GetCmdArg(2, sTempBuff, sizeof(sTempBuff));
+	newEntry[LAE_iGiveAmmo] = StringToInt(sTempBuff);
+
+	for (new i = 3; i <= args; ++i)
 	{
 		GetCmdArg(i, sTempBuff, sizeof(sTempBuff));
 		wepid = WeaponNameToId(sTempBuff);
@@ -153,17 +157,18 @@ public Action:WeaponCanUse(client, weapon)
 
 	decl arrayEntry[LimitArrayEntry];
 	new size = GetArraySize(hLimitArray);
+	decl wep_slot, player_weapon, WeaponId:player_wepid;
 	for (new i = 0; i < size; ++i)
 	{
 		GetArrayArray(hLimitArray, i, arrayEntry[0]);
 		if (arrayEntry[LAE_WeaponArray][_:wepid/32] & (1 << (_:wepid % 32)) && GetWeaponCount(arrayEntry[LAE_WeaponArray]) >= arrayEntry[LAE_iLimit])
 		{
-			new wep_slot = GetSlotFromWeaponId(wepid);
-			new player_weapon = GetPlayerWeaponSlot(client, _:wep_slot);
-			new WeaponId:player_wepid = IdentifyWeapon(player_weapon); 
+			wep_slot = GetSlotFromWeaponId(wepid);
+			player_weapon = GetPlayerWeaponSlot(client, _:wep_slot);
+			player_wepid = IdentifyWeapon(player_weapon);
 			if (!player_wepid || wepid == player_wepid || !(arrayEntry[LAE_WeaponArray][_:player_wepid/32] & (1 << (_:player_wepid % 32))))
 			{
-				if (wep_slot == 0) GiveDefaultAmmo(client);
+				if ((wep_slot == 0 && arrayEntry[LAE_iGiveAmmo] == -1) || arrayEntry[LAE_iGiveAmmo] != 0) GiveDefaultAmmo(client);
 				if (player_wepid == WEPID_MELEE && wepid == WEPID_MELEE) return Plugin_Continue;
 				if (player_wepid) PrintToChat(client, "[Weapon Limits] This weapon group has reached its max of %d", arrayEntry[LAE_iLimit]);
 				return Plugin_Handled;
