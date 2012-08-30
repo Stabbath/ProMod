@@ -1,7 +1,0 @@
-"MapCvars"
-{
-	"c1m1_hotel"
-	{
-		"versus_witch_chance"	"0"
-	}
-}
