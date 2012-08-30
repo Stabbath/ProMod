@@ -1,9 +1,5 @@
 "MapCvars"
 {
-	"c1m1_hotel"
-	{
-		"versus_witch_chance"	"0"
-	}
 	"c1m4_atrium"
 	{
 		"z_common_limit"	"3"
