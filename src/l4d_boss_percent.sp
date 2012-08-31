@@ -11,7 +11,7 @@
 public Plugin:myinfo = {
     name = "L4D2 Boss Flow Announce",
     author = "ProdigySim, Jahze, Stabby, CircleSquared",
-    version = "1.2",
+    version = "1.3",
     description = "Announce boss flow percents!"
 };
 
@@ -93,11 +93,10 @@ public Action:BossCmd(client, args) {
     for (new i = 1; i < MaxClients+1; i++) {
         if (IsClientConnected(i) && IsClientInGame(i) && L4D2_Team:GetClientTeam(i) == iTeam) {
             PrintBossPercents(i);
-            return Plugin_Handled;
         }
     }
 	
-    return Plugin_Continue;
+    return Plugin_Handled;
 }
 
 Float:GetTankFlow(round) {
