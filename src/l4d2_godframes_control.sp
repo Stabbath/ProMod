@@ -33,8 +33,8 @@ public Plugin:myinfo =
 {
 	name = "L4D2 Godframes Control (starring Austin Powers, Baby Yeah!)",
 	author = "Stabby, CircleSquared",
-	version = "0.2.1",
-	description = "Allow for control of what gets godframed and what doesnt."
+	version = "0.2.2",
+	description = "Allows for control of what gets godframed and what doesnt."
 };
 
 public OnPluginStart()
@@ -66,7 +66,7 @@ public OnPluginStart()
 	hSpitFlags  = CreateConVar( "gfc_spit_zc_flags",     "0",
 								"Which classes will be affected by extra spit protection time. 1 - Hunter. 2 - Smoker. 4 - Jockey. 8 - Charger.",
 								FCVAR_PLUGIN, true,  0.0, true, 15.0 );
-	hCommonFlags  = CreateConVar( "gfc_common_zc_flags",     "0",
+	hCommonFlags= CreateConVar( "gfc_common_zc_flags",     "0",
 								"Which classes will be affected by extra common protection time. 1 - Hunter. 2 - Smoker. 4 - Jockey. 8 - Charger.",
 								FCVAR_PLUGIN, true,  0.0, true, 15.0 );
 	
@@ -74,6 +74,18 @@ public OnPluginStart()
 	HookEvent("pounce_end", 			PostSurvivorRelease);
 	HookEvent("jockey_ride_end", 		PostSurvivorRelease);
 	HookEvent("charger_pummel_end", 	PostSurvivorRelease);
+	HookEvent("round_start",			OnRoundStart);
+}
+
+public OnRoundStart(Handle:event, const String:name[], bool:dontBroadcast)
+{
+	for (new i = 1; i <= MaxClients; i++)	//clear both fake and real just because
+	{
+		fFakeGodframeEnd[i] = 0.0;
+		
+		new CountdownTimer:cTimerGod = L4D2Direct_GetInvulnerabilityTimer(i);
+		if (cTimerGod != CTimer_Null) { CTimer_Invalidate(cTimerGod); }
+	}
 }
 
 public PostSurvivorRelease(Handle:event, const String:name[], bool:dontBroadcast)
