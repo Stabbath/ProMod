@@ -33,7 +33,7 @@ public Plugin:myinfo =
 {
 	name = "L4D2 Godframes Control (starring Austin Powers, Baby Yeah!)",
 	author = "Stabby, CircleSquared",
-	version = "0.2.2",
+	version = "0.2.3",
 	description = "Allows for control of what gets godframed and what doesnt."
 };
 
@@ -82,9 +82,6 @@ public OnRoundStart(Handle:event, const String:name[], bool:dontBroadcast)
 	for (new i = 1; i <= MaxClients; i++)	//clear both fake and real just because
 	{
 		fFakeGodframeEnd[i] = 0.0;
-		
-		new CountdownTimer:cTimerGod = L4D2Direct_GetInvulnerabilityTimer(i);
-		if (cTimerGod != CTimer_Null) { CTimer_Invalidate(cTimerGod); }
 	}
 }
 
