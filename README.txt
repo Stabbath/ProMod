@@ -8,9 +8,11 @@ changes from an evolving set of ideas put forth from other configs such as Fresh
 and Metafogl, as well as the community.
 
 Developer : Jacob (inactive), CircleSquared
-Plugins   : CanadaRox, ProdigySim, Blade, Jahze, Jacob, Tabun, Vintik
+Plugins   : CanadaRox, ProdigySim, Blade, Jahze, Jacob, Tabun, Vintik, Stabby
 Scripts   : Jacob, Tabun, CircleSquared
 Stripper  : Jacob, Blade, Tabun, CircleSquared
+Testing   : Ammo, cepS, Critical, DustY, Fever, Fig, hoveller, K9, Kobra, Laugh
+            Lazy, Lid, marr, Martine, Murtagh, purpletreefactory, scalar
 
 
 =======================================================================================
@@ -107,9 +109,9 @@ same directory structure of your server and overwrite anything that it asks to. 
 is now installed. If you intend to install additional configs such as Equilibrium, then
 remember to remove any mapinfo.txt in the l4d2lib path and place it directly into the
 directory of the config itself (see below). If you're installing Equilibrium 1.3 or
-less make sure Pro Mod 3.0 plugins aren't overwritten by them as they are the latest.
-Equilibrium 1.4 and greater (when released) will have no conflicts when overwriting
-each other.
+less make sure Pro Mod's plugins aren't overwritten by them as they are the latest
+version. Equilibrium 1.4 and greater (when released) will have no conflicts when
+overwriting each other.
 
 Download: http://promod.webege.com/downloads.html
 ---------------------------------------------------------------------------------------
@@ -168,7 +170,33 @@ Additional Q/A
 Changelog
 =======================================================================================
 3.0
-- TBA
+- Removed weapon_item_spawns from L4D1 map finales to (hopefully) finally prevent throwable and pill issues
+- Removed medkits by hammerid in DT4 saferoom to prevent them magically appearing there on second round
+- Bhop for survivor now allowed on Pro Mod and Pro Mod HR (tanks are still blocked)
+- Replaced tank percent with boss percent, commands !tank !witch and !boss all show the tank/witch percents
+- Boss percentages will be be more accurate than previous and sm_tank/sm_witch/sm_boss in console now work
+- Removed connectinfo plugin, try Paranoia IP Tracker instead if you need this functionality
+- Updated nobhaps plugin to toggle bhop allowed status of survivors with a cvar
+- Updated weapon limits plugin to allow swapping melees with different types when the limit is reached
+- Updated weapon limits plugin to fix a bug that caused picking up melees to turn teammates into civilian survivors
+- Added plugin to prevent survivor bots taking pills if players crash or disconnect from game
+- Added plugin to remove tank back-punch from the 3 selectable punch types, now there are only 2
+- Adjusted some horde in vscripts and mapbased cvar changes for 2v2/3v3 configs
+- Dead Center 1 saferoom weapons removed and 2 removed melee readded
+- Dead Center 1 maproom now has a single pickup shotgun with 8 ammo and no reserve (for witch)
+- Dead Center 1 tank spawn pushed back slightly from 76% to 82% (prevent horde+SI+witch+tank shitstorm)
+- God frames for hittables, witches, smokers, and jockeys have all been removed
+- All hittables (even baggage carts, logs, and haybales) will always deal 100 damage and never clip players for less
+- All hittables (even baggage carts, logs, and haybales) will always deal 100 damage to incappacitated survivors
+- Reorganized all of the plugin loading cfgs and plugin cvar cfgs to remove clutter, typos, and mistakes:
+    Fixed the typo that was supposed to already be fixed to fix the silent jockey plugin... fixception!
+    Added jockey ledgehang plugin to pm2v2/pm3v3 and removed it from pm1v1
+    Fixed a typo that prevented blocktrolls plugin from loading in hunters3v3
+    Removed slow health pills (l4dhots) from pm2v2
+    Readded missing lines that prevents killing SI with m2 in hunters 1v1-4v4, pm1v1, deadman, and jockeys
+    Added mysteriously missing weapon rules to pm1v1
+- Parish finale remixed with a longer map, more openings for SI attacks, and drastically less death charge spots
+- Parish finale custom distance bonus raised to 600
 
 2.6
 - Updated Tabun's exploit blocker package to v27
