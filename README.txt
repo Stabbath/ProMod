@@ -8,11 +8,11 @@ changes from an evolving set of ideas put forth from other configs such as Fresh
 and Metafogl, as well as the community.
 
 Developer : Jacob (inactive), CircleSquared
-Plugins   : CanadaRox, ProdigySim, Blade, Jahze, Jacob, Tabun, Vintik, Stabby
+Plugins   : CanadaRox, ProdigySim, Blade, Jahze, Jacob, Tabun, Vintik, Stabby, CircleSquared
 Scripts   : Jacob, Tabun, CircleSquared
 Stripper  : Jacob, Blade, Tabun, CircleSquared
-Testing   : Ammo, cepS, Critical, DustY, Fever, Fig, hoveller, K9, Kobra, Laugh
-            Lazy, Lid, marr, Martine, Murtagh, purpletreefactory, scalar
+Testing   : Ammo, cepS, Critical, DustY, Fever, Fig, hoveller, K9, Kobra, Laugh, Lazy, Lid
+            marr, Martine, Murtagh, purpletreefactory, scalar
 
 
 =======================================================================================
