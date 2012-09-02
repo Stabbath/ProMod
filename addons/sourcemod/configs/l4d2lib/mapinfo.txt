@@ -228,7 +228,7 @@
         "start_extra_dist"  "264.157257"
         "end_point"         "3001.944092 6272.879395 494.284149"
         "end_dist"          "130.807541"
-        "max_distance"      "400"
+        "max_distance"      "600"
     }
     "c6m1_riverbank"
     {
