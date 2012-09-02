@@ -6,7 +6,7 @@
 	}
 	"c5m5_bridge"
 	{
-		"z_common_limit"	"3"
+		"z_common_limit"	"1"
 	}
 	"c6m3_port"
 	{
@@ -22,6 +22,6 @@
 	}
 	"c13m4_cutthroatcreek"
 	{
-		"z_common_limit"	"3"
+		"z_common_limit"	"1"
 	}
 }
