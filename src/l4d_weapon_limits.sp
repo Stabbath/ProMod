@@ -202,7 +202,7 @@ stock GetWeaponCount(const mask[])
 	decl WeaponId:wepid, j;
 	for (new i = 1; i < MaxClients + 1; ++i)
 	{
-		if (IsClientInGame(i) && GetClientTeam(i) == 2)
+		if (IsClientInGame(i) && GetClientTeam(i) == 2 && IsPlayerAlive(i))
 		{
 			for (j = 0; j < 5; ++j)
 			{
