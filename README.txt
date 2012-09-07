@@ -183,7 +183,7 @@ Changelog
 - Added plugin to prevent survivor bots taking pills if players crash or disconnect from game
 - Added plugin to remove tank back-punch from the 3 selectable punch types, now there are only 2
 - Added tank rush plugin (thanks to Jahze and Vintik) to deadman to stop distance when tank is alive
-- Lowered some horde values in vscripts and mapbased cvar changes for 2v2/3v3 configs
+- Lowered some horde values in mapbased cvar changes for 2v2/3v3 configs
 - Fixed some weapon conversion for euros that had some mistakes
 - Dead Center 1 saferoom weapons removed and re-added the 2 previously removed melee
 - Dead Center 1 maproom now has a single pickup shotgun with 8 ammo and no reserve (for witch)
