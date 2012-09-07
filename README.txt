@@ -80,7 +80,8 @@ Download: http://promod.webege.com/downloads.html
 Download the fixed confogl from the official Pro Mod website. MAKE SURE you get the one
 on the Pro Mod website, the one on the google code page contains outdated files that
 might cause conflicts. Extract all of the files into the same directory structure of
-your server. Confogl is now installed.
+your server. You must install this even if you are only going to use Pro Mod! Confogl
+is now installed.
 
 Download: http://promod.webege.com/downloads.html
 --------------------------------------------------------------------------------------
@@ -181,19 +182,23 @@ Changelog
 - Updated weapon limits plugin to fix a bug that caused picking up melees to turn teammates into civilian survivors
 - Added plugin to prevent survivor bots taking pills if players crash or disconnect from game
 - Added plugin to remove tank back-punch from the 3 selectable punch types, now there are only 2
-- Adjusted some horde in vscripts and mapbased cvar changes for 2v2/3v3 configs
-- Dead Center 1 saferoom weapons removed and 2 removed melee readded
+- Added tank rush plugin (thanks to Jahze and Vintik) to deadman to stop distance when tank is alive
+- Lowered some horde values in vscripts and mapbased cvar changes for 2v2/3v3 configs
+- Fixed some weapon conversion for euros that had some mistakes
+- Dead Center 1 saferoom weapons removed and re-added the 2 previously removed melee
 - Dead Center 1 maproom now has a single pickup shotgun with 8 ammo and no reserve (for witch)
 - Dead Center 1 tank spawn pushed back slightly from 76% to 82% (prevent horde+SI+witch+tank shitstorm)
 - God frames for hittables, witches, smokers, and jockeys have all been removed
+- God frames for smokers and jockeys adjusted to include 1 second of spit protection
 - All hittables (even baggage carts, logs, and haybales) will always deal 100 damage and never clip players for less
-- All hittables (even baggage carts, logs, and haybales) will always deal 100 damage to incappacitated survivors
+- All hittables (even baggage carts, logs, and haybales) will always deal 100 damage to incapacitated survivors
+- All hittables will now cause 0 self-damage to the tank when hit with them accidentally
 - Reorganized all of the plugin loading cfgs and plugin cvar cfgs to remove clutter, typos, and mistakes:
     Fixed the typo that was supposed to already be fixed to fix the silent jockey plugin... fixception!
-    Added jockey ledgehang plugin to pm2v2/pm3v3 and removed it from pm1v1
+    Added jockey ledge hang plugin to pm2v2/pm3v3 and removed it from pm1v1
     Fixed a typo that prevented blocktrolls plugin from loading in hunters3v3
     Removed slow health pills (l4dhots) from pm2v2
-    Readded missing lines that prevents killing SI with m2 in hunters 1v1-4v4, pm1v1, deadman, and jockeys
+    Re-added missing lines that prevents killing SI with m2 in hunters 1v1-4v4, pm1v1, deadman, and jockeys
     Added mysteriously missing weapon rules to pm1v1
 - Parish finale remixed with a longer map, more openings for SI attacks, and drastically less death charge spots
 - Parish finale custom distance bonus raised to 600
