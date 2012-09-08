@@ -171,15 +171,15 @@ Additional Q/A
 Changelog
 =======================================================================================
 3.0
-- Removed weapon_item_spawns from L4D1 map finales to (hopefully) finally prevent throwable and pill issues
-- Removed medkits by hammerid in DT4 saferoom to prevent them magically appearing there on second round
+- Removed weapon_item_spawns from L4D1 map finales to prevent throwable and pill issues
+- Removed medkits by hammerid in DT4 saferoom that magically appear there on second round
 - Bhop for survivor now allowed on Pro Mod and Pro Mod HR (tanks are still blocked)
-- Replaced tank percent with boss percent, commands !tank !witch and !boss all show the tank/witch percents
-- Boss percentages will be be more accurate than previous and sm_tank/sm_witch/sm_boss in console now work
+- Replaced tank percent with boss percent, the commands: !tank !witch and !boss
+- Boss percentages will be be more accurate and sm_tank/sm_witch/sm_boss in console now work
 - Removed connectinfo plugin, try Paranoia IP Tracker instead if you need this functionality
 - Updated nobhaps plugin to toggle bhop allowed status of survivors with a cvar
-- Updated weapon limits plugin to allow swapping melees with different types when the limit is reached
-- Updated weapon limits plugin to fix a bug that caused picking up melees to turn teammates into civilian survivors
+- Updated weapon limits plugin to allow swapping melees with different types at limit
+- Updated weapon limits plugin to fix a bug that turned teammates into civilian survivors
 - Added plugin to prevent survivor bots taking pills if players crash or disconnect from game
 - Added plugin to remove tank back-punch from the 3 selectable punch types, now there are only 2
 - Added tank rush plugin (thanks to Jahze and Vintik) to deadman to stop distance when tank is alive
@@ -187,20 +187,20 @@ Changelog
 - Fixed some weapon conversion for euros that had some mistakes
 - Dead Center 1 saferoom weapons removed and re-added the 2 previously removed melee
 - Dead Center 1 maproom now has a single pickup shotgun with 8 ammo and no reserve (for witch)
-- Dead Center 1 tank spawn pushed back slightly from 76% to 82% (prevent horde+SI+witch+tank shitstorm)
+- Dead Center 1 tank spawn pushed back slightly from 76% to 82%
 - God frames for hittables, witches, smokers, and jockeys have all been removed
 - God frames for smokers and jockeys adjusted to include 1 second of spit protection
-- All hittables (even baggage carts, logs, and haybales) will always deal 100 damage and never clip players for less
-- All hittables (even baggage carts, logs, and haybales) will always deal 100 damage to incapacitated survivors
+- All hittables (even baggage carts, logs, and haybales) always deal 100 damage and never clip players
+- All hittables (even baggage carts, logs, and haybales) always deal 100 damage to incaped survivors
 - All hittables will now cause 0 self-damage to the tank when hit with them accidentally
 - Reorganized all of the plugin loading cfgs and plugin cvar cfgs to remove clutter, typos, and mistakes:
     Fixed the typo that was supposed to already be fixed to fix the silent jockey plugin... fixception!
     Added jockey ledge hang plugin to pm2v2/pm3v3 and removed it from pm1v1
     Fixed a typo that prevented blocktrolls plugin from loading in hunters3v3
     Removed slow health pills (l4dhots) from pm2v2
-    Re-added missing lines that prevents killing SI with m2 in hunters 1v1-4v4, pm1v1, deadman, and jockeys
+    Re-added missing lines that prevents m2 kills in hunters 1v1-4v4, pm1v1, deadman, and jockeys
     Added mysteriously missing weapon rules to pm1v1
-- Parish finale remixed with a longer map, more openings for SI attacks, and drastically less death charge spots
+- Parish finale remixed: longer map, more opening for SI attacks, and drastically less death charges
 - Parish finale custom distance bonus raised to 600
 
 2.6
