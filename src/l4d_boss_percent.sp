@@ -11,13 +11,13 @@
 public Plugin:myinfo = {
     name = "L4D2 Boss Flow Announce",
     author = "ProdigySim, Jahze, Stabby, CircleSquared",
-    version = "1.3.1",
+    version = "1.3.1t",
     description = "Announce boss flow percents!"
 };
 
 new iWitchPercent	= 0;
 new iTankPercent	= 0;
-new iRoundNumber	= 0;
+new iRoundNumber	= 1;
 
 new Handle:g_hVsBossBuffer;
 new Handle:g_hVsBossFlowMax;
@@ -48,7 +48,7 @@ public LeftStartAreaEvent() {
 }
 
 public RoundStartEvent() {
-    iRoundNumber = InSecondHalfOfRound() ? 1 : 0;
+//  iRoundNumber = InSecondHalfOfRound() ? 1 : 0;
     CreateTimer(0.5, AdjustBossFlow);
     CreateTimer(2.0, GetBossFlow);
 }
