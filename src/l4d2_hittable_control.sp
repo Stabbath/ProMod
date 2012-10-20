@@ -12,6 +12,7 @@ new Handle: hBridgeCarDamage		= INVALID_HANDLE;
 new Handle: hLogStandingDamage		= INVALID_HANDLE;
 new Handle: hCarStandingDamage		= INVALID_HANDLE;
 new Handle: hBumperCarStandingDamage= INVALID_HANDLE;
+new Handle: hForkliftStandingDamage = INVALID_HANDLE;
 new Handle: hDumpsterStandingDamage	= INVALID_HANDLE;
 new Handle: hHaybaleStandingDamage	= INVALID_HANDLE;
 new Handle: hBaggageStandingDamage	= INVALID_HANDLE;
@@ -23,8 +24,8 @@ new Handle: hTankSelfDamage			= INVALID_HANDLE;
 public Plugin:myinfo = 
 {
     name = "L4D2 Hittable Control",
-    author = "Stabby",
-    version = "0.2",
+    author = "Stabby, CircleSquared",
+    version = "0.3",
     description = "Allows for customisation of hittable damage values."
 };
 
@@ -42,6 +43,9 @@ public OnPluginStart()
 	hBumperCarStandingDamage= CreateConVar( "hc_bumpercar_standing_damage",	"100.0",
 											"Damage of hittable bumper cars to non-incapped survivors.",
 											FCVAR_PLUGIN, true, 0.0, true, 300.0 );
+	hForkliftStandingDamage = CreateConVar( "hc_forklift_standing_damage",	"100.0",
+											"Damage of hittable forklifts to non-incapped survivors.",
+											FCVAR_PLUGIN, true, 0.0, true, 300.0 );
 	hDumpsterStandingDamage	= CreateConVar( "hc_dumpster_standing_damage",	"100.0",
 											"Damage of hittable dumpsters to non-incapped survivors.",
 											FCVAR_PLUGIN, true, 0.0, true, 300.0 );
@@ -52,7 +56,7 @@ public OnPluginStart()
 											"Damage of hittable baggage carts to non-incapped survivors.",
 											FCVAR_PLUGIN, true, 0.0, true, 300.0 );
 	hStandardIncapDamage	= CreateConVar( "hc_incap_standard_damage",		"100.0",
-											"Damage of all hittables to incapped players. If negative will have incap damage defaul to the hittable's CVar'd non-incap damage.",
+											"Damage of all hittables to incapped players. If negative will have incap damage default to the hittable's CVar'd non-incap damage.",
 											FCVAR_PLUGIN, true, -1.0, true, 300.0 );
 	hTankSelfDamage			= CreateConVar( "hc_disable_self_damage",		"0",
 											"If set, tank will not damage itself with hittables.",
@@ -133,15 +137,22 @@ public Action:OnTakeDamage( victim, &attacker, &inflictor, &Float:damage, &damag
 							}
 							else
 							{
-								if (StrContains(sModelName, "dumpster") != -1)
+								if (StrEqual(sModelName, "models/props/cs_assault/forklift.mdl"))
 								{
-									damage = GetConVarFloat(hDumpsterStandingDamage);
+									damage = GetConVarFloat(hForkliftStandingDamage);
 								}
 								else
 								{
-									if (StrContains(sModelName, "cara_") != -1 || StrContains(sModelName, "taxi_") != -1 || StrContains(sModelName, "police_car") != -1)
+									if (StrContains(sModelName, "dumpster") != -1)
 									{
-										damage = GetConVarFloat(hCarStandingDamage);
+										damage = GetConVarFloat(hDumpsterStandingDamage);
+									}
+									else
+									{
+										if (StrContains(sModelName, "cara_") != -1 || StrContains(sModelName, "taxi_") != -1 || StrContains(sModelName, "police_car") != -1)
+										{
+											damage = GetConVarFloat(hCarStandingDamage);
+										}
 									}
 								}
 							}
