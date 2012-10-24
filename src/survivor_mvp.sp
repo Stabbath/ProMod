@@ -31,7 +31,12 @@
 /*
         Changelog
         ---------
-
+        0.1i
+            - fixed common MVP ranks being messed up.
+        
+        0.1h
+            - finally worked in PluginEnabled cvar
+            
         0.1g
             - made FF tracking switch to enabled automatically if brevity flag 4 is unset
             - fixed a bug that caused FF to always report as "no friendly fire" when tracking was disabled
@@ -59,13 +64,12 @@ public Plugin:myinfo =
     name = "Survivor MVP notification",
     author = "Tabun",
     description = "Shows MVP for survivor team at end of round",
-    version = "0.1g",
+    version = "0.1i",
     url = "nope"
 };
 
 
-//new Handle: hPluginEnabled;
-//new bool: bPluginEnabled;
+new Handle: hPluginEnabled =    INVALID_HANDLE;
 
 new Handle: hCountTankDamage =  INVALID_HANDLE;         // whether we're tracking tank damage for MVP-selection
 new Handle: hCountWitchDamage = INVALID_HANDLE;         // whether we're tracking witch damage for MVP-selection
@@ -113,6 +117,109 @@ new bool: bPlayerLeftStartArea;                 // used for tracking FF when RUP
 
 
 /*
+ *      Natives
+ *      =======
+ */
+ 
+public APLRes:AskPluginLoad2(Handle:myself, bool:late, String:error[], err_max)
+{
+    CreateNative("SURVMVP_GetMVP", Native_GetMVP);
+    CreateNative("SURVMVP_GetMVPDmgCount", Native_GetMVPDmgCount);
+    CreateNative("SURVMVP_GetMVPKills", Native_GetMVPKills);
+    CreateNative("SURVMVP_GetMVPDmgPercent", Native_GetMVPDmgPercent);
+    CreateNative("SURVMVP_GetMVPCI", Native_GetMVPCI);
+    CreateNative("SURVMVP_GetMVPCIKills", Native_GetMVPCIKills);
+    CreateNative("SURVMVP_GetMVPCIPercent", Native_GetMVPCIPercent);
+    
+    return APLRes_Success;
+}
+
+// simply return current round MVP client
+public Native_GetMVP(Handle:plugin, numParams)
+{
+    new client = findMVPSI();
+    return _:client;
+}
+
+// return damage percent of client
+public Native_GetMVPDmgPercent(Handle:plugin, numParams)
+{
+    new client = GetNativeCell(1);
+    new Float: dmgprc;
+    
+    if (client && iTotalDamageAll > 0) {
+        dmgprc = (float(iDidDamageAll[client]) / float(iTotalDamageAll)) * 100;
+    } else {
+        dmgprc = 0.0;
+    }
+    return _:dmgprc;
+}
+
+// return damage of client
+public Native_GetMVPDmgCount(Handle:plugin, numParams)
+{
+    new client = GetNativeCell(1);
+    new dmg;
+    
+    if (client && iTotalDamageAll > 0) {
+        dmg = iDidDamageAll[client];
+    } else {
+        dmg = 0;
+    }
+    return _:dmg;
+}
+
+// return SI kills of client
+public Native_GetMVPKills(Handle:plugin, numParams)
+{
+    new client = GetNativeCell(1);
+    new dmg;
+    
+    if (client && iTotalKills > 0) {
+        dmg = iGotKills[client];
+    } else {
+        dmg = 0;
+    }
+    return _:dmg;
+}
+
+// simply return current round MVP client (Common)
+public Native_GetMVPCI(Handle:plugin, numParams)
+{
+    new client = findMVPCommon();
+    return _:client;
+}
+
+// return common kills for client
+public Native_GetMVPCIKills(Handle:plugin, numParams)
+{
+    new client = GetNativeCell(1);
+    new dmg;
+    
+    if (client && iTotalCommon > 0) {
+        dmg = iGotCommon[client];
+    } else {
+        dmg = 0;
+    }
+    return _:dmg;
+}
+
+// return CI percent of client
+public Native_GetMVPCIPercent(Handle:plugin, numParams)
+{
+    new client = GetNativeCell(1);
+    new Float: dmgprc;
+    
+    if (client && iTotalCommon > 0) {
+        dmgprc = (float(iGotCommon[client]) / float(iTotalCommon)) * 100;
+    } else {
+        dmgprc = 0.0;
+    }
+    return _:dmgprc;
+}
+
+
+/*
  *      init
  *      ====
  */
@@ -137,8 +244,7 @@ public OnPluginStart()
     hGameMode = FindConVar("mp_gamemode");
     
     // Cvars
-    //hPluginEnabled = CreateConVar("sm_survivor_mvp_enabled", "1", "Enable display of MVP at end of round", FCVAR_PLUGIN, true, 0.0, true, 1.0);
-    //bPluginEnabled = GetConVarBool(hPluginEnabled);
+    hPluginEnabled =    CreateConVar("sm_survivor_mvp_enabled", "1", "Enable display of MVP at end of round", FCVAR_PLUGIN, true, 0.0, true, 1.0);
     hCountTankDamage =  CreateConVar("sm_survivor_mvp_counttank", "0", "Damage on tank counts towards MVP-selection if enabled.", FCVAR_PLUGIN, true, 0.0, true, 1.0);
     hCountWitchDamage = CreateConVar("sm_survivor_mvp_countwitch", "0", "Damage on witch counts towards MVP-selection if enabled.", FCVAR_PLUGIN, true, 0.0, true, 1.0);
     hTrackFF =          CreateConVar("sm_survivor_mvp_showff", "0", "Track Friendly-fire stat.", FCVAR_PLUGIN, true, 0.0, true, 1.0);
@@ -310,7 +416,8 @@ public RoundEnd_Event(Handle:event, const String:name[], bool:dontBroadcast)
     {
         if (bInRound)
         {
-            CreateTimer(2.0, delayedMVPPrint);   // shorter delay for scavenge.
+            if (GetConVarBool(hPluginEnabled))
+                    CreateTimer(2.0, delayedMVPPrint);   // shorter delay for scavenge.
             bInRound = false;
         }
     }
@@ -320,7 +427,8 @@ public RoundEnd_Event(Handle:event, const String:name[], bool:dontBroadcast)
         if (bInRound)
         {
             // only show / log stuff when the round is done "the first time"
-            CreateTimer(4.0, delayedMVPPrint);
+            if (GetConVarBool(hPluginEnabled))
+                    CreateTimer(4.0, delayedMVPPrint);
             bInRound = false;
         }
     }
@@ -452,9 +560,9 @@ public Action:delayedMVPPrint(Handle:timer)
     {
         new mvp_CI = findMVPCommon();
         new mvp_CI_losers[3];
-        mvp_CI_losers[0] = findMVPSI(int:mvp_CI);                                                   // second place
-        mvp_CI_losers[1] = findMVPSI(int:mvp_CI, int:mvp_CI_losers[0]);                             // third
-        mvp_CI_losers[2] = findMVPSI(int:mvp_CI, int:mvp_CI_losers[0], int:mvp_CI_losers[1]);       // fourth
+        mvp_CI_losers[0] = findMVPCommon(int:mvp_CI);                                                   // second place
+        mvp_CI_losers[1] = findMVPCommon(int:mvp_CI, int:mvp_CI_losers[0]);                             // third
+        mvp_CI_losers[2] = findMVPCommon(int:mvp_CI, int:mvp_CI_losers[0], int:mvp_CI_losers[1]);       // fourth
         
         for (new i = 0; i <= 2; i++)
         {
