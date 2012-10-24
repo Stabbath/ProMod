@@ -11,7 +11,7 @@
 public Plugin:myinfo = {
     name = "L4D2 Boss Flow Announce",
     author = "ProdigySim, Jahze, Stabby, CircleSquared",
-    version = "1.3.1t",
+    version = "1.4",
     description = "Announce boss flow percents!"
 };
 
@@ -49,8 +49,12 @@ public LeftStartAreaEvent() {
 
 public RoundStartEvent() {
 //  iRoundNumber = InSecondHalfOfRound() ? 1 : 0;
-    CreateTimer(0.5, AdjustBossFlow);
-    CreateTimer(2.0, GetBossFlow);
+	CreateTimer(0.5, AdjustBossFlow);
+//  CreateTimer(2.0, GetBossFlow);
+}
+
+public OnMapStart() {
+    CreateTimer(5.0, GetBossFlow);
 }
 
 PrintBossPercents(client) {
