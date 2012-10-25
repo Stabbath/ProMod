@@ -1,5 +1,5 @@
 Pro Mod
-Version 3.0
+Version 3.1
 Website: http://promod.webege.com
 
 Pro Mod is a configuration for Left 4 Dead 2 built for Confogl with the purpose of
@@ -8,6 +8,7 @@ changes from an evolving set of ideas put forth from other configs such as Fresh
 and Metafogl, as well as the community.
 
 Developer : Jacob (inactive), CircleSquared
+Co-Dev:   : Stabby
 Plugins   : CanadaRox, ProdigySim, Blade, Jahze, Jacob, Tabun, Vintik, Stabby, CircleSquared
 Scripts   : Jacob, Tabun, CircleSquared
 Stripper  : Jacob, Blade, Tabun, CircleSquared
@@ -170,6 +171,19 @@ Additional Q/A
 =======================================================================================
 Changelog
 =======================================================================================
+3.1
+- Added new config 'Parity' with Canadarox's damage bonus system and temp health kits
+- Updated pillgiver plugin to allow cvars for health type on leaving saferoom
+- Updated hittable control plugin to include forklifts, bhlogs, handtrucks, and overhit settings
+- Updated tank/witch percents to fix displaying [None] occasionally on second round
+- Removed jockey glitch fix plugin since valve has addressed the issue
+- Removed item spawns at the end of longer maps that are just outside of saferooms:
+    Dead Center 1(3), Dead Center 2(7), Hard Rain 2(9), Parish 2(1), Parish 3(4),
+    Sacrifice 2(1), No Mercy 3(7), Crash Course 1(4), Death Toll 1(4),
+    Death Toll 2(6), Dead Air 2(6), Dead Air 3(2), Blood Harvest 2(1)
+- Fixed accidental blocking of bhops on hunters 1v1-4v4
+- Fixed players being common pushed away from survivor pickups and while moving players with jockey
+
 3.0
 - Removed weapon_item_spawns from L4D1 map finales to prevent throwable and pill issues
 - Removed medkits by hammerid in DT4 saferoom that magically appear there on second round
