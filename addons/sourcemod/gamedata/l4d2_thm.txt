@@ -1,0 +1,21 @@
+"Games"
+{
+	"left4dead2"
+	{
+		"Signatures"
+		{
+			/*
+			*  CTerrorPlayer::OnRevived(void)
+			*
+			*  ->Search for string "revive_success", then open vtables window. Should be the 5th member.
+			*/
+			"CTerrorPlayer_OnRevived"
+			{
+				"library"	"server"
+				"linux"		"@_ZN13CTerrorPlayer9OnRevivedEv"
+				"windows"	"\x83\xEC\x38\x53\x55\x56\x8B\xF1\x8B\x06\x8B\x90\x2A\x2A\x2A\x2A\x57\xFF\xD2\x84\xC0\x0F\x84\xF1\x06"
+				/* 83 EC 38 53 55 56 8B F1 8B 06 8B 90 ? ? ? ? 57 FF D2 84 C0 0F 84 F1 06 */
+			}
+		}
+	}
+}
