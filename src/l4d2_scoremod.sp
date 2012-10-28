@@ -323,7 +323,14 @@ public Action:SM_Cmd_Health(client, args)
 		if (SM_fSurvivalBonusRatio != 0.0) PrintToServer("[ScoreMod] Static Survival Bonus Per Survivor: %d", RoundToFloor(400 * SM_fMapMulti * SM_fSurvivalBonusRatio));
 	}
 
-	if (GetConVarBool(SM_hCustomMaxDistance) && GetCustomMapMaxScore() > -1) PrintToChatAll("\x01[ScoreMod] Custom Max Distance: \x05%d\x01", GetCustomMapMaxScore());
+	if (GetConVarBool(SM_hCustomMaxDistance) && GetCustomMapMaxScore() > -1) {
+		if (client) {
+			PrintToChat(client, "\x01[ScoreMod] Custom Max Distance: \x05%d\x01", GetCustomMapMaxScore());
+		}
+		else {
+			PrintToServer("[ScoreMod] Custom Max Distance: %d", GetCustomMapMaxScore());
+		}
+	}
 }
 
 stock SM_CalculateSurvivalBonus()
@@ -469,10 +476,3 @@ stock SetMapMaxScore(score)
 {
 	L4D_SetVersusMaxCompletionScore(score);
 }
-
-
-
-
-
-
-
