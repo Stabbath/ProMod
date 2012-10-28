@@ -11,7 +11,7 @@ public Plugin:myinfo =
 {
     name        = "L4D2 Weapon Attributes",
     author      = "Jahze",
-    version     = "1.0",
+    version     = "1.1",
     description = "Allowing tweaking of the attributes of all weapons"
 };
 
@@ -87,15 +87,15 @@ new Handle:hTankDamageKVs;
 
 public APLRes:AskPluginLoad2( Handle:plugin, bool:late, String:error[], errMax ) {
     bLateLoad = late;
-    return APLRes_Success;    
+    return APLRes_Success;
 }
 
 public OnPluginStart() {
     RegServerCmd("sm_weapon", Weapon);
     RegConsoleCmd("sm_weapon_attributes", WeaponAttributes);
-    
+
     hTankDamageKVs = CreateKeyValues("DamageVsTank");
-    
+
     if ( bLateLoad ) {
         for ( new i = 1; i < MaxClients+1; i++ ) {
             if ( IsClientInGame(i) ) {
@@ -122,7 +122,7 @@ GetWeaponAttributeIndex( String:sAttrName[128] ) {
             return i;
         }
     }
-    
+
     return -1;
 }
 
@@ -150,7 +150,7 @@ public Action:Weapon( args ) {
     decl String:sWeaponNameFull[128];
     decl String:sAttrName[128];
     decl String:sAttrValue[128];
-    
+
     if ( GetCmdArgs() < 3 ) {
         PrintToServer("Syntax: sm_weapon <weapon> <attr> <value>");
         return;
@@ -166,19 +166,19 @@ public Action:Weapon( args ) {
     }
 
     iAttrIdx = GetWeaponAttributeIndex(sAttrName);
-    
+
     if ( iAttrIdx == -1 ) {
         PrintToServer("Bad attribute name: %s", sAttrName);
         return;
     }
-    
+
     sWeaponNameFull[0] = 0;
     StrCat(sWeaponNameFull, sizeof(sWeaponNameFull), "weapon_");
     StrCat(sWeaponNameFull, sizeof(sWeaponNameFull), sWeaponName);
-    
+
     iValue = StringToInt(sAttrValue);
     fValue = StringToFloat(sAttrValue);
-    
+
     if ( iAttrIdx < 3 ) {
         SetWeaponAttributeInt(sWeaponNameFull, iAttrIdx, iValue);
         PrintToServer("%s for %s set to %d", sWeaponAttrNames[iAttrIdx], sWeaponName, iValue);
@@ -196,14 +196,14 @@ public Action:Weapon( args ) {
 public Action:WeaponAttributes( client, args ) {
     decl String:sWeaponName[128];
     decl String:sWeaponNameFull[128];
-    
+
     if ( GetCmdArgs() < 1 ) {
         ReplyToCommand(client, "Syntax: sm_weapon_attributes <weapon>");
         return;
     }
-    
+
     GetCmdArg(1, sWeaponName, sizeof(sWeaponName));
-    
+
     if ( L4D2_IsValidWeapon(sWeaponName) ) {
         ReplyToCommand(client, "Bad weapon name: %s", sWeaponName);
         return;
@@ -212,63 +212,63 @@ public Action:WeaponAttributes( client, args ) {
     sWeaponNameFull[0] = 0;
     StrCat(sWeaponNameFull, sizeof(sWeaponNameFull), "weapon_");
     StrCat(sWeaponNameFull, sizeof(sWeaponNameFull), sWeaponName);
-    
+
     ReplyToCommand(client, "Weapon stats for %s", sWeaponName);
-    
+
     for ( new i = 0; i < 3; i++ ) {
         new iValue = GetWeaponAttributeInt(sWeaponNameFull, i);
         ReplyToCommand(client, "%s: %d", sWeaponAttrNames[i], iValue);
     }
-    
+
     for ( new i = 3; i < MAX_ATTRS-1; i++ ) {
         new Float:fValue = GetWeaponAttributeFloat(sWeaponNameFull, i);
         ReplyToCommand(client, "%s: %.2f", sWeaponAttrNames[i], fValue);
     }
-    
+
     new Float:fBuff = KvGetFloat(hTankDamageKVs, sWeaponNameFull, 0.0);
-    
+
     if ( fBuff ) {
         ReplyToCommand(client, "%s: %.2f", sWeaponAttrNames[MAX_ATTRS-1], fBuff);
     }
 }
 
 public Action:DamageBuffVsTank( victim, &attacker, &inflictor, &Float:damage, &damageType, &weapon, Float:damageForce[3], Float:damagePosition[3] ) {
-    if ( !attacker ) {
+    if (attacker <= 0 || attacker > MaxClients+1) {
         return Plugin_Continue;
     }
-    
+
     if ( !IsTank(victim) ) {
         return Plugin_Continue;
     }
-    
+
     decl String:sWeaponName[128];
     GetClientWeapon(attacker, sWeaponName, sizeof(sWeaponName));
     new Float:fBuff = KvGetFloat(hTankDamageKVs, sWeaponName, 0.0);
-    
+
     if ( !fBuff ) {
         return Plugin_Continue;
     }
-    
+
     damage *= fBuff;
-    
+
     return Plugin_Changed;
 }
 
 bool:IsTank( client ) {
-    if ( client < 0
-    || !IsClientConnected(client)
+    if ( client <= 0
+    || client > MaxClients+1
     || !IsClientInGame(client)
     || GetClientTeam(client) != 3
     || !IsPlayerAlive(client) ) {
         return false;
     }
-    
+
     new playerClass = GetEntProp(client, Prop_Send, "m_zombieClass");
-    
+
     if ( playerClass == TANK_ZOMBIE_CLASS ) {
         return true;
     }
-    
+
     return false;
 }
 
