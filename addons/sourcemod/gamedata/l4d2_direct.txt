@@ -41,6 +41,12 @@
 				"linux"		"6"
 			}
 
+			"CTerrorPlayer::DoAnimationEvent"
+			{
+				"windows"	"508"
+				"linux"		"509"
+			}
+
 			/* Offsets into CDirector of other CDirector class pointers */
 
 			"CDirectorTacticalServices"
