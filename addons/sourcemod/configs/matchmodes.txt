@@ -22,6 +22,10 @@
 		{
 			"name" "Pro Mod HR"
 		}
+		"parity"
+		{
+			"name" "Parity"
+		}
 		"retro"
 		{
 			"name" "Retro"
