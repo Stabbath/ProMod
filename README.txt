@@ -1,6 +1,6 @@
 Pro Mod
 Version 3.1
-Website: http://promod.webege.com
+Website: http://www.l4d2pro.com/
 
 Pro Mod is a configuration for Left 4 Dead 2 built for Confogl with the purpose of
 making competitive play more balanced and interesting. It's the most recent set of
@@ -73,7 +73,7 @@ make sure you use this one and NOT the one on bailopan.net or elsewhere! Extract
 files into the same directory structure of your server. Stripper: Source is now
 installed.
 
-Download: http://promod.webege.com/downloads.html
+Download: http://www.l4d2pro.com/downloads.html
 ---------------------------------------------------------------------------------------
 
 
@@ -84,7 +84,7 @@ might cause conflicts. Extract all of the files into the same directory structur
 your server. You must install this even if you are only going to use Pro Mod! Confogl
 is now installed.
 
-Download: http://promod.webege.com/downloads.html
+Download: http://www.l4d2pro.com/downloads.html
 --------------------------------------------------------------------------------------
 
 
@@ -115,7 +115,7 @@ less make sure Pro Mod's plugins aren't overwritten by them as they are the late
 version. Equilibrium 1.4 and greater (when released) will have no conflicts when
 overwriting each other.
 
-Download: http://promod.webege.com/downloads.html
+Download: http://www.l4d2pro.com/downloads.html
 ---------------------------------------------------------------------------------------
 
 
@@ -172,17 +172,39 @@ Additional Q/A
 Changelog
 =======================================================================================
 3.1
-- Added new config 'Parity' with Canadarox's damage bonus system and temp health kits
-- Updated pillgiver plugin to allow cvars for health type on leaving saferoom
+- Added new config 'Parity' with Canadarox's damage bonus system and temp health kits (gives temp health)
+- Added tank control plugin to 2v2/3v3s (everyone gets tank and frustration refills instead of pass)
+- Added plugin to prevent getting stuck in ceilings from tank punches (teleports survivor down after 1 sec)
+- Added plugin to kill tanks that turn AI on deadman to prevent double teaming survivor
+- Added plugin to replace pillgiver with bitfield flags for more flexibility
+- Added extra time until tank frustration drains on deadman since only one turn (35 seconds)
+- Updated Tabun's exploit blocker package to v28
+- Updated mvp plugin to latest version to fix some bugs like incorrect CI kill stats
 - Updated hittable control plugin to include forklifts, bhlogs, handtrucks, and overhit settings
-- Updated tank/witch percents to fix displaying [None] occasionally on second round
+- Updated boss percents plugin to fix displaying [None] occasionally on second round
+- Updated weapon attributes plugin to stop error spam in log files
+- Updated getup fix plugin to improve handling of getup animation bugs and add new functionality:
+    Double Getup Bug: Added checks for additional situations where double getup could still rarely occur
+    Zero Getup Bug: Added getup animation after charging a jockeyed player (previously none)
+    Self Clear Bug: Removed getup animation when you self clear/level a charger when near an obstacle
+- Updated scoremod plugin to use colors and include a "Difference" stat display for health bonus:
+    Difference = (round1 hb - round2 hb)
+- Updated readyup plugin to more recent version with working pause limit (default 100 pauses) and color
+- Updated readyup plugin to prevent pausing while an incapacitated survivor pickup is in progress
+- Updated match votes plugin to allow forcematching of configs not in the matchmodes.txt menu
+- Updated parish finale to include LOS humvees (1 on bridge, 2 on helipad) and opened a death charge spot
+- Removed jockeys config from the main package
 - Removed jockey glitch fix plugin since valve has addressed the issue
-- Removed item spawns at the end of longer maps that are just outside of saferooms:
+- Removed a useless client cvar setting and a duplicate scoremod cvar to prevent error spam in logs
+- Removed item spawns at the end of longer maps that are right next to the saferoom since they are useless:
     Dead Center 1(3), Dead Center 2(7), Hard Rain 2(9), Parish 2(1), Parish 3(4),
     Sacrifice 2(1), No Mercy 3(7), Crash Course 1(4), Death Toll 1(4),
     Death Toll 2(6), Dead Air 2(6), Dead Air 3(2), Blood Harvest 2(1)
+- Fixed accidental loading of tank plugin in pm1v1
 - Fixed accidental blocking of bhops on hunters 1v1-4v4
-- Fixed players being common pushed away from survivor pickups and while moving players with jockey
+- Fixed players being pushed by common to prevent disrupted pickups and unintended jockey ride directions
+- Fixed shoves until boomer pops from 4 to 5 to always be exactly 4
+- Fixed car at exploding bridge on parish 3 from randomly igniting tanks on fire when punching it
 
 3.0
 - Removed weapon_item_spawns from L4D1 map finales to prevent throwable and pill issues
