@@ -34,10 +34,6 @@
 		{
 			"name" "Hunters"
 		}
-		"jockeys"
-		{
-			"name" "Jockeys"
-		}
 	}
 	"3v3"
 	{
