@@ -1,5 +1,4 @@
-Pro Mod
-Version 3.1
+Pro Mod - L4D2 Competitive Config - Version 3.1
 Website: http://www.l4d2pro.com/
 
 Pro Mod is a configuration for Left 4 Dead 2 built for Confogl with the purpose of
@@ -7,7 +6,7 @@ making competitive play more balanced and interesting. It's the most recent set 
 changes from an evolving set of ideas put forth from other configs such as Fresh
 and Metafogl, as well as the community.
 
-Developer : Jacob (inactive), CircleSquared
+Developer : CircleSquared, Jacob (inactive)
 Co-Dev:   : Stabby
 Plugins   : CanadaRox, ProdigySim, Blade, Jahze, Jacob, Tabun, Vintik, Stabby, CircleSquared
 Scripts   : Jacob, Tabun, CircleSquared
@@ -22,11 +21,9 @@ Installation Instructions (Must be done in ORDER)
 Step 1 - Stop Server
 Step 2 - Install Metamod: Source
 Step 3 - Install Sourcemod
-Step 4 - Install Stripper: Source
-Step 5 - Install Confogl
-Step 6 - Install SDK Hooks
-Step 7 - Install Pro Mod
-Step 8 - Start Server
+Step 4 - Install Confogl (Updated + Files)
+Step 5 - Install Pro Mod
+Step 6 - Start Server
 =======================================================================================
 
 
@@ -66,46 +63,33 @@ Download: http://www.sourcemod.net/downloads.php
 ---------------------------------------------------------------------------------------
 
 
------------------[Step 4 - Install Stripper: Source]-----------------------------------
-Download Stripper: Source from the official Pro Mod website. Make sure you download the
-correct one for your OS (if unsure ask your GSP, for NFO it's probably Windows) and
-make sure you use this one and NOT the one on bailopan.net or elsewhere! Extract the
-files into the same directory structure of your server. Stripper: Source is now
-installed.
-
-Download: http://www.l4d2pro.com/downloads.html
----------------------------------------------------------------------------------------
-
-
------------------[Step 5 - Install Confogl]--------------------------------------------
+-----------------[Step 4 - Install Confogl (Updated + Files)]--------------------------
 Download the fixed confogl from the official Pro Mod website. MAKE SURE you get the one
 on the Pro Mod website, the one on the google code page contains outdated files that
 might cause conflicts. Extract all of the files into the same directory structure of
-your server. You must install this even if you are only going to use Pro Mod! Confogl
-is now installed.
+your server. You must install this even if you are only going to use Pro Mod! The
+package on the Pro Mod website now has all the updated and required files in one easy
+to install package. This package contains Left4Downtown, L4DToolz, SDKHooks, and
+Stripper Source. The Confogl in this package additionally supports and includes an
+updated version of match votes and an updated version of Readyup. Vanilla confogl and
+it's extra configs (1v1/2v2/ESL) have been removed so if you want them you'll need to
+include them yourself.
 
-Download: http://www.l4d2pro.com/downloads.html
---------------------------------------------------------------------------------------
-
-
------------------[Step 6 - Install SDK Hooks]------------------------------------------
-Download SDK Hooks from the Allied Modders forum. Make sure you download the correct
-one for your server OS as previous tips suggest. Extract the files into the same
-directory structure of your server. Look and make sure the following files DON'T exist
-on your server in the sourcemod folder:
+If you are really late to the party of updating your L4D2 server you'll need to make
+sure these files aren't in your sourcemod folder:
 
     gamedata/sdkhooks.games.txt
     extensions/sdkhooks.ext.dll
     extensions/sdkhooks.ext.so
 
 If so, DELETE them. They are left overs of an outdated version of SDK Hooks and will
-cause conflicts on your server. SDK Hooks is now installed.
+cause conflicts on your server. Confogl and required files are now installed.
 
-Download: http://forums.alliedmods.net/showthread.php?t=106748
----------------------------------------------------------------------------------------
+Download: http://www.l4d2pro.com/downloads.html
+--------------------------------------------------------------------------------------
 
 
------------------[Step 7 - Install Promod]---------------------------------------------
+-----------------[Step 5 - Install Promod]---------------------------------------------
 Download Pro Mod from the official Pro Mod website. Extract all of the files into the
 same directory structure of your server and overwrite anything that it asks to. Promod
 is now installed. If you intend to install additional configs such as Equilibrium, then
@@ -119,7 +103,7 @@ Download: http://www.l4d2pro.com/downloads.html
 ---------------------------------------------------------------------------------------
 
 
------------------[Step 8 - Start Server]-----------------------------------------------
+-----------------[Step 6 - Start Server]-----------------------------------------------
 Restart your server and connect to it. Once in game type in console "sm version" and
 "meta version" to check if both are installed. Try to start a config with !match
 whatever. To check plugins are loaded type "sm plugins" and then !resetmatch to see if
@@ -172,37 +156,43 @@ Additional Q/A
 Changelog
 =======================================================================================
 3.1
-- Added new config 'Parity' with Canadarox's damage bonus system and temp health kits (gives temp health)
+- Added new config 'Parity' with Canadarox's damage bonus system and temp-health kits
 - Added tank control plugin to 2v2/3v3s (everyone gets tank and frustration refills instead of pass)
-- Added plugin to prevent getting stuck in ceilings from tank punches (teleports survivor down after 1 sec)
+- Added starter common plugin to 2v2/3v3s to prevent wasting time clearing outside saferoom
+- Added plugin to prevent getting stuck in ceilings from tank punches (teleports down after 1 sec)
 - Added plugin to kill tanks that turn AI on deadman to prevent double teaming survivor
 - Added plugin to replace pillgiver with bitfield flags for more flexibility
+- Added plugin to fix exploit that gave free distance points on configs with less than 4 survivors
+- Added small car alarm event and forced survivors to make a one-way drop on Hard Rain 4
+- Added tank spawning ban for 80-100% on Hard Rain 4 to go along with new alarm event
 - Added extra time until tank frustration drains on deadman since only one turn (35 seconds)
+- Added a single pill outside of the saferoom for pm3v3
 - Updated Tabun's exploit blocker package to v28
 - Updated mvp plugin to latest version to fix some bugs like incorrect CI kill stats
 - Updated hittable control plugin to include forklifts, bhlogs, handtrucks, and overhit settings
 - Updated boss percents plugin to fix displaying [None] occasionally on second round
 - Updated weapon attributes plugin to stop error spam in log files
+- Updated starter common plugin to work with non-default common limits
 - Updated getup fix plugin to improve handling of getup animation bugs and add new functionality:
-    Double Getup Bug: Added checks for additional situations where double getup could still rarely occur
+    Double Getup Bug: Added check for additional situations where double getup could still occur
     Zero Getup Bug: Added getup animation after charging a jockeyed player (previously none)
     Self Clear Bug: Removed getup animation when you self clear/level a charger when near an obstacle
 - Updated scoremod plugin to use colors and include a "Difference" stat display for health bonus:
     Difference = (round1 hb - round2 hb)
-- Updated readyup plugin to more recent version with working pause limit (default 100 pauses) and color
+- Updated readyup plugin to more recent version with working pause limit (def 100 pauses) and color
 - Updated readyup plugin to prevent pausing while an incapacitated survivor pickup is in progress
 - Updated match votes plugin to allow forcematching of configs not in the matchmodes.txt menu
-- Updated parish finale to include LOS humvees (1 on bridge, 2 on helipad) and opened a death charge spot
+- Updated Parish finale with LOS humvees (1 on bridge, 2 on helipad) and opened a death charge spot
 - Removed jockeys config from the main package
 - Removed jockey glitch fix plugin since valve has addressed the issue
 - Removed a useless client cvar setting and a duplicate scoremod cvar to prevent error spam in logs
-- Removed item spawns at the end of longer maps that are right next to the saferoom since they are useless:
+- Removed item spawns at the end of long maps that are right at map end since they are useless:
     Dead Center 1(3), Dead Center 2(7), Hard Rain 2(9), Parish 2(1), Parish 3(4),
     Sacrifice 2(1), No Mercy 3(7), Crash Course 1(4), Death Toll 1(4),
     Death Toll 2(6), Dead Air 2(6), Dead Air 3(2), Blood Harvest 2(1)
 - Fixed accidental loading of tank plugin in pm1v1
 - Fixed accidental blocking of bhops on hunters 1v1-4v4
-- Fixed players being pushed by common to prevent disrupted pickups and unintended jockey ride directions
+- Fixed players being pushed by common when not boomed but when other survivors are
 - Fixed shoves until boomer pops from 4 to 5 to always be exactly 4
 - Fixed car at exploding bridge on parish 3 from randomly igniting tanks on fire when punching it
 

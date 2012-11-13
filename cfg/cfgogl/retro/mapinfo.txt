@@ -169,6 +169,8 @@
         "start_extra_dist"  "275.000000"
         "end_dist"          "200.000000"
         "max_distance"      "500"
+        "tank_ban_flow_min" "80"
+        "tank_ban_flow_max" "100"
     }
     "c4m5_milltown_escape"
     {
@@ -359,7 +361,7 @@
         "max_distance"      "800"
         "ItemLimits"
         {
-            "pain_pills"    "0"
+            "pain_pills"    "2"
         }
 	}
     "c10m1_caves"
