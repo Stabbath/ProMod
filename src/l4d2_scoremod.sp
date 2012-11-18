@@ -15,7 +15,7 @@ public Plugin:myinfo =
 	name = "L4D2 Scoremod",
 	author = "CanadaRox, ProdigySim",
 	description = "L4D2 Custom Scoring System (Health Bonus)",
-	version = "1.0a",
+	version = "1.1",
 	url = "https://bitbucket.org/CanadaRox/random-sourcemod-stuff"
 };
 
@@ -57,6 +57,10 @@ new Handle:SM_hAdrenPercent;
 new Handle:SM_hTempMulti0;
 new Handle:SM_hTempMulti1;
 new Handle:SM_hTempMulti2;
+
+// Score Difference
+new iDifference;
+
 
 public OnPluginStart()
 {
@@ -212,11 +216,6 @@ PluginEnable()
 
 PluginDisable()
 {
-	UnhookEvent("door_close", SM_DoorClose_Event);
-	UnhookEvent("player_death", SM_PlayerDeath_Event);
-	UnhookEvent("round_end", SM_RoundEnd_Event, EventHookMode_PostNoCopy);
-	UnhookEvent("round_start", SM_RoundStart_Event, EventHookMode_PostNoCopy);
-	UnhookEvent("finale_vehicle_leaving", SM_FinaleVehicleLeaving_Event, EventHookMode_PostNoCopy);
 	SetConVarInt(SM_hSurvivalBonus, SM_iDefaultSurvivalBonus);
 	SetConVarInt(SM_hTieBreaker, SM_iDefaultTieBreaker);
 	SM_bHooked = false;
@@ -269,8 +268,9 @@ public Action:SM_RoundEnd_Event(Handle:event, const String:name[], bool:dontBroa
 		iScore = iScore ? GetConVarInt(SM_hSurvivalBonus) * iAliveCount : 0; 
 		PrintToChatAll("\x01[ScoreMod] Round 1 Bonus: \x05%d\x01", SM_iFirstScore);
 		PrintToChatAll("\x01[ScoreMod] Round 2 Bonus: \x05%d\x01", iScore);
-		PrintToChatAll("\x01[ScoreMod] Difference: \x05%d\x01", SM_iFirstScore - iScore);
-
+		iDifference = SM_iFirstScore - iScore;
+		if (iScore > SM_iFirstScore) iDifference = (~iDifference) + 1;
+		PrintToChatAll("\x01[ScoreMod] Difference: \x05%d\x01", iDifference);
 		if (GetConVarBool(SM_hCustomMaxDistance) && GetCustomMapMaxScore() > -1) PrintToChatAll("\x01[ScoreMod] Custom Max Distance: \x05%d\x01", GetCustomMapMaxScore());
 	}
 }
@@ -302,8 +302,12 @@ public Action:SM_Cmd_Health(client, args)
 	
 	new iScore = RoundToFloor(fAvgHealth * SM_fMapMulti * SM_fHBRatio) * iAliveCount ;
 	
-	if (SM_bIsSecondRoundStarted) PrintToChat(client, "\x01[ScoreMod] Round 1 Bonus: \x05%d\x01 (Difference: \x05%d\x01)", SM_iFirstScore, SM_iFirstScore - iScore);
-	
+	if (SM_bIsSecondRoundStarted)
+    {
+		iDifference = SM_iFirstScore - iScore;
+		if (iScore > SM_iFirstScore) iDifference = (~iDifference) + 1;
+		PrintToChat(client, "\x01[ScoreMod] Round 1 Bonus: \x05%d\x01 (Difference: \x05%d\x01)", SM_iFirstScore, iDifference);
+	}
 	if (client)	PrintToChat(client, "\x01[ScoreMod] Average Health: \x05%.02f\x01", fAvgHealth);
 	else PrintToServer("[ScoreMod] Average Health: %.02f", fAvgHealth);
 	
