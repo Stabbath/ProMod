@@ -1,7 +1,7 @@
 #include <sourcemod>
 #include <sdkhooks>
 #include <sdktools>
-#include "weapons.inc"
+#include <weapons.inc>
 
 #define SURVIVOR_TEAM 2
 #define INFECTED_TEAM 3
@@ -19,7 +19,7 @@ public Plugin:myinfo =
 
 enum EntInfo
 {
-	iEntity,
+	iEntRef,
 	bool:hasBeenSeen
 }
 
@@ -52,7 +52,9 @@ new const WeaponId:iIdsToBlock[] =
 	WEPID_FRAG_AMMO,
 	WEPID_PISTOL_MAGNUM,
 	WEPID_SMG_MP5,
-	WEPID_RIFLE_SG552
+	WEPID_RIFLE_SG552,
+	WEPID_SNIPER_SCOUT,
+	WEPID_SNIPER_AWP
 };
 
 new Handle:hBlockedEntities;
@@ -76,10 +78,11 @@ public Action:EntCheck_Timer(Handle:timer)
 	for (new i; i < size; i++)
 	{
 		GetArrayArray(hBlockedEntities, i, currentEnt[0]);
-		if (!currentEnt[hasBeenSeen] && IsVisibleToSurvivors(currentEnt[iEntity]))
+		new ent = EntRefToEntIndex(currentEnt[iEntRef]);
+		if (ent != INVALID_ENT_REFERENCE && !currentEnt[hasBeenSeen] && IsVisibleToSurvivors(ent))
 		{
 			decl String:tmp[128];
-			GetEntPropString(currentEnt[iEntity], Prop_Data, "m_ModelName", tmp, sizeof(tmp));
+			GetEntPropString(ent, Prop_Data, "m_ModelName", tmp, sizeof(tmp));
 			currentEnt[hasBeenSeen] = true;
 			SetArrayArray(hBlockedEntities, i, currentEnt[0]);
 		}
@@ -108,7 +111,7 @@ public Action:RoundStartDelay_Timer(Handle:timer)
 				if (weapon == iIdsToBlock[j])
 				{
 					SDKHook(i, SDKHook_SetTransmit, OnTransmit);
-					bhTemp[iEntity] = i;
+					bhTemp[iEntRef] = EntIndexToEntRef(i);
 					bhTemp[hasBeenSeen] = false;
 					PushArrayArray(hBlockedEntities, bhTemp[0]);
 					break;
@@ -128,7 +131,7 @@ public Action:OnTransmit(entity, client)
 	for (new i; i < size; i++)
 	{
 		GetArrayArray(hBlockedEntities, i, currentEnt[0]);
-		if (entity == currentEnt[iEntity])
+		if (entity == EntRefToEntIndex(currentEnt[iEntRef]))
 		{
 			if (currentEnt[hasBeenSeen]) return Plugin_Continue;
 			else return Plugin_Handled;

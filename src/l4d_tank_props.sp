@@ -18,7 +18,7 @@ new Handle:hTankPropsHit    = INVALID_HANDLE;
 public Plugin:myinfo = {
     name        = "L4D2 Tank Props",
     author      = "Jahze",
-    version     = "1.0",
+    version     = "1.1",
     description = "Stop tank props from fading whilst the tank is alive"
 };
 
@@ -120,7 +120,7 @@ public Action:FadeTankProps( Handle:timer ) {
 }
 
 bool:IsTankProp( iEntity ) {
-    if ( !IsValidEntity(iEntity) ) {
+    if ( !IsValidEdict(iEntity) ) {
         return false;
     }
     
