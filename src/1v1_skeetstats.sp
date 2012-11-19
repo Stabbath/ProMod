@@ -96,6 +96,8 @@
         Changelog
         ---------
         
+            0.1e
+                - fixed error spam in error logs
             0.1d
                 - melee accuracy now hidden by default
                 - built in some better safeguards against client index out of bounds probs
@@ -107,7 +109,7 @@ public Plugin:myinfo =
     name = "1v1 SkeetStats",
     author = "Tabun",
     description = "Shows 1v1-relevant info at end of round.",
-    version = "0.1d",
+    version = "0.1e",
     url = "nope"
 };
 
@@ -646,7 +648,7 @@ public AbilityUse_Event(Handle:event, const String:name[], bool:dontBroadcast)
 }
 public Action:groundTouchTimer(Handle:timer, any:client)
 {
-    if((IsClientAndInGame(client) && isGrounded(client)) || !IsPlayerAlive(client))
+    if(IsClientAndInGame(client) && (isGrounded(client) || !IsPlayerAlive(client)))
     {
         // Reached the ground or died in mid-air
         bIsPouncing[client] = false;

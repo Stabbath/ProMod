@@ -55,7 +55,8 @@ new const String: sJockeySound[MAX_JOCKEYSOUND+1][] =
 
     Changelog
     ---------
-        
+        0.1b
+            - fix error log spam
         0.1a
             - plays sound at set time after jockey spawns up
             - but only if the jockey isn't already making noise
@@ -68,7 +69,7 @@ public Plugin:myinfo =
     name = "Unsilent Jockey",
     author = "Tabun",
     description = "Makes jockeys emit sound when just spawned up.",
-    version = "0.1a",
+    version = "0.1b",
     url = "nope"
 }
 
@@ -162,6 +163,7 @@ public Action:HookSound_Callback(Clients[64], &NumClients, String:StrSample[PLAT
     PrintToChatAll("[uj] Jockey [%d] making noise [%s]...", Entity, StrSample);
     #endif
     
+    if (!IsClientAndInGame(Entity)) { return Plugin_Continue; }
     fJockeyLaughingStop[Entity] = GetTickedTime() + JOCKEY_VOICE_TIMEOUT;
     if (hJockeyLaughingTimer[Entity] == INVALID_HANDLE) {
         hJockeyLaughingTimer[Entity] = CreateTimer(SOUND_CHECK_INTERVAL, Timer_IsJockeyLaughing, Entity, TIMER_REPEAT);
