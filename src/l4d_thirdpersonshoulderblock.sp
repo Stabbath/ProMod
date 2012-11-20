@@ -1,5 +1,5 @@
 
-#define PLUGIN_VERSION "1.3"
+#define PLUGIN_VERSION "1.4"
 
 #pragma semicolon 1
 
@@ -62,9 +62,8 @@ public QueryClientConVarCallback(QueryCookie:cookie, client, ConVarQueryResult:r
 		{
 			new String:sName[MAX_NAME_LENGTH];
 			GetClientName(client, sName, sizeof(sName));
-			KickClient(client, "Kicked for potentially using thirdpersonshoulder mode.\nConVar c_thirdpersonshoulder not found, not valid or protected");
-			LogAction(0, client, "Kicked \"%L\" for potentially using thirdpersonshoulder mode, ConVar c_thirdpersonshoulder not found, not valid or protected", client);
-			PrintToChatAll("[SM] Kicked %s for potentially using thirdpersonshoulder mode, ConVar c_thirdpersonshoulder not found, not valid or protected", sName);
+			ChangeClientTeam(client, 1);
+			PrintToChatAll("\x01\x03%s\x01 spectated due to \x04c_thirdpersonshoulder\x01 not valid or protected!", sName);
 		}
 		else if (!StrEqual(cvarValue, "false") && !StrEqual(cvarValue, "0"))	/* If the ConVar was found on the client, but is not set to either "false" or "0",
 											 * kick the client as well, as he might be using thirdpersonshoulder.
@@ -72,9 +71,8 @@ public QueryClientConVarCallback(QueryCookie:cookie, client, ConVarQueryResult:r
 		{
 			new String:sName[MAX_NAME_LENGTH];
 			GetClientName(client, sName, sizeof(sName));
-			KickClient(client, "Kicked for potentially using thirdpersonshoulder mode.\nEnter \"c_thirdpersonshoulder 0\" (without the \"\") in your console before rejoining the server");
-			LogAction(0, client, "Kicked \"%L\" for potentially using thirdpersonshoulder mode", client);
-			PrintToChatAll("[SM] Kicked %s for potentially using thirdpersonshoulder mode", sName);
+			ChangeClientTeam(client, 1);
+			PrintToChatAll("\x01\x03%s\x01 spectated due to \x04c_thirdpersonshoulder\x01, set at\x05 0\x01 to play!", sName);
 		}
 	}
 }
