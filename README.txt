@@ -9,8 +9,8 @@ and Metafogl, as well as the community.
 Developer : CircleSquared, Jacob (inactive)
 Co-Dev:   : Stabby
 Plugins   : CanadaRox, ProdigySim, Blade, Jahze, Jacob, Tabun, Vintik, Stabby, CircleSquared
-Scripts   : Jacob, Tabun, CircleSquared
-Stripper  : Jacob, Blade, Tabun, CircleSquared
+VScripts  : Jacob, Tabun, CircleSquared
+Stripper  : Jacob, Blade, Tabun, Stabby, CircleSquared
 Testing   : Ammo, cepS, Critical, DustY, Fever, Fig, hoveller, K9, Kobra, Laugh, Lazy, Lid
             marr, Martine, Murtagh, purpletreefactory, scalar
 
@@ -147,6 +147,13 @@ Additional Q/A
   I really don't recommend using it with Left 4 Dead 2.
 
 
+  ["How do I fix (issue) with Fresh/Metafogl/Etc with Pro Mod installed?"]
+
+  Older configs aren't supported because of plugin updates that change cvars or break
+  old functionality. If you want to fix them to work with Pro Mod installed feel free
+  but they aren't supported. Good luck to you.
+
+
   ["Where is zombie bat?"]
 
   Zombie bat lives in all of us.
@@ -157,8 +164,11 @@ Changelog
 =======================================================================================
 3.1
 - Added new config 'Parity' with Canadarox's damage bonus system and temp-health kits
+    Uses Commands: !damage or !health
 - Added tank control plugin to 2v2/3v3s (everyone gets tank and frustration refills instead of pass)
 - Added starter common plugin to 2v2/3v3s to prevent wasting time clearing outside saferoom
+- Added plugin to replace lerptracker, high lerps will spectate players instead of kicking them
+- Added plugin to replace si no slowdown with a simpler tank slowdown enable/disable cvar
 - Added plugin to prevent getting stuck in ceilings from tank punches (teleports down after 1 sec)
 - Added plugin to kill tanks that turn AI on deadman to prevent double teaming survivor
 - Added plugin to replace pillgiver with bitfield flags for more flexibility
@@ -168,11 +178,17 @@ Changelog
 - Added extra time until tank frustration drains on deadman since only one turn (35 seconds)
 - Added a single pill outside of the saferoom for pm3v3
 - Updated Tabun's exploit blocker package to v28
+- Updated promodhr with balance/difficulty tweeks to make it more appealing
+    Hunting Rifle clipsize decreased to 10 (from 12)
+    Hunting Rifle damage on tanks decreased to 75 (from 90)
+    Removed tank slow down from survivor weaponfire
 - Updated mvp plugin to latest version to fix some bugs like incorrect CI kill stats
 - Updated hittable control plugin to include forklifts, bhlogs, handtrucks, and overhit settings
 - Updated boss percents plugin to fix displaying [None] occasionally on second round
-- Updated weapon attributes plugin to stop error spam in log files
+- Updated boss percents plugin to include a cvar for turning on/off global chat display on commands
 - Updated starter common plugin to work with non-default common limits
+- Updated l4dhots plugin to include cvars for interval, increment, and total health
+- Updated thirdpersonshoulderblock plugin to spectate players with bad settings instead of kick
 - Updated getup fix plugin to improve handling of getup animation bugs and add new functionality:
     Double Getup Bug: Added check for additional situations where double getup could still occur
     Zero Getup Bug: Added getup animation after charging a jockeyed player (previously none)
@@ -182,6 +198,10 @@ Changelog
 - Updated readyup plugin to more recent version with working pause limit (def 100 pauses) and color
 - Updated readyup plugin to prevent pausing while an incapacitated survivor pickup is in progress
 - Updated match votes plugin to allow forcematching of configs not in the matchmodes.txt menu
+- Updated slow pill health to give 2 health per 0.2 seconds instead of 10 per 1.0 seconds
+- Updated the following plugins to prevent error spam in log files:
+    confoglcompmod, l4dready, l4d2_scoremod, l4d_boss_percent, l4d_weapon_attributes, l4d_no_cans
+    l4dhots, l4d_tank_props, l4d2_blind_infected, 1v1_skeetstats, l4d2_unsilent_jockey
 - Updated Parish finale with LOS humvees (1 on bridge, 2 on helipad) and opened a death charge spot
 - Removed jockeys config from the main package
 - Removed jockey glitch fix plugin since valve has addressed the issue
