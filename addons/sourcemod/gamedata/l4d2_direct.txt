@@ -43,8 +43,8 @@
 
 			"CTerrorPlayer::DoAnimationEvent"
 			{
-				"windows"	"508"
-				"linux"		"509"
+				"windows"	"509"
+				"linux"		"510"
 			}
 
 			/* Offsets into CDirector of other CDirector class pointers */
@@ -378,8 +378,8 @@
 			
 			"CTerrorPlayer::m_iTankTickets"
 			{
-				"windows"	"12424"
-				"linux"		"12408"
+				"windows"	"12448"
+				"linux"		"12436"
 			}
 			
 			"CTerrorPlayer::m_iShovePenalty"
