@@ -211,6 +211,7 @@ Changelog
     Dead Center 1(3), Dead Center 2(7), Hard Rain 2(9), Parish 2(1), Parish 3(4),
     Sacrifice 2(1), No Mercy 3(7), Crash Course 1(4), Death Toll 1(4),
     Death Toll 2(6), Dead Air 2(6), Dead Air 3(2), Blood Harvest 2(1)
+- Fixed buffed pumpshotgun in retro not getting reset and carying over to vanilla and other configs
 - Fixed accidental loading of tank plugin in pm1v1
 - Fixed accidental blocking of bhops on hunters 1v1-4v4
 - Fixed players being pushed by common when not boomed but when other survivors are
