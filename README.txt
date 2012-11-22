@@ -182,7 +182,7 @@ Changelog
     Hunting Rifle clipsize decreased to 10 (from 12)
     Hunting Rifle damage on tanks decreased to 75 (from 90)
     Removed tank slow down from survivor weaponfire
-- Updated mvp plugin to latest version to fix some bugs like incorrect CI kill stats
+- Updated mvp plugin to fix bugs like incorrect CI kills and include output stats in console
 - Updated hittable control plugin to include forklifts, bhlogs, handtrucks, and overhit settings
 - Updated boss percents plugin to fix displaying [None] occasionally on second round
 - Updated boss percents plugin to include a cvar for turning on/off global chat display on commands
@@ -205,6 +205,7 @@ Changelog
 - Updated Parish finale with LOS humvees (1 on bridge, 2 on helipad) and opened a death charge spot
 - Removed jockeys config from the main package
 - Removed jockey glitch fix plugin since valve has addressed the issue
+- Removed heatseeking charger fix plugin since it apparently never worked
 - Removed a useless client cvar setting and a duplicate scoremod cvar to prevent error spam in logs
 - Removed item spawns at the end of long maps that are right at map end since they are useless:
     Dead Center 1(3), Dead Center 2(7), Hard Rain 2(9), Parish 2(1), Parish 3(4),
