@@ -372,8 +372,8 @@
 			
 			"CTerrorPlayer::InvulnerabilityTimer"
 			{
-				"windows"	"11876"
-				"linux"		"11860"
+				"windows"	"11900"
+				"linux"		"11888"
 			}	
 			
 			"CTerrorPlayer::m_iTankTickets"
@@ -384,14 +384,14 @@
 			
 			"CTerrorPlayer::m_iShovePenalty"
 			{
-				"windows"	"11488"
-				"linux"		"11472"
+				"windows"	"11512"
+				"linux"		"11500"
 			}
 			
 			"CTerrorPlayer::m_fNextShoveTime"
 			{
-				"windows"	"11484"
-				"linux"		"11468"
+				"windows"	"11508"
+				"linux"		"11496"
 			}
 			
 			/* TerrorNavArea Variable Offsets */
