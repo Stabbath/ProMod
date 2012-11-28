@@ -94,7 +94,7 @@ public OnClientPutInServer(client)
 	SDKHook(client, SDKHook_OnTakeDamage, OnTakeDamage);
 }
 
-public Action:OnTakeDamage( victim, &attacker, &inflictor, &Float:damage, &damageType, &weapon, Float:damageForce[3], Float:damagePosition[3] )
+public Action:OnTakeDamage(victim, &attacker, &inflictor, &Float:damage, &damageType/*, &weapon, Float:damageForce[3], Float:damagePosition[3]*/)
 {
 	if (!IsValidEdict(attacker) || !IsValidEdict(victim) || !IsValidEdict(inflictor))	{ return Plugin_Continue; }
 	
