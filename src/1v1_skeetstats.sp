@@ -96,6 +96,8 @@
         Changelog
         ---------
         
+            0.1f
+                - fixed more error spam in error logs
             0.1e
                 - fixed error spam in error logs
             0.1d
@@ -109,7 +111,7 @@ public Plugin:myinfo =
     name = "1v1 SkeetStats",
     author = "Tabun",
     description = "Shows 1v1-relevant info at end of round.",
-    version = "0.1e",
+    version = "0.1f",
     url = "nope"
 };
 
@@ -848,6 +850,9 @@ String: PrintSkeetStats(toClient)
 
 // resolve hits, for the final shotgun blasts before wipe/saferoom
 public ResolveOpenShots() {
+    
+    if (iClientPlaying <= 0) { return; }
+    
     // if there's any shotgun blast not 'closed', close it
     if (iPreviousShotType[iClientPlaying])
     {
