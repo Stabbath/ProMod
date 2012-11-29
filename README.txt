@@ -1,4 +1,4 @@
-Pro Mod - L4D2 Competitive Config - Version 3.1
+Pro Mod - L4D2 Competitive Config - Version 3.2
 Website: http://www.l4d2pro.com/
 
 Pro Mod is a configuration for Left 4 Dead 2 built for Confogl with the purpose of
@@ -11,8 +11,9 @@ Co-Dev:   : Stabby
 Plugins   : CanadaRox, ProdigySim, Blade, Jahze, Jacob, Tabun, Vintik, Stabby, CircleSquared
 VScripts  : Jacob, Tabun, CircleSquared
 Stripper  : Jacob, Blade, Tabun, Stabby, CircleSquared
-Testing   : Ammo, cepS, Critical, DustY, Fever, Fig, hoveller, K9, Kobra, Laugh, Lazy, Lid
-            marr, Martine, Murtagh, purpletreefactory, scalar
+Testing   : Ammo, bink, Button, cepS, Critical, Cuda, Dolemite, DustY, epilimic, Fever, Fig,
+            hoveller, K9, Kobra, Laugh, Lazy, Lid, marr, Martine, Murtagh, purpletreefactory,
+            Rjven, scalar
 
 
 =======================================================================================
@@ -137,8 +138,8 @@ Additional Q/A
         sm plugins load match_vote.smx
 
   Additionally you may add the above line to your confogl_personalize.cfg so that it is
-  universally loaded for all configs, but you must still edit matchmodes.txt. Both of
-  the fixed confogl packages already have the plugin loading line added.
+  universally loaded for all configs, but you must still edit matchmodes.txt. The fixed
+  confogl package already has the plugin loading line added.
 
 
   ["SI sounds are off, I can hear SI spawns on survivor, or my teammates are invisible."]
@@ -162,6 +163,9 @@ Additional Q/A
 =======================================================================================
 Changelog
 =======================================================================================
+3.2
+- TODO
+
 3.1
 - Added new config 'Parity' with Canadarox's damage bonus system and temp-health kits
     Uses Commands: !damage or !health
