@@ -401,6 +401,14 @@
 				"windows"	"332"
 				"linux"		"340"
 			}
+			
+			/* CInferno Variable Offsets */
+			
+			"CInferno::m_maxFlames"
+			{
+				"windows"	"2944"
+				"linux"		"2968"
+			}
 		}
 		
 		"Signatures"
