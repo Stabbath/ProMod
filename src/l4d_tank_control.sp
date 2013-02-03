@@ -8,22 +8,67 @@
 #include <l4d2_direct>
 #include <left4downtown>
 
-new String:teamATank[32];
-new String:teamBTank[32];
+new queuedTank;
+new String:tankSteamId[32];
 
 new Handle:hTeamATanks;
 new Handle:hTeamBTanks;
 
 public Plugin:myinfo = {
     name = "L4D2 Tank Control",
-    author = "Jahze",
-    version = "1.1",
+    author = "Jahze, vintik",
+    version = "1.2",
     description = "Forces each player to play the tank once before resetting the pool."
 };
 
 public OnPluginStart() {
     hTeamATanks = CreateArray(32);
     hTeamBTanks = CreateArray(32);
+    RegConsoleCmd("sm_boss", BossCmd);
+    RegConsoleCmd("sm_tank", BossCmd);
+    RegConsoleCmd("sm_witch", BossCmd);
+    HookEvent("player_left_start_area", EventHook:LeftStartAreaEvent, EventHookMode_PostNoCopy);
+    HookEvent("round_end", EventHook:RoundEnd, EventHookMode_PostNoCopy);
+    HookEvent("player_team", OnTeamChange, EventHookMode_PostNoCopy);
+}
+
+public Action:BossCmd(client, args) {
+    new L4D2_Team:iTeam = L4D2_Team:GetClientTeam(client);
+    if (iTeam == L4D2Team_Spectator) {
+        if (queuedTank) PrintToChat(client, "\x05%N \x01will become a tank", queuedTank);
+        return Plugin_Handled;
+    }
+    for (new i = 1; i < MaxClients+1; i++) {
+        if (IsClientConnected(i) && IsClientInGame(i) && L4D2_Team:GetClientTeam(i) == iTeam) {
+            if (queuedTank) PrintToChat(i, "\x05%N \x01will become a tank", queuedTank);
+        }
+    }
+    return Plugin_Handled;
+}
+
+public RoundEnd( ) {
+    queuedTank = 0;
+}
+
+public LeftStartAreaEvent( ) {
+    queuedTank = 0;
+    ChooseTank(true);
+    if (queuedTank) PrintToChatAll("\x05%N \x01will become a tank", queuedTank);
+}
+
+public OnTeamChange(Handle:event, String:name[], bool:dontBroadcast) {
+    new client = GetClientOfUserId(GetEventInt(event, "userid"));
+    if (client && client == queuedTank) {
+        ChooseTank(true);
+        if (queuedTank) PrintToChatAll("\x05%N \x01will become a tank", queuedTank);
+    }
+}
+
+public OnClientDisconnect(client) {
+    if (client && client == queuedTank) {
+        ChooseTank(true);
+        if (queuedTank) PrintToChatAll("\x05%N \x01will become a tank", queuedTank);
+    }
 }
 
 public Action:L4D_OnTryOfferingTankBot(tank_index, &bool:enterStatis) {
@@ -42,18 +87,14 @@ public Action:L4D_OnTryOfferingTankBot(tank_index, &bool:enterStatis) {
         L4D2Direct_SetTankPassedCount(L4D2Direct_GetTankPassedCount() + 1);
         return Plugin_Handled;
     }
-
-    ChooseTank(true);
     
-    if (GetDesignatedTank() != -1) {
+    if (queuedTank != 0) {
         ForceTankPlayer();
+        PushArrayString(GameRules_GetProp("m_bAreTeamsFlipped") ? hTeamBTanks : hTeamATanks, tankSteamId);
+        queuedTank = 0;
     }
     
     return Plugin_Continue;
-}
-
-static GetDesignatedTank() {
-    return GetInfectedPlayerBySteamId(GameRules_GetProp("m_bAreTeamsFlipped") ? teamBTank : teamATank);
 }
 
 static bool:HasBeenTank(client) {
@@ -70,14 +111,13 @@ static bool:HasBeenTank(client) {
 static ChooseTank(bool:bFirstPass) {
     decl String:SteamId[32];
     new Handle:SteamIds = CreateArray(32);
-    new bool:bTeamsFlipped = bool:GameRules_GetProp("m_bAreTeamsFlipped");
     
     for (new i = 1; i < MaxClients+1; i++) {
         if (!IsClientConnected(i) || !IsClientInGame(i)) {
             continue;
         }
         
-        if (IsFakeClient(i) || !IsInfected(i) || HasBeenTank(i)) {
+        if (IsFakeClient(i) || !IsInfected(i) || HasBeenTank(i) || i == queuedTank) {
             continue;
         }
         
@@ -87,27 +127,26 @@ static ChooseTank(bool:bFirstPass) {
     
     if (GetArraySize(SteamIds) == 0) {
         if (bFirstPass) {
-            ClearArray(bTeamsFlipped ? hTeamBTanks : hTeamATanks);
+            ClearArray(GameRules_GetProp("m_bAreTeamsFlipped") ? hTeamBTanks : hTeamATanks);
             ChooseTank(false);
         }
+        else queuedTank = 0;
         return;
     }
     
     new idx = GetRandomInt(0, GetArraySize(SteamIds)-1);
-    GetArrayString(SteamIds, idx, bTeamsFlipped ? teamBTank : teamATank, sizeof(teamBTank));
-    PushArrayString(bTeamsFlipped ? hTeamBTanks : hTeamATanks, bTeamsFlipped ? teamBTank : teamATank);
+    GetArrayString(SteamIds, idx, tankSteamId, sizeof(tankSteamId));
+    queuedTank = GetInfectedPlayerBySteamId(tankSteamId);
 }
 
 static ForceTankPlayer() {
-    new tank = GetDesignatedTank();
-    
     for (new i = 1; i < MaxClients+1; i++) {
         if (!IsClientConnected(i) || !IsClientInGame(i)) {
             continue;
         }
         
         if (IsInfected(i)) {
-            if (tank == i) {
+            if (queuedTank == i) {
                 L4D2Direct_SetTankTickets(i, 20000);
             }
             else {
