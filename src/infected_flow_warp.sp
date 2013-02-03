@@ -46,7 +46,7 @@ PrepTries()
 
 public Action:WarpTo_Cmd(client, args)
 {
-	if (GetClientTeam(client) != 3)
+	if (!IsGhostInfected(client))
 	{
 		return Plugin_Handled;
 	}
@@ -107,10 +107,8 @@ stock GetSurvivorOfFlowRank(rank)
 public sortFunc(index1, index2, Handle:array, Handle:hndl)
 {
 	decl item1[2];
-	PrintToChatAll("%d", GetArrayArray(array, index1, item1, 2));
 
 	decl item2[2];
-	PrintToChatAll("%d", GetArrayArray(array, index2, item2, 2));
 
 	if (Float:item1[1] > Float:item2[1])
 		return -1;
@@ -131,4 +129,8 @@ stock GetClientOfCharID(characterID)
 		}
 	}
 	return 0;
+}
+stock IsGhostInfected(client)
+{
+	return GetClientTeam(client) == 3 && IsPlayerAlive(client) && GetEntProp(client, Prop_Send, "m_isGhost");
 }
