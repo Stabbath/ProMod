@@ -164,7 +164,16 @@ Additional Q/A
 Changelog
 =======================================================================================
 3.2
-- TODO
+- Added logger-plugin.smx for gathering all sorts of survivability and misc. data according to map and config.
+- Added l4d_pounceprotect to keep chip-receiving hunters to have their high pounce attempts completely ruined.
+- Added infected_flow_warp to ease SI positioning.
+- Temporarily removed punchstuckfix due to issues 
+- Changed heatseeking charger fix to kick instead of attempt to stop charge.
+- Merged customfogl into promod (for custom campaign support)
+- Updated tank control to 1.2
+- Added some missing sources (blocktrolls, coinflip)
+- Added setscores and coinflip to package
+- Added horde block tweaks to c1m2 and c5m2 so boomers don't completely lose their horde support in certain situations
 
 3.1
 - Added new config 'Parity' with Canadarox's damage bonus system and temp-health kits
