@@ -967,6 +967,7 @@
         {
             "pain_pills"    "0"
         }
+    }
     ; ====[DEAD BEFORE DAWN: DC]=======================================
     "l4d_dbd2dc_anna_is_gone"
     {
@@ -1007,6 +1008,7 @@
         "start_extra_dist"  "306.183685"
         "end_point"         "-463.786469 876.165771 -243.441345"
         "end_dist"          "1558.433960"
+        "tank_ban_flow_min" "0"
         "tank_ban_flow_max" "70"
     }
     ; ====[URBAN FLIGHT]===============================================
