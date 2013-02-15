@@ -6,14 +6,16 @@ making competitive play more balanced and interesting. It's the most recent set 
 changes from an evolving set of ideas put forth from other configs such as Fresh
 and Metafogl, as well as the community.
 
-Developer : CircleSquared, Jacob (inactive)
-Co-Dev:   : Stabby
-Plugins   : CanadaRox, ProdigySim, Blade, Jahze, Jacob, Tabun, Vintik, Stabby, CircleSquared
-VScripts  : Jacob, Tabun, CircleSquared
-Stripper  : Jacob, Blade, Tabun, Stabby, CircleSquared
-Testing   : Ammo, bink, Button, cepS, Critical, Cuda, Dolemite, DustY, epilimic, Fever, Fig,
-            hoveller, K9, Kobra, Laugh, Lazy, Lid, marr, Martine, Murtagh, purpletreefactory,
-            Rjven, scalar
+Developer  : CircleSquared, Jacob (inactive)
+Co-Dev:    : Stabby
+Customfogl : EsToOpi, Jacob, Sir
+Plugins    : CanadaRox, ProdigySim, Blade, Jahze, Jacob, Tabun, Vintik, Stabby, CircleSquared,
+             Grego, purpletreefactory, Greenice
+VScripts   : Jacob, Tabun, CircleSquared
+Stripper   : Jacob, Blade, Tabun, Stabby, CircleSquared, Visor
+Testing    : Ammo, bink, Button, cepS, Critical, Cuda, Dolemite, DustY, epilimic, Fever, Fig,
+             hoveller, K9, Kobra, Laugh, Lazy, Lid, marr, Martine, Murtagh, purpletreefactory,
+             Rjven, scalar, and everyone at L4DNation.com
 
 
 =======================================================================================
@@ -97,8 +99,7 @@ is now installed. If you intend to install additional configs such as Equilibriu
 remember to remove any mapinfo.txt in the l4d2lib path and place it directly into the
 directory of the config itself (see below). If you're installing Equilibrium 1.3 or
 less make sure Pro Mod's plugins aren't overwritten by them as they are the latest
-version. Equilibrium 1.4 and greater (when released) will have no conflicts when
-overwriting each other.
+version.
 
 Download: http://www.l4d2pro.com/downloads.html
 ---------------------------------------------------------------------------------------
@@ -145,7 +146,8 @@ Additional Q/A
   ["SI sounds are off, I can hear SI spawns on survivor, or my teammates are invisible."]
 
   SMAC's wallhack plugin causes these issues as well as causes hit registration issues.
-  I really don't recommend using it with Left 4 Dead 2.
+  I really don't recommend using it with Left 4 Dead 2. Other SMAC plugins however are
+  very much recommended to prevent cheating.
 
 
   ["How do I fix (issue) with Fresh/Metafogl/Etc with Pro Mod installed?"]
@@ -164,16 +166,20 @@ Additional Q/A
 Changelog
 =======================================================================================
 3.2
-- Added logger-plugin.smx for gathering all sorts of survivability and misc. data according to map and config.
-- Added l4d_pounceprotect to keep chip-receiving hunters to have their high pounce attempts completely ruined.
-- Added infected_flow_warp to ease SI positioning.
-- Temporarily removed punchstuckfix due to issues 
-- Changed heatseeking charger fix to kick instead of attempt to stop charge.
-- Merged customfogl into promod (for custom campaign support)
-- Updated tank control to 1.2
-- Added some missing sources (blocktrolls, coinflip)
-- Added setscores and coinflip to package
-- Added horde block tweaks to c1m2 and c5m2 so boomers don't completely lose their horde support in certain situations
+- Added plugin to track statistics for further balance changes (no private information is taken)
+- Added plugin to allow SI to warp to survivors as ghosts based on survivor position in map:
+    Use: sm_warpto <1-4> (ex 1=Front 4=Back) or <name> (such as Ellis or Louis)
+- Added plugin to keep being-shot hunters from losing pouncability against other objects
+- Added plugin for players to set scores directly in the event of a server crash
+    Use: !setscores <survivor score> <infected score> (non-admins will prompt a vote) 
+- Added coinflip plugin to make neutral decisions on captains or teams (use !coinflip)
+- Updated Tabun's exploit blocker package to v29
+- Updated tank control to display who will get the tank at round start
+- Updated and readded heatseeking charger fix to kick instead of attempt to stop charge
+- Removed temporarily punchstuckfix due to issues
+- Fixed horde from being unavailable when survivors reach certain sections of c1m2 and c5m2
+- Merged Customfogl into all packages (for custom campaign support)
+- Updated readyup plugin to fix a glitch that kept players from being able to pause
 
 3.1
 - Added new config 'Parity' with Canadarox's damage bonus system and temp-health kits
