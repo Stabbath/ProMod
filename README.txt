@@ -176,10 +176,10 @@ Changelog
 - Updated Tabun's exploit blocker package to v29
 - Updated tank control to display who will get the tank at round start
 - Updated and readded heatseeking charger fix to kick instead of attempt to stop charge
+- Updated readyup plugin to fix a glitch that kept players from being able to pause
 - Removed temporarily punchstuckfix due to issues
 - Fixed horde from being unavailable when survivors reach certain sections of c1m2 and c5m2
 - Merged Customfogl into all packages (for custom campaign support)
-- Updated readyup plugin to fix a glitch that kept players from being able to pause
 
 3.1
 - Added new config 'Parity' with Canadarox's damage bonus system and temp-health kits
