@@ -1,6 +1,5 @@
 "MapInfo"
 {
-    ; ====[DEAD CENTER]================================================
     "c1m1_hotel"
     {
         "start_point"       "427.606232 5739.467773 2926.982178"
@@ -44,7 +43,6 @@
             "pain_pills"    "0"
         }
     }
-    ; ====[DARK CARNIVAL]==============================================
     "c2m1_highway"
     {
         "start_point"       "10678.891602 7860.774414 -496.546509"
@@ -93,7 +91,6 @@
             "pain_pills"    "0"
         }
     }
-    ; ====[SWAMP FEVER]================================================
     "c3m1_plankcountry"
     {
         "start_point"       "-12468.835938 10519.109375 319.434265"
@@ -134,7 +131,6 @@
             "pain_pills"    "0"
         }
     }
-    ; ====[HARD RAIN]==================================================
     "c4m1_milltown_a"
     {
         "start_point"       "-6008.747070 7381.954590 192.909424"
@@ -188,7 +184,6 @@
             "pain_pills"    "0"
         }
     }
-    ; ====[THE PARISH]=================================================
     "c5m1_waterfront"
     {
         "start_point"       "735.921692 730.683960 -437.968750"
@@ -237,7 +232,6 @@
         "end_dist"          "130.807541"
         "max_distance"      "600"
     }
-    ; ====[THE PASSING]================================================
     "c6m1_riverbank"
     {
         "start_point"       "930.36016 3843.36181 94.029960"
@@ -268,7 +262,6 @@
             "pain_pills"    "0"
         }
     }
-    ; ====[THE SACRIFICE]==============================================
     "c7m1_docks"
     {
         "start_point"       "13552.489258 2207.394043 5.524101"
@@ -299,7 +292,6 @@
             "pain_pills"    "0"
         }
     }
-    ; ====[NO MERCY]===================================================
     "c8m1_apartment"
     {
         "start_point"       "1888.341675 917.455017 476.342407"
@@ -351,7 +343,6 @@
             "pain_pills"    "0"
         }
     }
-    ; ====[CRASH COURSE]===============================================
     "c9m1_alleys"
     {
         "start_point"       "-9862.552734 -8714.114258 -5.783222"
@@ -372,8 +363,7 @@
         {
             "pain_pills"    "2"
         }
-	}
-    ; ====[DEATH TOLL]=================================================
+    }
     "c10m1_caves"
     {
         "start_point"       "-11747.106445 -14618.416016 -197.777359"
@@ -420,7 +410,6 @@
             "pain_pills"    "0"
         }
     }
-    ; ====[DEAD AIR]===================================================
     "c11m1_greenhouse"
     {
         "start_point"       "6753.771484 -534.288940 804.342407"
@@ -467,7 +456,6 @@
             "pain_pills"    "0"
         }
     }
-    ; ====[BLOOD HARVEST]==============================================
     "c12m1_hilltop"
     {
         "start_point"       "-7888.898926 -14891.244141 337.681976"
@@ -519,7 +507,6 @@
             "pain_pills"    "0"
         }
     }
-    ; ====[COLD STREAM]================================================
     "c13m1_alpinecreek"
     {
         "start_point"       "-3046.889648 -705.233765 75.031250"
@@ -552,7 +539,6 @@
         "end_point"         "-1823.846191 -1815.961670 -250.417389"
         "end_dist"          "254.989624"
     }
-    ; ====[THE DARK PARISH]============================================
     "c5m1_darkwaterfront"
     {
         "start_point"       "735.921692 732.535217 -481.968750"
@@ -600,7 +586,6 @@
         "end_dist"          "149.938278"
         "max_distance"      "400"
     }
-    ; ====[DETOUR AHEAD]===============================================
     "cdta_01detour"
     {
         "start_point"       "-581.311157 4279.300293 129.100113"
@@ -624,7 +609,7 @@
         "start_extra_dist"  "386.233795"
         "end_point"         "9837.693359 -12491.964844 776.031250"
         "end_dist"          "245.495361"
-		"tank_ban_flow_min" "55"
+        "tank_ban_flow_min" "55"
         "tank_ban_flow_max" "78"
     }
     "cdta_04onarail"
@@ -640,12 +625,11 @@
         "start_point"       "-11259.937500 -12213.681641 1048.943604"
         "start_dist"        "191.200378"
         "start_extra_dist"  "269.938385"
-		"end_point"         "-12561.050781 -11283.779297 985.953308"
+        "end_point"         "-12561.050781 -11283.779297 985.953308"
         "end_dist"          "245.495361"
-		"tank_ban_flow_min" "1"
+        "tank_ban_flow_min" "1"
         "tank_ban_flow_max" "70"
     }
-    ; ====[DEATH ABOARD 2]=============================================
     "l4d_deathaboard01_prison"
     {
         "start_point"       "1172.334229 3525.726318 264.031250"
@@ -692,7 +676,6 @@
             "pain_pills"    "0"
         }
     }
-    ; ====[I HATE MOUNTAINS 2]=========================================
     "l4d_ihm01_forest"
     {
         "start_point"       "-1832.194580 152.090195 41.045280"
@@ -737,7 +720,6 @@
             "pain_pills"    "0"
         }
     }
-    ; ====[BLOOD TRACKS]===============================================
     "bloodtracks_01"
     {
         "start_point"       "3633.225098 9182.102539 305.031250"
@@ -774,7 +756,6 @@
             "pain_pills"    "0"
         }
     }
-    ; ====[CARRIED OFF]================================================
     "cwm1_intro"
     {
         "start_point"       "2012.118164 -2094.778809 18.982275"
@@ -790,9 +771,9 @@
         "start_extra_dist"  "265.292664"
         "end_point"         "9135.749023 5400.031250 -109.017723"
         "end_dist"          "225.499374"
-		"tank_ban_flow_min" "72"
+        "tank_ban_flow_min" "72"
         "tank_ban_flow_max" "99"
-		"max_distance"      "700"
+        "max_distance"      "700"
     }
     "cwm3_drain"
     {
@@ -810,7 +791,6 @@
         "end_point"         "950.599304 91.748909 1784.017456"
         "end_dist"          "1904.152710"
     }
-    ; ====[SUICIDE BLITZ 2]============================================
     "l4d2_stadium1_apartment"
     {
         "start_point"       "-350.822113 1008.031250 35.031250"
@@ -855,7 +835,6 @@
         "end_point"         "-8753.460938 -3717.820068 407.562927"
         "end_dist"          "2375.248535"
     }
-    ; ====[CITY 17]====================================================
     "l4d2_city17_01"
     {
         "start_point"       "4062.740234 -5380.488770 -84.985329"
@@ -906,7 +885,6 @@
             "pain_pills"    "0"
         }
     }
-    ; ====[HAUNTED FOREST]=============================================
     "hf01_theforest"
     {
         "start_point"       "-10749.938477 4779.373535 0.445169"
@@ -939,7 +917,6 @@
         "end_point"         "1585.235596 8390.712891 -1028.968750"
         "end_dist"          "885.892273"
     }
-    ; ====[DROP DEAD GORGES]===========================================
     "ddg1_tower_v1_6"
     {
         "start_point"       "274.642731 -719.995789 -224.017731"
@@ -968,7 +945,6 @@
             "pain_pills"    "0"
         }
     }
-    ; ====[DEAD BEFORE DAWN: DC]=======================================
     "l4d_dbd2dc_anna_is_gone"
     {
         "start_point"       "3325.206787 -2614.453857 39.508949"
@@ -1011,7 +987,6 @@
         "tank_ban_flow_min" "0"
         "tank_ban_flow_max" "70"
     }
-    ; ====[URBAN FLIGHT]===============================================
     "uf1_boulevard"
     {
         "start_point"       "-232.634720 -1984.366577 351.766357"
@@ -1046,7 +1021,6 @@
         "end_point"         "-697.423767 -182.836334 214.806290"
         "end_dist"          "1754.263794"
     }
-    ; ====[ONE 4 NINE]=================================================
     "l4d_149_1"
     {
         "start_point"       "-1462.563477 -1781.392212 82.864456"
@@ -1097,7 +1071,6 @@
             "pain_pills"    "0"
         }
     }
-    ; ====[TOUR OF TERROR]=============================================
     "eu01_residential_b16"
     {
         "start_point"       "2261.835449 -2570.114990 771.031250"
@@ -1144,7 +1117,6 @@
             "pain_pills"    "0"
         }
     }
-    ; ====[WARCELONA]==================================================
     "srocchurch"
     {
         "start_point"       "1084.297607 2462.667236 168.901855"
@@ -1177,8 +1149,7 @@
         "end_point"         "7171.526855 -2417.946289 -1053.332031"
         "end_dist"          "1572.107178"
     }
-    ; ====[ARENA OF THE DEAD 2]========================================
-	"jsarena201_town"
+    "jsarena201_town"
     {
         "start_point"       "497.707031 -1611.576416 62.031250"
         "end_point"         "3112.440430 -594.903381 145.031250"
@@ -1203,8 +1174,9 @@
         "start_dist"        "50.000000"
         "start_extra_dist"  "250.000000"
         "end_dist"          "50.000000"
-		"tank_ban_flow_min" "72"
+        "tank_ban_flow_min" "72"
         "tank_ban_flow_max" "99"
+        "max_distance"      "600"
     }
     "jsarena204_arena"
     {
@@ -1213,10 +1185,9 @@
         "start_dist"        "50.000000"
         "start_extra_dist"  "250.000000"
         "end_dist"          "50.000000"
-		"tank_ban_flow_min" "86"
+        "tank_ban_flow_min" "86"
         "tank_ban_flow_max" "99"
     }
-    ; ====[FIRETOWER TRAIL]============================================
     "versus_1"
     {
         "start_point"       "3422.058838 9965.772461 -1884.943359"
@@ -1224,9 +1195,9 @@
         "start_dist"        "25.000000"
         "start_extra_dist"  "225.000000"
         "end_dist"          "25.000000"
-		"tank_ban_flow_min" "84"
+        "tank_ban_flow_min" "84"
         "tank_ban_flow_max" "99"
-		"max_distance"      "400"
+        "max_distance"      "400"
     }
     "versus_2"
     {
@@ -1235,7 +1206,7 @@
         "start_dist"        "25.000000"
         "start_extra_dist"  "225.000000"
         "end_dist"          "25.000000"
-		"max_distance"      "500"
+        "max_distance"      "500"
     }
     "versus_3"
     {
@@ -1244,8 +1215,8 @@
         "start_dist"        "25.000000"
         "start_extra_dist"  "250.000000"
         "end_dist"          "75.000000"
-		"max_distance"      "600"
-		"tank_ban_flow_min" "30"
+        "max_distance"      "600"
+        "tank_ban_flow_min" "30"
         "tank_ban_flow_max" "78"
     }
     "versus_4"
@@ -1255,11 +1226,10 @@
         "start_dist"        "75.000000"
         "start_extra_dist"  "250.000000"
         "end_dist"          "100.000000"
-		"tank_ban_flow_min" "1"
+        "tank_ban_flow_min" "1"
         "tank_ban_flow_max" "70"
-		"max_distance"      "700"
+        "max_distance"      "700"
     }
-    ; ====[BACK TO SCHOOL]=============================================
     "l4d2_bts01_forest"
     {
         "start_point"       "4130.246582 -9368.455078 6046.454590"
@@ -1267,7 +1237,7 @@
         "start_dist"        "50.000000"
         "start_extra_dist"  "300.000000"
         "end_dist"          "50.000000"
-		"tank_ban_flow_min" "1"
+        "tank_ban_flow_min" "1"
         "tank_ban_flow_max" "50"
     }
     "l4d2_bts02_station"
@@ -1277,7 +1247,7 @@
         "start_dist"        "50.000000"
         "start_extra_dist"  "300.000000"
         "end_dist"          "50.000000"
-		"tank_ban_flow_min" "1"
+        "tank_ban_flow_min" "1"
         "tank_ban_flow_max" "40"
     }
     "l4d2_bts03_town"
@@ -1287,7 +1257,7 @@
         "start_dist"        "50.000000"
         "start_extra_dist"  "300.000000"
         "end_dist"          "100.000000"
-		"max_distance"      "900"
+        "max_distance"      "800"
     }
     "l4d2_bts04_cinema"
     {
@@ -1304,7 +1274,7 @@
         "start_dist"        "100.000000"
         "start_extra_dist"  "350.000000"
         "end_dist"          "75.000000"
-		"max_distance"      "700"
+        "max_distance"      "800"
     }
     "l4d2_bts06_school"
     {
@@ -1313,5 +1283,84 @@
         "start_dist"        "250.000000"
         "start_extra_dist"  "350.000000"
         "end_dist"          "100.000000"
+    }
+    "AirCrash"
+    {
+        "start_point"       "-2894.737061 832.790588 62.031250"
+        "end_point"         "10004.405273 -3347.849121 442.031250"
+        "start_dist"        "50.000000"
+        "start_extra_dist"  "700.000000"
+        "end_dist"          "100.000000"
+    }
+    "RiverMotel"
+    {
+        "start_point"       "-4466.333984 6039.489746 -242.968750"
+        "end_point"         "-7504.548828 -8078.171387 -417.226288"
+        "start_dist"        "80.000000"
+        "start_extra_dist"  "225.000000"
+        "end_dist"          "50.000000"
+        "tank_ban_flow_min" "20"
+        "tank_ban_flow_max" "55"
+    }
+    "OutSkirts"
+    {
+        "start_point"       "-1410.445923 1065.465820 103.773918"
+        "end_point"         "-7270.211426 -1249.545410 -168.968750"
+        "start_dist"        "50.000000"
+        "start_extra_dist"  "200.000000"
+        "end_dist"          "180.000000"
+    }
+    "CityHall"
+    {
+        "start_point"       "9595.025391 9285.395508 -441.968750"
+        "end_point"         "5001.468750 -3361.346924 -873.968750"
+        "start_dist"        "180.000000"
+        "start_extra_dist"  "320.000000"
+        "end_dist"          "50.000000"
+        "tank_ban_flow_min" "35"
+        "tank_ban_flow_max" "72"
+        "max_distance"      "800"
+    }
+    "BombShelter"
+    {
+        "start_point"       "895.680847 263.351044 -361.775330"
+        "end_point"         "273.041870 -4326.456543 -411.968750"
+        "start_dist"        "150.000000"
+        "start_extra_dist"  "900.000000"
+        "end_dist"          "75.000000"
+    }
+    "l4d2_diescraper1_apartment_33"
+    {
+        "start_point"       "9000.979492 7243.940430 831.974670"
+        "end_point"         "10251.913086 4722.644531 52.338150"
+        "start_dist"        "50.000000"
+        "start_extra_dist"  "400.000000"
+        "end_dist"          "50.000000"
+        "tank_ban_flow_min" "30"
+        "tank_ban_flow_max" "50"
+    }
+    "l4d2_diescraper2_streets_33"
+    {
+        "start_point"       "10250.208008 4723.329590 70.338150"
+        "end_point"         "256.697845 144.240356 2.031250"
+        "start_dist"        "50.000000"
+        "start_extra_dist"  "350.000000"
+        "end_dist"          "50.000000"
+    }
+    "l4d2_diescraper3_mid_33"
+    {
+        "start_point"       "286.949280 145.143188 -1841.968750"
+        "end_point"         "-14.215425 -485.376556 510.031250"
+        "start_dist"        "50.000000"
+        "start_extra_dist"  "200.000000"
+        "end_dist"          "50.000000"
+    }
+    "l4d2_diescraper4_top_33"
+    {
+        "start_point"       "-10.403743 -485.376556 -497.968750"
+        "end_point"         "1307.318848 3.531982 -68.582138"
+        "start_dist"        "50.000000"
+        "start_extra_dist"  "400.000000"
+        "end_dist"          "50.000000"
     }
 }
