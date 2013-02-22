@@ -72,8 +72,8 @@ on the Pro Mod website, the one on the google code page contains outdated files 
 might cause conflicts. Extract all of the files into the same directory structure of
 your server. You must install this even if you are only going to use Pro Mod! The
 package on the Pro Mod website now has all the updated and required files in one easy
-to install package. This package contains Left4Downtown, L4DToolz, SDKHooks, and
-Stripper Source. The Confogl in this package additionally supports and includes an
+to install package. This package contains Left4Downtown, L4DToolz, SDKHooks, Stripper
+Source, and DHooks. The Confogl in this package additionally supports and includes an
 updated version of match votes and an updated version of Readyup. Vanilla confogl and
 it's extra configs (1v1/2v2/ESL) have been removed so if you want them you'll need to
 include them yourself.
