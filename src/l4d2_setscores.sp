@@ -32,6 +32,10 @@ new initiatingClient = 0;
 new bool:adminInitiated = false;
 new bool:inFirstReadyUpOfRound = false;
 
+// Used to set the scores
+new Handle:gConf = INVALID_HANDLE;
+new Handle:fSetCampaignScores = INVALID_HANDLE;
+
 public Plugin:myinfo = {
   name = "SetScores",
   author = "vintik",
@@ -49,6 +53,24 @@ public OnPluginStart() {
     SetFailState("Plugin 'SetScores' supports Left 4 Dead 2 only!");
   }
 
+  gConf = LoadGameConfigFile("left4downtown.l4d2");
+  if(gConf == INVALID_HANDLE)
+  {
+    LogError("Could not load gamedata/left4downtown.l4d2.txt");
+  }
+  
+  StartPrepSDKCall(SDKCall_GameRules);
+  if(PrepSDKCall_SetFromConf(gConf, SDKConf_Signature, "SetCampaignScores")) {
+    PrepSDKCall_AddParameter(SDKType_PlainOldData, SDKPass_Plain);
+    PrepSDKCall_AddParameter(SDKType_PlainOldData, SDKPass_Plain);
+    fSetCampaignScores = EndPrepSDKCall();
+    if(fSetCampaignScores == INVALID_HANDLE) {
+      LogError("Function 'SetCampaignScores' found, but something went wrong.");
+    }
+  } else {
+    LogError("Function 'SetCampaignScores' not found.");
+  }
+  
   minimumPlayersForVote = CreateConVar("setscore_player_limit", "2", "Minimum # of players in game to start the vote", FCVAR_PLUGIN);
   allowPlayersToVote = CreateConVar("setscore_allow_player_vote", "1", "Whether player initiated votes are allowed, 1 to allow (default), 0 to disallow.", FCVAR_PLUGIN);
   forceAdminsToVote = CreateConVar("setscore_force_admin_vote", "0", "Whether admin score changes require a vote, 1 vote required, 0 vote not required (default).", FCVAR_PLUGIN);
@@ -150,8 +172,9 @@ SetScores() {
   new InfectedTeamIndex = GameRules_GetProp("m_bAreTeamsFlipped") ? 0 : 1;
   
   //Set the scores
-  GameRules_SetProp("m_iCampaignScore", survivorScore, _, SurvivorTeamIndex, true);
-  GameRules_SetProp("m_iCampaignScore", infectedScore, _, InfectedTeamIndex, true);
+  SDKCall(fSetCampaignScores, survivorScore, infectedScore); //visible scores
+  L4D2Direct_SetVSCampaignScore(SurvivorTeamIndex, survivorScore); //real scores
+  L4D2Direct_SetVSCampaignScore(InfectedTeamIndex, infectedScore);
  
   if(!adminInitiated) {
     CPrintToChatAll("Scores set to {olive}%d {default} ({green}Sur{default}) - {olive}%d {default} ({green}Inf{default}) by vote.", survivorScore, infectedScore);
