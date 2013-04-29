@@ -17,14 +17,6 @@ Testing    : Ammo, bink, Button, cepS, Critical, Cuda, Dolemite, DustY, epilimic
              hoveller, K9, Kobra, Laugh, Lazy, Lid, marr, Martine, Murtagh, purpletreefactory,
              Rjven, scalar, and everyone at L4DNation.com
 
-Absolute todo's:
-	- add CanadaRox's sourcemod-plugins/pill_passer 
-	- remove l4dready, add CanadaRox's unixification of it
-	- update damage_bonus with Tab's fixes
-	- update l4d2-logger (if it's not up-to-date already)
-	- update godframes control
-	- find out what else has been updated since 3.2 release and what new fixes people have released
-
 =======================================================================================
 Installation Instructions (Must be done in ORDER)
 =======================================================================================
