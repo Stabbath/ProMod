@@ -8,8 +8,8 @@
 
 #define ENDCHECKDELAY 2.0
 #define BUFFERSIZE 512
-#define VERSION_INT 4
-#define VERSION_STR "4"
+#define VERSION_INT 5
+#define VERSION_STR "5"
 
 public Plugin:myinfo =
 {
@@ -23,6 +23,7 @@ public Plugin:myinfo =
 new String:mapName[64];
 new Handle:gSocket;
 new bossFlow[2] = { -2, ... };
+new Float:roundTime;
 
 /* cvars */
 new Handle:hVsBossBuffer;
@@ -66,6 +67,11 @@ public OnSocketConnect(Handle:socket, any:arg) { }
 public OnSocketRecv(Handle:socket, const String:recvData[], const dataSize, any:arg) { }
 public OnSocketDisconnect(Handle:socket, any:arg) { }
 
+public Action:L4D_OnFirstSurvivorLeftSafeArea(client)
+{
+	roundTime = GetTickedTime();
+}
+
 public RoundStart_Event(Handle:event, const String:name[], bool:dontBroadcas)
 {
 	CreateTimer(15.0, RoundStart_Delay);
@@ -82,7 +88,6 @@ public Action:RoundStart_Delay(Handle:timer)
 
 public RoundEnd_Event(Handle:event, const String:name[], bool:dontBroadcast)
 {
-
 	if (GetEventInt(event, "reason") == 5
 			&& GetConVarBool(hReadyEnabled)
 			&& !GetConVarBool(hCheats))
@@ -109,6 +114,8 @@ PrepMessage(String:message[BUFFERSIZE])
 
 	new itemCount[3] = { 0, ... };
 	GetItemCount(itemCount);
+
+	roundTime = GetTickedTime() - roundTime;
 	
 	new offset;
 	offset += WriteToStringBuffer(message[offset], VERSION_INT); // 1 integer
@@ -120,6 +127,7 @@ PrepMessage(String:message[BUFFERSIZE])
 	offset += WriteArrayToStringBuffer(message[offset], survHealth, sizeof(survHealth)); // 4 integers
 	offset += WriteArrayToStringBuffer(message[offset], itemCount, sizeof(itemCount)); // 3 integers
 	offset += WriteArrayToStringBuffer(message[offset], bossFlow, sizeof(bossFlow)); // 2 integers
+	offset += WriteToStringBuffer(message[offset], RoundToNearest(roundTime)); // 1 integer
 
 	return offset;
 }
