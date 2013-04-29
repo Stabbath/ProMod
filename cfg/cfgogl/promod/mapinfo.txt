@@ -40,7 +40,7 @@
         "end_dist"          "150.000000"
         "ItemLimits"
         {
-            "pain_pills"    "0"
+            "pain_pills"    "4"
         }
     }
     "c2m1_highway"
@@ -88,7 +88,7 @@
         "end_dist"          "150.000000"
         "ItemLimits"
         {
-            "pain_pills"    "0"
+            "pain_pills"    "4"
         }
     }
     "c3m1_plankcountry"
@@ -128,7 +128,7 @@
         "end_dist"          "200.000000"
         "ItemLimits"
         {
-            "pain_pills"    "0"
+            "pain_pills"    "4"
         }
     }
     "c4m1_milltown_a"
@@ -181,7 +181,7 @@
         "end_dist"          "100.000000"
         "ItemLimits"
         {
-            "pain_pills"    "0"
+            "pain_pills"    "4"
         }
     }
     "c5m1_waterfront"
@@ -259,7 +259,7 @@
         "end_dist"          "50.000000"
         "ItemLimits"
         {
-            "pain_pills"    "0"
+            "pain_pills"    "4"
         }
     }
     "c7m1_docks"
@@ -289,7 +289,7 @@
         "end_dist"          "75.000000"
         "ItemLimits"
         {
-            "pain_pills"    "0"
+            "pain_pills"    "4"
         }
     }
     "c8m1_apartment"
@@ -340,7 +340,7 @@
         "end_dist"          "100.000000"
         "ItemLimits"
         {
-            "pain_pills"    "0"
+            "pain_pills"    "4"
         }
     }
     "c9m1_alleys"
@@ -361,7 +361,7 @@
         "max_distance"      "800"
         "ItemLimits"
         {
-            "pain_pills"    "2"
+            "pain_pills"    "6"
         }
     }
     "c10m1_caves"
@@ -407,7 +407,7 @@
         "end_dist"          "795.922058"
         "ItemLimits"
         {
-            "pain_pills"    "0"
+            "pain_pills"    "4"
         }
     }
     "c11m1_greenhouse"
@@ -453,7 +453,7 @@
         "end_dist"          "538.437988"
         "ItemLimits"
         {
-            "pain_pills"    "0"
+            "pain_pills"    "4"
         }
     }
     "c12m1_hilltop"
@@ -504,7 +504,7 @@
         "tank_ban_flow_max" "100"
         "ItemLimits"
         {
-            "pain_pills"    "0"
+            "pain_pills"    "4"
         }
     }
     "c13m1_alpinecreek"
@@ -673,7 +673,7 @@
         "start_extra_dist"  "194.090973"
         "ItemLimits"
         {
-            "pain_pills"    "0"
+            "pain_pills"    "4"
         }
     }
     "l4d_ihm01_forest"
@@ -717,7 +717,7 @@
         "end_dist"          "540.438049"
         "ItemLimits"
         {
-            "pain_pills"    "0"
+            "pain_pills"    "4"
         }
     }
     "bloodtracks_01"
@@ -753,7 +753,7 @@
         "end_dist"          "1521.507202"
         "ItemLimits"
         {
-            "pain_pills"    "0"
+            "pain_pills"    "4"
         }
     }
     "cwm1_intro"
@@ -882,7 +882,7 @@
         "end_dist"          "2195.812500"
         "ItemLimits"
         {
-            "pain_pills"    "0"
+            "pain_pills"    "4"
         }
     }
     "hf01_theforest"
@@ -942,7 +942,7 @@
         "end_dist"          "1227.881958"
         "ItemLimits"
         {
-            "pain_pills"    "0"
+            "pain_pills"    "4"
         }
     }
     "l4d_dbd2dc_anna_is_gone"
@@ -1068,7 +1068,7 @@
         "end_dist"          "1143.486694"
         "ItemLimits"
         {
-            "pain_pills"    "0"
+            "pain_pills"    "4"
         }
     }
     "eu01_residential_b16"
@@ -1114,7 +1114,7 @@
         "end_dist"          "1371.141602"
         "ItemLimits"
         {
-            "pain_pills"    "0"
+            "pain_pills"    "4"
         }
     }
     "srocchurch"
