@@ -58,7 +58,7 @@ public OnPluginStart()
 	hWitch = CreateConVar( 		"gfc_witch_override", "0",
 									"Allow witches to always ignore godframes.",
 									FCVAR_PLUGIN, true, 0.0, true, 1.0 );
-	hFF = CreateConVar( 		"gfc_ff_extra_time", "0.0",
+	hFF = CreateConVar( 		"gfc_ff_min_time", "0.0",
 									"Minimum time before FF damage is allowed.",
 									FCVAR_PLUGIN, true, 0.0, true, 3.0 );
 	hSpit = CreateConVar( 		"gfc_spit_extra_time", "0.0",
