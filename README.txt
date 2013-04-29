@@ -22,9 +22,8 @@ Absolute todo's:
 	- remove l4dready, add CanadaRox's unixification of it
 	- update damage_bonus with Tab's fixes
 	- update l4d2-logger (if it's not up-to-date already)
-	- update godframe control
+	- update godframes control
 	- find out what else has been updated since 3.2 release and what new fixes people have released
-	- switch plugins that are considered core to a single .cfg, as was done with bug fixes
 
 =======================================================================================
 Installation Instructions (Must be done in ORDER)
