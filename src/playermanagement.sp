@@ -7,6 +7,15 @@
 #define GAMECONFIG_FILE "left4downtown.l4d2"
 #define ZC_TANK 8
 
+public Plugin:myinfo =
+{
+	name = "Player Management Plugin",
+	author = "CanadaRox",
+	description = "Player management!  Swap players/teams and spectate!",
+	version = "2",
+	url = ""
+};
+
 enum L4D2Team
 {
 	L4D2Team_None = 0,
@@ -49,7 +58,7 @@ public Action:Spectate_Cmd(client, args)
 	{
 		ForcePlayerSuicide(client);
 	}
-	ChangePlayerTeam(client, L4D2Team_None);
+	ChangePlayerTeam(client, L4D2Team_Infected);
 	CreateTimer(0.01, RespecDelay_Timer, client);
 	return Plugin_Handled;
 }

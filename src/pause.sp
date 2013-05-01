@@ -2,6 +2,7 @@
 
 #include <sourcemod>
 #include <colors>
+#include <readyup>
 
 #define EXTRA_KEY_DELAY 1.0
 
@@ -10,7 +11,7 @@ public Plugin:myinfo =
 	name = "Pause plugin",
 	author = "CanadaRox",
 	description = "Adds pause functionality without breaking pauses",
-	version = "1",
+	version = "2",
 	url = ""
 };
 
@@ -82,7 +83,7 @@ public Action:OnPlayerRunCmd(client, &buttons, &impulse, Float:vel[3], Float:ang
 
 public Action:Pause_Cmd(client, args)
 {
-	if (pauseDelay == 0 && !isPaused && IsPlayer(client))
+	if (!IsInReady() && pauseDelay == 0 && !isPaused && IsPlayer(client))
 	{
 		PrintToChatAll("[SM] %N paused the game", client);
 		pauseDelay = GetConVarInt(pauseDelayCvar);

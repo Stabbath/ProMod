@@ -12,7 +12,7 @@ public Plugin:myinfo =
 	name = "L4D2 Ready-Up",
 	author = "CanadaRox",
 	description = "New and improved ready-up plugin.",
-	version = "1",
+	version = "2",
 	url = ""
 };
 
@@ -44,7 +44,6 @@ new bool:hiddenPanel[MAXPLAYERS + 1];
 new bool:inLiveCountdown = false;
 new bool:inReadyUp;
 new bool:isPlayerReady[MAXPLAYERS + 1];
-new casterCount = 0;
 new footerCounter = 0;
 new readyDelay;
 
@@ -462,10 +461,16 @@ InitiateLive()
 bool:CheckFullReady()
 {
 	new readyCount = 0;
+	new casterCount = 0;
 	for (new client = 1; client <= MaxClients; client++)
 	{
 		if (IsClientInGame(client))
 		{
+			if (IsClientCaster(client))
+			{
+				casterCount++;
+			}
+
 			if((IsPlayer(client) || IsClientCaster(client)) && isPlayerReady[client])
 			{
 				readyCount++;
