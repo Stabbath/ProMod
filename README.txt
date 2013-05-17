@@ -1,4 +1,4 @@
-Pro Mod - L4D2 Competitive Config - Version 3.2
+Pro Mod - L4D2 Competitive Config - Version 3.4
 Website: http://www.l4d2pro.com/
 
 Pro Mod is a configuration for Left 4 Dead 2 built for Confogl with the purpose of
@@ -6,16 +6,13 @@ making competitive play more balanced and interesting. It's the most recent set 
 changes from an evolving set of ideas put forth from other configs such as Fresh
 and Metafogl, as well as the community.
 
-Developer  : CircleSquared, Jacob (inactive)
+Developer  : CircleSquared (inactive), Jacob
 Co-Dev:    : Stabby
 Customfogl : EsToOpi, Jacob, Sir
-Plugins    : CanadaRox, ProdigySim, Blade, Jahze, Jacob, Tabun, Vintik, Stabby, CircleSquared,
-             Grego, purpletreefactory, Greenice
+Plugins    : CanadaRox, ProdigySim, Blade, Jahze, Jacob, Tabun, Vintik, Stabby, CircleSquared, Grego, purpletreefactory, Greenice
 VScripts   : Jacob, Tabun, CircleSquared
 Stripper   : Jacob, Blade, Tabun, Stabby, CircleSquared, Visor
-Testing    : Ammo, bink, Button, cepS, Critical, Cuda, Dolemite, DustY, epilimic, Fever, Fig,
-             hoveller, K9, Kobra, Laugh, Lazy, Lid, marr, Martine, Murtagh, purpletreefactory,
-             Rjven, scalar, and everyone at L4DNation.com
+Testing    : Ammo, bink, Button, cepS, Critical, Cuda, Dolemite, DustY, epilimic, Fever, Fig, hoveller, K9, Kobra, Laugh, Lazy, Lid, marr, Martine, Murtagh, purpletreefactory, Rjven, scalar, and everyone at L4DNation.com
 
 =======================================================================================
 Installation Instructions (Must be done in ORDER)
@@ -164,6 +161,54 @@ Additional Q/A
 =======================================================================================
 Changelog
 =======================================================================================
+
+3.4
+- ProMod now uses damage scoring. Parity will now be the health bonus equivalent of ProMod.
+- Change the way plugins are loaded to be more developer-friendly. Plugin loads are now mostly sorted into .cfg's, which are selectively executed by each config that wants the included plugins.
+
+TODO:
+- Fix throwables spawning in some places.
+- Add tank rock selector plugin.
+- Block the new material exploit.
+- Update all side configs.
+- Increase pill limit, and add more pills to finales.
+- Update boss percentage plugin to accommodate to custom campaigns, and overall be easier to use.
+- Add epi's new plugin which allows custom connection messages. "Jacob (Admin) has connected."
+- Make shotgun spread static. (We are testing it.)
+- Remove the secret room from dark carnival 4 that could spawn up to 4 pills in unobtainable places.
+- Separate custom map distances into a separate plugin from scoremod, or make scoremod's HB default to off, for safe loading on damage bonus configs.
+- Revise and implement the following stripper changes:
+  - c1m1: Removed props from burning room.
+  - c1m1: Removed 2 props from the final room before saferoom.
+  - c1m2: Removed awning on overpass that gave SI spawns at the cost of blocking potential car hits.
+  - c2m1: Blocked survivors getting on top of the ambulance and white van in the open tank fight area.
+  - c2m2: Removed a couple tents at the bottom of the slide.
+  - c2m3: Removed vent block that was for hunters mode in primary config.
+  - c3m2: Removed a bush in the open field after the event to remove a bit of clutter.
+  - c5m1: Added two possible pill spawns early in the map.
+  - c5m2: Removed hedge in open field that gave survivors easy LOS.
+  - c5m2: Made weapon spawns in the park consistent. (Shotgun right, Hunting Rifle middle, SMG left)
+  - c5m3: Removed hittable dumpster from open area outside saferoom.
+  - c5m3: Removed big blue dumpster from open area outside saferoom.
+  - c5m3: Removed semi truck from street just before manhole drop.
+  - c5m3: Made the bushes at the back of the street just before the manhole inaccessible for survivors, however infected can now use these to get behind the fence.
+  - c5m5: Removed all props except for the side railings along the bridge, and the alternate route at the end of the map.
+  - c10m4: Removed army truck that I have never seen do any good but block hittables.
+  - c10m4: Removed semi-truck that served no purpose.
+
+3.3 - Undocumented test release with changes to the main promod config alone, with an associated beta version
+- Updated Ready up, Pause, and Player Management.
+- Tweaked god frames to not reward gang bangs, but to still reward spit damage.
+- Fixed death spit having 2 hitboxes which could lead to players taking damage from "invisible" spit.
+- Updated stripper files to match throwback.
+- Changed Boomer Vomit recharge time from 30 to 20.
+- Added CanadaRox's Simple Pill Passing plugin. (Press Reload while aiming pills at a teammate.)
+- Added Tab's AI Damage Fix plugin.
+- Added Raecher's updated Boss Percentage plugin. (There will now be a witch on every map.)
+*The following changes only apply to the beta*
+- Added damage based scoring.
+- Changed all map distances to 200.
+
 3.2
 - Added plugin to track statistics for further balance changes (no private information is taken)
 - Added plugin to allow SI to warp to survivors as ghosts based on survivor position in map:
