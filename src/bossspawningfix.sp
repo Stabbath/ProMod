@@ -7,7 +7,7 @@ public Plugin:myinfo =
 	name = "Versus Boss Spawn Persuasion",
 	author = "ProdigySim",
 	description = "Makes Versus Boss Spawns obey cvars",
-	version = "1.1",
+	version = "1.2",
 	url = "http://compl4d2.com/"
 }
 
@@ -17,8 +17,8 @@ new Handle:hCvarSkipStaticMaps;
 
 public OnPluginStart()
 {
-	hCvarEnabled = CreateConVar("l4d_obey_boss_spawn_cvars", "0", "Enable forcing boss spawns to obey boss spawn cvars");
-	hCvarSkipStaticMaps = CreateConVar("l4d_obey_boss_spawn_except_static", "0", "Don't override boss spawning rules on Static Tank Spawn maps (c7m1, c13m2)");
+	hCvarEnabled = CreateConVar("l4d_obey_boss_spawn_cvars", "1", "Enable forcing boss spawns to obey boss spawn cvars");
+	hCvarSkipStaticMaps = CreateConVar("l4d_obey_boss_spawn_except_static", "1", "Don't override boss spawning rules on Static Tank Spawn maps (c7m1, c13m2)");
 }
 
 
