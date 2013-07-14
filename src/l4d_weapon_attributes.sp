@@ -11,7 +11,7 @@ public Plugin:myinfo =
 {
     name        = "L4D2 Weapon Attributes",
     author      = "Jahze",
-    version     = "1.1",
+    version     = "1.2",
     description = "Allowing tweaking of the attributes of all weapons"
 };
 
@@ -84,6 +84,8 @@ new String:sWeaponAttrShortName[MAX_ATTRS][32] = {
 new bool:bLateLoad;
 
 new Handle:hTankDamageKVs;
+new Handle:hWeaponDefaultAttsTrie[MAX_ATTRS];
+new Handle:hWeaponNamesInTrie[MAX_ATTRS];
 
 public APLRes:AskPluginLoad2( Handle:plugin, bool:late, String:error[], errMax ) {
     bLateLoad = late;
@@ -96,8 +98,13 @@ public OnPluginStart() {
 
     hTankDamageKVs = CreateKeyValues("DamageVsTank");
 
+    for ( new i = 0; i < MAX_ATTRS; i++ ) {
+        hWeaponDefaultAttsTrie[i] = INVALID_HANDLE;
+        hWeaponNamesInTrie[i] = INVALID_HANDLE;
+	}
+
     if ( bLateLoad ) {
-        for ( new i = 1; i < MaxClients+1; i++ ) {
+        for ( new i = 1; i <= MaxClients; i++ ) {
             if ( IsClientInGame(i) ) {
                 SDKHook(i, SDKHook_OnTakeDamage, DamageBuffVsTank);
             }
@@ -114,6 +121,26 @@ public OnPluginEnd() {
         CloseHandle(hTankDamageKVs);
         hTankDamageKVs = INVALID_HANDLE;
     }
+
+	decl i, j, String:sWeaponName[32], buf, Float:fub;
+	for ( i = 0; i < 3; i++ ) {
+		if (hWeaponDefaultAttsTrie[i] != INVALID_HANDLE) {
+			for ( j = 0; j < GetArraySize(hWeaponNamesInTrie[i]); j++ ) {
+				GetArrayString(hWeaponNamesInTrie, j, sWeaponName, 32);
+				GetTrieValue(hWeaponDefaultAttsTrie[i], sWeaponName, buf);
+				SetWeaponAttributeInt(sWeaponName, iAttrIdx, buf);
+			}
+		}
+	}
+	for ( i = 0; i < MAX_ATTRS - 1; i++ ) {
+		if (hWeaponDefaultAttsTrie[i] != INVALID_HANDLE) {
+			for ( j = 0; j < GetArraySize(hWeaponNamesInTrie[i]); j++ ) {
+				GetArrayString(hWeaponNamesInTrie, j, sWeaponName, 32);
+				GetTrieValue(hWeaponDefaultAttsTrie[i], sWeaponName, fub);
+				SetWeaponAttributeFloat(sWeaponName, iAttrIdx, fub);
+			}
+		}
+	}
 }
 
 GetWeaponAttributeIndex( String:sAttrName[128] ) {
@@ -176,14 +203,22 @@ public Action:Weapon( args ) {
     StrCat(sWeaponNameFull, sizeof(sWeaponNameFull), "weapon_");
     StrCat(sWeaponNameFull, sizeof(sWeaponNameFull), sWeaponName);
 
+    if (hWeaponDefaultAttsTrie[iAttrIdx] == INVALID_HANDLE) {
+		hWeaponDefaultAttsTrie[iAttrIdx] = CreateTrie();
+		hWeaponNamesInTrie[iAttrIdx] = CreateArray(32);
+    }
+	PushArrayString(hWeaponNamesInTrie[iAttrIdx], sWeaponNameFull);
+
     iValue = StringToInt(sAttrValue);
     fValue = StringToFloat(sAttrValue);
 
     if ( iAttrIdx < 3 ) {
+		SetTrieValue(hWeaponDefaultAttsTrie[iAttrIdx], sWeaponNameFull, GetWeaponAttributeInt(sWeaponNameFull, iAttrIdx), false);
         SetWeaponAttributeInt(sWeaponNameFull, iAttrIdx, iValue);
         PrintToServer("%s for %s set to %d", sWeaponAttrNames[iAttrIdx], sWeaponName, iValue);
     }
     else if ( iAttrIdx < MAX_ATTRS-1 ) {
+		SetTrieValue(hWeaponDefaultAttsTrie[iAttrIdx], sWeaponNameFull, GetWeaponAttributeFloat(sWeaponNameFull, iAttrIdx), false);
         SetWeaponAttributeFloat(sWeaponNameFull, iAttrIdx, fValue);
         PrintToServer("%s for %s set to %.2f", sWeaponAttrNames[iAttrIdx], sWeaponName, fValue);
     }
