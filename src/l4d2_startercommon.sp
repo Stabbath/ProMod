@@ -8,8 +8,7 @@ new 		iDefaultCommonLimit;
 new Handle:	hCvarCommonLimit;
 new Handle: hCvarStarterCommonLimit;
 
-public Plugin:myinfo =
-{
+public Plugin:myinfo = {
     name = "L4D2 Starter Common",
     author = "Stabby, original by Blade",
     description = "Decreases amount of common before leaving the saferoom to a cvar'd value, and then increases it to the normal value upon leaving saferoom.",
@@ -17,8 +16,7 @@ public Plugin:myinfo =
     url = "nope"
 }
 
-public OnPluginStart()
-{
+public OnPluginStart() {
     hCvarCommonLimit = FindConVar("z_common_limit");
     hCvarStarterCommonLimit = CreateConVar("z_starting_common_limit", "0", "Common limit to have in place before survivors leave saferoom.", FCVAR_PLUGIN, true, 0.0, false);
 
@@ -27,14 +25,13 @@ public OnPluginStart()
     HookEvent("player_left_start_area", Event_PlayerLeftStartArea);
 }
 
-public Action:Event_RoundStart(Handle:event, const String:name[], bool:dontBroadcast)
-{
+public Action:Event_RoundStart(Handle:event, const String:name[], bool:dontBroadcast) {
     iDefaultCommonLimit = GetConVarInt(hCvarCommonLimit);
     SetConVarInt(hCvarCommonLimit, GetConVarInt(hCvarStarterCommonLimit));
 }
 
 public Action:Event_RoundEnd(Handle:event, const String:name[], bool:dontBroadcast)
-    SetConVarInt(hCvarCommonLimit, iStarterCommonLimit);
+    SetConVarInt(hCvarCommonLimit, iDefaultCommonLimit);
 
-public Action:Event_PlayerLeftStartArea(client)
+public Action:Event_PlayerLeftStartArea(Handle:event, const String:name[], bool:dontBroadcast)
     SetConVarInt(hCvarCommonLimit, iDefaultCommonLimit);
