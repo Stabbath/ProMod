@@ -2,7 +2,6 @@
 
 #include <sourcemod>
 #include <sdktools>
-#include <lgofnoc>
 
 new 		iDefaultCommonLimit;
 new Handle:	hCvarCommonLimit;
