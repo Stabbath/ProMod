@@ -1,10 +1,9 @@
 #pragma semicolon 1
 
 #include <sourcemod>
-#include <sdktools>
 
-new 		iDefaultCommonLimit;
-new Handle:	hCvarCommonLimit;
+new         iDefaultCommonLimit;
+new Handle: hCvarCommonLimit;
 new Handle: hCvarStarterCommonLimit;
 
 public Plugin:myinfo = {
@@ -24,6 +23,10 @@ public OnPluginStart() {
     HookEvent("player_left_start_area", Event_PlayerLeftStartArea);
 }
 
+public OnPluginEnd() {
+    SetConVarInt(hCvarCommonLimit, iDefaultCommonLimit);
+}
+
 public Action:Event_RoundStart(Handle:event, const String:name[], bool:dontBroadcast) {
     iDefaultCommonLimit = GetConVarInt(hCvarCommonLimit);
     SetConVarInt(hCvarCommonLimit, GetConVarInt(hCvarStarterCommonLimit));
@@ -36,3 +39,5 @@ public Action:Event_PlayerLeftStartArea(Handle:event, const String:name[], bool:
     if (GetClientTeam(GetClientOfUserId(GetEventInt(event, "userid"))) == 2)
         SetConVarInt(hCvarCommonLimit, iDefaultCommonLimit);
 }
+
+// vim: ts=4 sw=4 et
