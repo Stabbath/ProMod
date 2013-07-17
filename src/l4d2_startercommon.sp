@@ -2,8 +2,8 @@
 
 #include <sourcemod>
 
-new 		iDefaultCommonLimit;
-new Handle:	hCvarCommonLimit;
+new         iDefaultCommonLimit;
+new Handle: hCvarCommonLimit;
 new Handle: hCvarStarterCommonLimit;
 
 public Plugin:myinfo = {
@@ -24,7 +24,7 @@ public OnPluginStart() {
 }
 
 public OnPluginEnd() {
-	SetConVarInt(hCvarCommonLimit, iDefaultCommonLimit);
+    SetConVarInt(hCvarCommonLimit, iDefaultCommonLimit);
 }
 
 public Action:Event_RoundStart(Handle:event, const String:name[], bool:dontBroadcast) {
@@ -39,3 +39,5 @@ public Action:Event_PlayerLeftStartArea(Handle:event, const String:name[], bool:
     if (GetClientTeam(GetClientOfUserId(GetEventInt(event, "userid"))) == 2)
         SetConVarInt(hCvarCommonLimit, iDefaultCommonLimit);
 }
+
+// vim: ts=4 sw=4 et
