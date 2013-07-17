@@ -5,6 +5,7 @@
 new         iDefaultCommonLimit;
 new Handle: hCvarCommonLimit;
 new Handle: hCvarStarterCommonLimit;
+new bool:   bGameStarted;
 
 public Plugin:myinfo = {
     name = "L4D2 Starter Common",
@@ -18,8 +19,7 @@ public OnPluginStart() {
     hCvarCommonLimit = FindConVar("z_common_limit");
     hCvarStarterCommonLimit = CreateConVar("z_starting_common_limit", "0", "Common limit to have in place before survivors leave saferoom.", FCVAR_PLUGIN, true, 0.0, false);
 
-    HookEvent("round_start",	Event_RoundStart);
-    HookEvent("round_end",		Event_RoundEnd);
+    HookEvent("round_start", Event_RoundStart);
     HookEvent("player_left_start_area", Event_PlayerLeftStartArea);
 }
 
@@ -28,12 +28,13 @@ public OnPluginEnd() {
 }
 
 public Action:Event_RoundStart(Handle:event, const String:name[], bool:dontBroadcast) {
-    iDefaultCommonLimit = GetConVarInt(hCvarCommonLimit);
+    if (!bGameStarted) {
+        bGameStarted = true;
+        iDefaultCommonLimit = GetConVarInt(hCvarCommonLimit);
+    }
+    
     SetConVarInt(hCvarCommonLimit, GetConVarInt(hCvarStarterCommonLimit));
 }
-
-public Action:Event_RoundEnd(Handle:event, const String:name[], bool:dontBroadcast)
-    SetConVarInt(hCvarCommonLimit, iDefaultCommonLimit);
 
 public Action:Event_PlayerLeftStartArea(Handle:event, const String:name[], bool:dontBroadcast) {
     if (GetClientTeam(GetClientOfUserId(GetEventInt(event, "userid"))) == 2)
