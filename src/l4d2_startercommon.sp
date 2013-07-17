@@ -1,7 +1,6 @@
 #pragma semicolon 1
 
 #include <sourcemod>
-#include <sdktools>
 
 new 		iDefaultCommonLimit;
 new Handle:	hCvarCommonLimit;
@@ -22,6 +21,10 @@ public OnPluginStart() {
     HookEvent("round_start",	Event_RoundStart);
     HookEvent("round_end",		Event_RoundEnd);
     HookEvent("player_left_start_area", Event_PlayerLeftStartArea);
+}
+
+public OnPluginEnd() {
+	SetConVarInt(hCvarCommonLimit, iDefaultCommonLimit);
 }
 
 public Action:Event_RoundStart(Handle:event, const String:name[], bool:dontBroadcast) {
