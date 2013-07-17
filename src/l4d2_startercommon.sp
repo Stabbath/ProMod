@@ -32,5 +32,7 @@ public Action:Event_RoundStart(Handle:event, const String:name[], bool:dontBroad
 public Action:Event_RoundEnd(Handle:event, const String:name[], bool:dontBroadcast)
     SetConVarInt(hCvarCommonLimit, iDefaultCommonLimit);
 
-public Action:Event_PlayerLeftStartArea(Handle:event, const String:name[], bool:dontBroadcast)
-    SetConVarInt(hCvarCommonLimit, iDefaultCommonLimit);
+public Action:Event_PlayerLeftStartArea(Handle:event, const String:name[], bool:dontBroadcast) {
+    if (GetClientTeam(GetClientOfUserId(GetEventInt(event, "userid"))) == 2)
+        SetConVarInt(hCvarCommonLimit, iDefaultCommonLimit);
+}
