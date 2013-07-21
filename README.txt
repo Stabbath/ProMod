@@ -6,112 +6,82 @@ making competitive play more balanced and interesting. It's the most recent set 
 changes from an evolving set of ideas put forth from other configs such as Fresh
 and Metafogl, as well as the community.
 
-Developer  : CircleSquared (inactive), Jacob
-Co-Dev:    : Stabby
+Developer  : CircleSquared (inactive), Jacob, Stabby
 Customfogl : EsToOpi, Jacob, Sir
 Plugins    : CanadaRox, ProdigySim, Blade, Jahze, Jacob, Tabun, Vintik, Stabby, CircleSquared, Grego, purpletreefactory, Greenice
 VScripts   : Jacob, Tabun, CircleSquared
 Stripper   : Jacob, Blade, Tabun, Stabby, CircleSquared, Visor
 Testing    : Ammo, bink, Button, cepS, Critical, Cuda, Dolemite, DustY, epilimic, Fever, Fig, hoveller, K9, Kobra, Laugh, Lazy, Lid, marr, Martine, Murtagh, purpletreefactory, Rjven, scalar, and everyone at L4DNation.com
 
-=======================================================================================
+================================================================================
 Installation Instructions (Must be done in ORDER)
-=======================================================================================
+================================================================================
 Step 1 - Stop Server
 Step 2 - Install Metamod: Source
 Step 3 - Install Sourcemod
 Step 4 - Install Confogl (Updated + Files)
 Step 5 - Install Pro Mod
 Step 6 - Start Server
-=======================================================================================
+====================================================================================
 
 
------------------[Step 1 - Stop Server]------------------------------------------------
-Stop your server in the control panel of your GSP. Not doing this step sometimes causes
-issues when installing.
----------------------------------------------------------------------------------------
+-----------------[Step 1 - Stop Server]-----------------------------------------
+Stop your server in the control panel of your GSP. Not doing this step sometimes causes issues when installing.
+--------------------------------------------------------------------------------
 
 
------------------[Step 2 - Install Metamod: Source]------------------------------------
+-----------------[Step 2 - Install Metamod: Source]-----------------------------
 If you already have Metamod: Source installed, skip this step.
 
-If you are using Nuclear Fallout, instead just install it on the Autoinstallers tab of
-your control panel.
+If you are using Nuclear Fallout, instead just install it on the Autoinstallers tab of your control panel.
 
-Download Metamod: Source. Determine which OS your server runs on and download that
-version (if you are not sure ask your GSP). Extract the files to the same directory
-structure of your server. After that, go to the metamod site and click Make your VDF
-and choose Left 4 Dead 2. Download the metamod.vdf put it inside the "../addons/"
-folder. Metamod: Source is now installed.
+Download Metamod: Source. Determine which OS your server runs on and download that version (if you are not sure ask your GSP). Extract the files to the same directory structure of your server. After that, go to the metamod site and click Make your VDF and choose Left 4 Dead 2. Download the metamod.vdf put it inside the "../addons/" folder. Metamod: Source is now installed.
 
 Download: http://www.sourcemm.net
----------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 
------------------[Step 3 - Install Sourcemod]------------------------------------------
+-----------------[Step 3 - Install Sourcemod]-----------------------------------
 If you already have Sourcemod installed, skip this step.
 
-If you are using Nuclear Fallout, instead just install it on the autoinstallers tab of
-your control panel.
+If you are using Nuclear Fallout, instead just install it on the autoinstallers tab of your control panel.
 
-Download Sourcemod. As with step 2 determine which OS your server runs on and download
-that version. Extract the files into the same directory structure of your server.
-Sourcemod is now installed.
+Download Sourcemod. As with step 2 determine which OS your server runs on and download that version. Extract the files into the same directory structure of your server. Sourcemod is now installed.
 
 Download: http://www.sourcemod.net/downloads.php
----------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 
------------------[Step 4 - Install Confogl (Updated + Files)]--------------------------
-Download the fixed confogl from the official Pro Mod website. MAKE SURE you get the one
-on the Pro Mod website, the one on the google code page contains outdated files that
-might cause conflicts. Extract all of the files into the same directory structure of
-your server. You must install this even if you are only going to use Pro Mod! The
-package on the Pro Mod website now has all the updated and required files in one easy
-to install package. This package contains Left4Downtown, L4DToolz, SDKHooks, Stripper
-Source, and DHooks. The Confogl in this package additionally supports and includes an
-updated version of match votes and an updated version of Readyup. Vanilla confogl and
-it's extra configs (1v1/2v2/ESL) have been removed so if you want them you'll need to
-include them yourself.
+-----------------[Step 4 - Install Confogl (Updated + Files)]-------------------
+Download the fixed confogl from the official Pro Mod website. MAKE SURE you get the one on the Pro Mod website, the one on the google code page contains outdated files that might cause conflicts. Extract all of the files into the same directory structure of your server. You must install this even if you are only going to use Pro Mod! The package on the Pro Mod website now has all the updated and required files in one easy to install package. This package contains Left4Downtown, L4DToolz, SDKHooks, Stripper Source, and DHooks. The Confogl in this package additionally supports and includes an updated version of match votes and an updated version of Readyup. Vanilla confogl and it's extra configs (1v1/2v2/ESL) have been removed so if you want them you'll need to include them yourself.
 
-If you are really late to the party of updating your L4D2 server you'll need to make
-sure these files aren't in your sourcemod folder:
+If you are really late to the party of updating your L4D2 server you'll need to make sure these files aren't in your sourcemod folder:
 
     gamedata/sdkhooks.games.txt
     extensions/sdkhooks.ext.dll
     extensions/sdkhooks.ext.so
 
-If so, DELETE them. They are left overs of an outdated version of SDK Hooks and will
-cause conflicts on your server. Confogl and required files are now installed.
+If they are, DELETE them. They are left overs of an outdated version of SDK Hooks and will cause conflicts on your server. Confogl and required files are now installed.
 
 Download: http://www.l4d2pro.com/downloads.html
---------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 
 
------------------[Step 5 - Install Promod]---------------------------------------------
-Download Pro Mod from the official Pro Mod website. Extract all of the files into the
-same directory structure of your server and overwrite anything that it asks to. Promod
-is now installed. If you intend to install additional configs such as Equilibrium, then
-remember to remove any mapinfo.txt in the l4d2lib path and place it directly into the
-directory of the config itself (see below). If you're installing Equilibrium 1.3 or
-less make sure Pro Mod's plugins aren't overwritten by them as they are the latest
-version.
+-----------------[Step 5 - Install Promod]-------------------------------------
+Download Pro Mod from the official Pro Mod website. Extract all of the files into the same directory structure of your server and overwrite anything that it asks to. Promod is now installed. If you intend to install additional configs such as Equilibrium, then remember to remove any mapinfo.txt in the l4d2lib path and place it directly into the directory of the config itself (see below). If you're installing Equilibrium 1.3 or less make sure Pro Mod's plugins aren't overwritten by them as they are the latest version.
 
 Download: http://www.l4d2pro.com/downloads.html
----------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 
 
------------------[Step 6 - Start Server]-----------------------------------------------
-Restart your server and connect to it. Once in game type in console "sm version" and
-"meta version" to check if both are installed. Try to start a config with !match
-whatever. To check plugins are loaded type "sm plugins" and then !resetmatch to see if
-it correctly unloads then try another config. Your server is now installed, gg.
----------------------------------------------------------------------------------------
+-----------------[Step 6 - Start Server]---------------------------------------
+Restart your server and connect to it. Once in game type in console "sm version" and "meta version" to check if both are installed. Try to start a config with !match whatever. To check plugins are loaded type "sm plugins" and then !resetmatch to see if it correctly unloads then try another config. Your server is now installed, gg.
+-------------------------------------------------------------------------------
 
 
-=======================================================================================
+===============================================================================
 Additional Q/A
-=======================================================================================
+===============================================================================
 
   ["Commands like !forcestart and !forcematch aren't working."]
 
@@ -158,25 +128,53 @@ Additional Q/A
   Zombie bat lives in all of us.
 
 
-=======================================================================================
+===============================================================================
 Changelog
-=======================================================================================
+===============================================================================
 
-3.4
-- ProMod now uses damage scoring. Parity will now be the health bonus equivalent of ProMod.
-- Change the way plugins are loaded to be more developer-friendly. Plugin loads are now mostly sorted into .cfg's, which are selectively executed by each config that wants the included plugins.
-
+4.0
+- ProMod now uses damage bonus. Parity will now be the health bonus equivalent of ProMod.
+- Removed starting_items from all configs. Pills will once again spawn in saferooms.
+- Removed the remains of l4d_tankpunchstuckfix.
+- Removed l4d_hots and l4d2_nobhaps from every config, enabling instant pill health and tank bhops.
+- Removed l4d2_temphealthmedkits from parity in addition to making it HB.
+- Removed l4d_tank_rush from whichever configs had it.
+- Added l4d2_startercommon to every config that didn't have it yet (I think it was just 1v1s).
+- Tweaked l4d2_startercommon: it now changes the common limit between a cvar'd value on round start and the normal cvar's common limit upon leaving saferoom (instantly).
+- Uniformized a lot of settings:
+    - Every config uses the same stripper configuration, since they were already the same anyway.
+    - There is a limit of 2 equipped melee weapons in every config (will probably be tweaked).
+    - Respawn intervals for all 1v1/2v2/3v3/4v4 configs are set to 8/11
+    - Common limits are set to 7/15/22/30.
+    - Mega mob sizes are set to 1.33 times common limit.
+    - Normal mob sizes are set to 0.83 times common limit.
+    - Starting common limit is set to 0.33 times common limit (from l4d2_startercommon).
+    - Tank healths are 1000/2000/3000/4000 (multiply by 1.5 for the real versus value).
+- Changed the way plugins are loaded to be more developer-friendly. Major features are divided into .cfg's, selectively executed by each config that wants them.
+- Split up server commands and cvar settings into different .cfg's:
+    - There's a .cfg for the standard promod settings.
+    - There's a .cfg for each possible player number (1v1/2v2/3v3/4v4).
+    - There's a .cfg for adding hr.
+    - There's a .cfg to have hunters only.
+    - ... for db.
+    - ... for hb.
+    - ... for removing tanks.
+    - ... for removing witches.
+    - ... for retro-styled SI and item changes.
+    - ... for promod's regular items.
+    - ... for cocaine items.
+- Converted everything to lgofnoc.
 TODO:
-- Fix throwables spawning in some places.
+- Add crox's caster/spec movement helper.
+- Maybe add SMAC?
+- Fixed all past, present and future unwanted throwable/health item spawns ever.
 - Add tank rock selector plugin.
 - Block the new material exploit.
-- Update all side configs.
-- Increase pill limit, and add more pills to finales.
 - Update boss percentage plugin to accommodate to custom campaigns, and overall be easier to use.
+- Check what other new plugins are needed.
 - Add epi's new plugin which allows custom connection messages. "Jacob (Admin) has connected."
-- Make shotgun spread static. (We are testing it.)
 - Remove the secret room from dark carnival 4 that could spawn up to 4 pills in unobtainable places.
-- Separate custom map distances into a separate plugin from scoremod, or make scoremod's HB default to off, for safe loading on damage bonus configs.
+- Separate custom map distances into a separate plugin from scoremod.
 - Revise and implement the following stripper changes:
   - c1m1: Removed props from burning room.
   - c1m1: Removed 2 props from the final room before saferoom.
