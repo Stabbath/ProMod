@@ -1,0 +1,37 @@
+This is how stuff is processed:
+
+a. MatchMode is loaded
+    1.  lgofnoc/lgofnoc_plugins.cfg
+    2.  lgofnoc/<config>/lgofnoc_plugins.cfg
+    3.  plugins are locked
+    4.  lgofnoc/lgofnoc_once.cfg
+    5.  lgofnoc/<config>/lgofnoc_plugins.cfg
+    6.  map is restarted after 5 seconds
+b. On every OnMapStart
+    1.  lgofnoc/lgofnoc.cfg
+    2.  lgofnoc/<config>/lgofnoc.cfg
+    3.  lgofnoc/<mapname>.cfg
+    4.  lgofnoc/<config>/<mapname>.cfg
+c. MatchMode is unloaded
+    1.  unlocks plugins
+    2.  unloads all plugins except lgofnoc
+    3.  lgofnoc/lgofnoc_off.cfg
+    4.  lgofnoc/<config>/lgofnoc_off.cfg
+    5.  optionally? restarts map
+
+Client Commands:
+    lgofnoc_cvarsettings    - lists convars that are being enforced by lgofnoc
+    lgofnoc_cvardiff        - lists cvars that have been changed from initial values
+
+Admin Commands:  
+    sm_softmatch    <config>    - same as forcematch, but will fail if a match mode is loaded already
+    sm_forcematch   <config>    - the usual; will unload the current match mode if one is loaded
+    sm_resetmatch   <config>    - the usual
+
+Server Commands:
+    lgofnoc_addcvar     - the usual
+    lgofnoc_setcvars    - starts enforcement of added cvars
+    lgofnoc_resetcvars  - resets all added cvars, can't be used during a match
+    lgofnoc_loadplugin  <plugin>    - as far as I can tell all it does is make it so you don't have to worry about whether a plugin is in the main dir or in optional/
+
+For useful natives and forwards: https://github.com/ConfoglTeam/LGOFNOC/blob/master/lgofnoc.inc
