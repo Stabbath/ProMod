@@ -104,7 +104,6 @@ stock Handle:GetItemName(Handle:spawnArray, String:item[]) {
 }
 
 stock AddToWantedList(String:item[], entity) {
-	DebugMsg("Adding to wanted list: %s %d",item, entity);
 	decl Float:pos[3], Float:ang[3];
 	GetEntPropVector(entity, Prop_Send, "m_vecOrigin", pos);
 	GetEntPropVector(entity, Prop_Send, "m_angRotation", ang);
@@ -118,9 +117,7 @@ stock AddToWantedList(String:item[], entity) {
 	PushArrayArray(coordArray, ang);	//1:1 ang
 	PushArrayCell(spawnArray, coordArray);		//1 handle_coords
 
-	PushArrayCell(g_hArrayItemsToSpawn, spawnArray);
-	
-	DebugMsg("%s: %f %f %f %f %f %f", item, pos[0], pos[1], pos[2], ang[0], ang[1], ang[2]);
+	PushArrayCell(g_hArrayItemsToSpawn, spawnArray);	
 }
 
 stock SelectWantedItems() {
@@ -128,7 +125,6 @@ stock SelectWantedItems() {
 	decl j, entity, limit[LIMIT_COUNT];
 	decl String:item[BUF_SZ], String:classname[BUF_SZ];
 	for (new i = 0; i < GetArraySize(g_hArrayItemSettings); i++) {
-		DebugMsg("Selecting items of type %s.", item);
 		GetArrayString(g_hArrayItemSettings, i, item, BUF_SZ);
 //		spread = UIM_GetSpread(item);
 //		spread_ignore = UIM_GetIgnoreSpread(item);
@@ -248,7 +244,6 @@ static SpawnWantedItems() {
 //		SetAllDataProps(entity, item);
 //		SetAllSendProps(entity, item);
 		DispatchSpawn(entity);
-		DebugMsg("Spawned %s with entity id %d.", classname, entity);
 	}
 }
 
@@ -303,7 +298,7 @@ public LimitConVarChanged(Handle:cvar, const String:oldValue[], const String:new
 
 public Action:Cmd_Limit_CreateCvar(args) {
 	if (args != 4) {
-		PrintToServer("Syntax: uim_limit_createcvar <name for starting saferoom cvar> <name for map cvar> <name for end saferoom cvar> ; use @* if you don't want one or more of them to be cvar'd");
+		PrintToServer("Syntax: uim_limit_createcvar <name for starting saferoom cvar> <name for map cvar> <name for end saferoom cvar> ; use @* if you don't want one or more of them to be cvar'd. Note that \" s_\", \"m_\" or \"e_\" will be automatically prefixed to the name, so you'll have to add that when you change the cvar.");
 		return Plugin_Handled;
 	}
 
@@ -522,10 +517,10 @@ stock DebugMsg(const String:format[], any:...) {
 stock Action:BadSyntax(type) {
 	switch (type) {
 		case SYNTAX_RULE_BAN: {
-			PrintToServer("Syntax: uim_addrule ban <item> <minflow> <maxflow> <optional:thisMapOnly>");
+			PrintToServer("Syntax: uim_addrule ban <item> <minflow> <maxflow>");
 		}
 		case SYNTAX_RULE_SPREAD: {
-			PrintToServer("Syntax: uim_addrule spread <item> <mindist> <maxdist> <optional:thisMapOnly>");
+			PrintToServer("Syntax: uim_addrule spread <item> <mindist> <maxdist>");
 		}
 		case SYNTAX_RULE_SPEC_CLASS: {
 			PrintToServer("Syntax: uim_addrule specifier <item> classname <classname>");
