@@ -4,14 +4,14 @@
 #include <weapons.inc>
 
 #define TEAM_SURVIVOR 2
-#define MAX_DIST_SQUARED 22500 /* 150^2, same as finale spawn range, melee range is ~100 units but felt much too short */
+#define MAX_DIST_SQUARED 75076 /* 274^2, not same as finale spawn range or melee range */
 
 public Plugin:myinfo =
 {
 	name = "Easier Pill Passer",
 	author = "CanadaRox",
 	description = "Lets players pass pills and adrenaline with +reload when they are holding one of those items",
-	version = "0",
+	version = "0.2",
 	url = "http://github.com/CanadaRox/sourcemod-plugins/"
 };
 
@@ -36,6 +36,13 @@ public Action:OnPlayerRunCmd(client, &buttons, &impulse, Float:vel[3], Float:ang
 					new ent = CreateEntityByName(WeaponNames[wep]);
 					DispatchSpawn(ent);
 					EquipPlayerWeapon(target, ent);
+
+					new Handle:hFakeEvent = CreateEvent("weapon_given");
+					SetEventInt(hFakeEvent, "userid", GetClientUserId(target));
+					SetEventInt(hFakeEvent, "giver", GetClientUserId(client));
+					SetEventInt(hFakeEvent, "weapon", _:wep);
+					SetEventInt(hFakeEvent, "weaponentid", ent);
+					FireEvent(hFakeEvent);
 				}
 			}
 		}
