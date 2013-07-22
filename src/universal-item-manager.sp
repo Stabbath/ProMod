@@ -32,8 +32,8 @@
 
 #define BUF_SZ 64
 
-#define TIME_POST_ROUNDSTART 5.0
-#define TIME_POST_MAPSTART   5.0
+#define TIME_POST_ROUNDSTART 10.0
+#define TIME_POST_MAPSTART   10.0
 
 public Plugin:myinfo = {
 	name = "Universal Item Management",
@@ -120,7 +120,7 @@ stock AddToWantedList(String:item[], entity) {
 	PushArrayCell(g_hArrayItemsToSpawn, spawnArray);
 }
 
-static SelectWantedItems() {
+stock SelectWantedItems() {
 //	decl spread, spread_ignore;
 	decl j, entity, limit[LIMIT_COUNT];
 	decl String:item[BUF_SZ], String:classname[BUF_SZ];
@@ -135,7 +135,7 @@ static SelectWantedItems() {
 		decl Handle:hEntityArray[LIMIT_COUNT];
 		/* add all instances of entity to an array according to place */
 		for (j = 0; j < LIMIT_COUNT; j++) hEntityArray[j] = CreateArray();
-		while ((entity = FindEntityByClassname(entity, classname)) != -1) {
+		while ((entity = FindEntityByClassname2(entity, classname)) != -1) {
 			if (!IsInBanRange(item, entity) && DoSpecifiersApply(item, entity)) {
 				if (SAFEDETECT_IsEntityInStartSaferoom(entity)) PushArrayCell(hEntityArray[LIMIT_START], entity);
 				else if (SAFEDETECT_IsEntityInEndSaferoom(entity)) PushArrayCell(hEntityArray[LIMIT_END], entity);
@@ -161,23 +161,52 @@ static SelectWantedItems() {
 	}
 }
 
-static RemoveAllItems() {
+stock FindEntityByClassname2(entity, String:classname[]) {
+	if (StrContains(classname, "weapon_") == 0) {
+		new count = GetEntityCount();
+		for (new i = entity + 1; i < count; i++) {
+			if (WeaponNameToId(classname) == IdentifyWeapon(i))
+				return i;
+		}
+		return -1;
+	}
+	else return FindEntityByClassname(entity, classname);
+}
+
+stock RemoveAllItems() {
+	new count = GetEntityCount();
+	decl WeaponId:id;
 	decl entity;
 	decl String:item[BUF_SZ], String:classname[BUF_SZ];
 	for (new i = 0; i < GetArraySize(g_hArrayItemSettings); i++) {
 		GetArrayString(g_hArrayItemSettings, i, item, BUF_SZ);
 		UIM_GetItemClassname(item, classname);
 		
-		DebugMsg("Checking for entities of item %s.", item);
-
+		for (new j = 0; j < count; j++) {
+			id = IdentifyWeapon(entity);
+			if (StrContains(classname, "weapon_") == 0) {
+				if (id == WeaponNameToId(classname)) {
+					
+				}
+			}
+			else {
+				
+			}
+		}
+		
+		
+		
+		DebugMsg("Checking for entities of item %s (class %s).", item, classname);
+		DebugMsg("found an entity: %d", FindEntityByClassname2(-1, classname));
 		entity = -1;
-		while ((entity = FindEntityByClassname(entity, classname)) != -1) {
+		while ((entity = FindEntityByClassname2(entity, classname)) != -1) {
 			DebugMsg("Found entity %d of item %s.", entity, classname);
 			if (DoSpecifiersApply(item, entity)) {
 				AcceptEntityInput(entity, "Kill");
 				DebugMsg("Killed %s of entity id %d.", classname, entity);
 			}
 		}
+		DebugMsg("Finished looking for entities of item %s.", item);
 	}
 }
 
@@ -409,6 +438,7 @@ stock Handle:UIM_GetItemArray(String:item[]) {	//if it doesnt exist, the array i
 	decl Handle:itemArray;
 	if (!GetTrieValue(g_hTrieItemSettings, item, itemArray)) {
 		SetTrieValue(g_hTrieItemSettings, item, itemArray = UIM_CreateItemArray(), false);
+		UIM_SetItemClassname(item, item);
 		PushArrayString(g_hArrayItemSettings, item);
 	}
 	return itemArray;
@@ -430,13 +460,11 @@ stock UIM_AddBanRange(String:item[], Float:array[]) PushArrayArray(UIM_GetBanRan
 stock UIM_GetItemLimit(place, String:item[]) return GetArrayCell(UIM_GetItemArray(item), place);
 stock UIM_SetItemLimit(place, String:item[], limit) {
 	SetArrayCell(UIM_GetItemArray(item), place, limit);
-	DebugMsg("Set %s limit to %d in the %s.", item, limit, place == LIMIT_START ? "starting saferoom" : place == LIMIT_MAP ? "map" : "end saferoom");
 }
 
 stock UIM_GetItemClassname(String:item[], String:classname[]) GetArrayString(GetArrayCell(UIM_GetItemArray(item), 7), 0, classname, BUF_SZ);
 stock UIM_SetItemClassname(String:item[], String:classname[]) {
 	SetArrayString(GetArrayCell(UIM_GetItemArray(item), 7), 0, classname);
-	DebugMsg("Set classname for %s to %s.", item, classname);
 }
 
 stock UIM_AddDataSpecifier(String:item[], String:key[], String:value[]) {
@@ -497,12 +525,13 @@ stock bool:DoSpecifiersApply(String:item[], entity) {
 		GetEntPropString(entity, Prop_Send, prop, value2, BUF_SZ);
 		if (!StrEqual(value1, value2)) return false;
 	}
+	DebugMsg("Specifiers apply for %s.", item);
 	return true;
 }
 
 stock DebugMsg(const String:format[], any:...) {
 	#if defined DEBUG
-		decl String:output[BUF_SZ];
+		decl String:output[256];
 		VFormat(output, sizeof(output), format, 2);
 		PrintToServer(output);
 		LogMessage(output);
