@@ -94,7 +94,7 @@ public Action:Timed_PostRoundStart(Handle:timer) {
  * * * * * * * * * * * * * * * * * */
 
 stock GetSpawnCoords(Handle:spawnArray, Float:pos[3], Float:ang[3]) {
-	new Handle:coordArray = GetArrayCell(spawnArray, 2);
+	new Handle:coordArray = GetArrayCell(spawnArray, 1);
 	GetArrayArray(coordArray, 0, pos);
 	GetArrayArray(coordArray, 1, ang);
 }
@@ -104,9 +104,10 @@ stock Handle:GetItemName(Handle:spawnArray, String:item[]) {
 }
 
 stock AddToWantedList(String:item[], entity) {
+	DebugMsg("Adding to wanted list: %s %d",item, entity);
 	decl Float:pos[3], Float:ang[3];
 	GetEntPropVector(entity, Prop_Send, "m_vecOrigin", pos);
-	GetEntPropVector(entity, Prop_Send, "m_vecAngles", ang);
+	GetEntPropVector(entity, Prop_Send, "m_angRotation", ang);
 	
 	new Handle:spawnArray = CreateArray();
 	new Handle:itemNameArray = CreateArray(BUF_SZ/4);
@@ -118,6 +119,8 @@ stock AddToWantedList(String:item[], entity) {
 	PushArrayCell(spawnArray, coordArray);		//1 handle_coords
 
 	PushArrayCell(g_hArrayItemsToSpawn, spawnArray);
+	
+	DebugMsg("%s: %f %f %f %f %f %f", item, pos[0], pos[1], pos[2], ang[0], ang[1], ang[2]);
 }
 
 stock SelectWantedItems() {
@@ -125,6 +128,7 @@ stock SelectWantedItems() {
 	decl j, entity, limit[LIMIT_COUNT];
 	decl String:item[BUF_SZ], String:classname[BUF_SZ];
 	for (new i = 0; i < GetArraySize(g_hArrayItemSettings); i++) {
+		DebugMsg("Selecting items of type %s.", item);
 		GetArrayString(g_hArrayItemSettings, i, item, BUF_SZ);
 //		spread = UIM_GetSpread(item);
 //		spread_ignore = UIM_GetIgnoreSpread(item);
@@ -147,7 +151,7 @@ stock SelectWantedItems() {
 		for (j = 0; j < LIMIT_COUNT; j++) {
 			count = 0;
 			while (GetArraySize(hEntityArray[j]) > 0 && count < limit[j]) {
-				new randIdx = GetRandomInt(0, GetArraySize(hEntityArray[j]));
+				new randIdx = GetRandomInt(0, GetArraySize(hEntityArray[j]) - 1);
 				AddToWantedList(item, GetArrayCell(hEntityArray[j], randIdx));
 				RemoveFromArray(hEntityArray[j], randIdx);
 				count++;
@@ -174,39 +178,18 @@ stock FindEntityByClassname2(entity, String:classname[]) {
 }
 
 stock RemoveAllItems() {
-	new count = GetEntityCount();
-	decl WeaponId:id;
 	decl entity;
 	decl String:item[BUF_SZ], String:classname[BUF_SZ];
 	for (new i = 0; i < GetArraySize(g_hArrayItemSettings); i++) {
 		GetArrayString(g_hArrayItemSettings, i, item, BUF_SZ);
 		UIM_GetItemClassname(item, classname);
 		
-		for (new j = 0; j < count; j++) {
-			id = IdentifyWeapon(entity);
-			if (StrContains(classname, "weapon_") == 0) {
-				if (id == WeaponNameToId(classname)) {
-					
-				}
-			}
-			else {
-				
-			}
-		}
-		
-		
-		
-		DebugMsg("Checking for entities of item %s (class %s).", item, classname);
-		DebugMsg("found an entity: %d", FindEntityByClassname2(-1, classname));
 		entity = -1;
 		while ((entity = FindEntityByClassname2(entity, classname)) != -1) {
-			DebugMsg("Found entity %d of item %s.", entity, classname);
 			if (DoSpecifiersApply(item, entity)) {
 				AcceptEntityInput(entity, "Kill");
-				DebugMsg("Killed %s of entity id %d.", classname, entity);
 			}
 		}
-		DebugMsg("Finished looking for entities of item %s.", item);
 	}
 }
 
@@ -255,7 +238,7 @@ static SpawnWantedItems() {
 		UIM_GetItemClassname(item, classname);
 
 		if ((entity = CreateEntityByName(classname)) < 0) {
-			PrintToServer("Tried to spawn %s but failed.", classname);
+			LogMessage("Tried to spawn %s but failed.", classname);
 			continue;
 		}
 		
@@ -336,7 +319,8 @@ public Action:Cmd_Limit_CreateCvar(args) {
 			if (i == 2)	cvarName[0] = 's'; else
 			if (i == 3)	cvarName[0] = 'm'; else
 			if (i == 4)	cvarName[0] = 'e'; 
-			cvarName[1] = '\0';
+			cvarName[1] = '_';
+			cvarName[2] = '\0';
 
 			StrCat(cvarName, BUF_SZ, buffer);
 			HookConVarChange(CreateConVar(cvarName, "", "", FCVAR_PLUGIN), LimitConVarChanged);
@@ -473,7 +457,6 @@ stock UIM_AddDataSpecifier(String:item[], String:key[], String:value[]) {
 	PushArrayString(entry, value);
 
 	PushArrayCell(UIM_GetDataSpecifierArray(item), entry);
-	DebugMsg("Added data specifier for %s: %s %s", item, key, value);
 }
 stock UIM_AddSendSpecifier(String:item[], String:key[], String:value[]) {
 	new Handle:entry = CreateArray(BUF_SZ/4);
@@ -481,7 +464,6 @@ stock UIM_AddSendSpecifier(String:item[], String:key[], String:value[]) {
 	PushArrayString(entry, value);
 
 	PushArrayCell(UIM_GetSendSpecifierArray(item), entry);
-	DebugMsg("Added send specifier for %s: %s %s", item, key, value);
 }
 stock UIM_AddSpawnKeyValue(String:item[], String:key[], String:value[]) {
 	new Handle:entry = CreateArray(BUF_SZ/4);
@@ -489,7 +471,6 @@ stock UIM_AddSpawnKeyValue(String:item[], String:key[], String:value[]) {
 	PushArrayString(entry, value);
 
 	PushArrayCell(UIM_GetSpawnValuesArray(item), entry);
-	DebugMsg("Added spawn KV for %s: %s %s", item, key, value);
 }
 stock bool:IsInBanRange(String:item[], entity) {
 	decl Float:pos[3];
@@ -525,7 +506,6 @@ stock bool:DoSpecifiersApply(String:item[], entity) {
 		GetEntPropString(entity, Prop_Send, prop, value2, BUF_SZ);
 		if (!StrEqual(value1, value2)) return false;
 	}
-	DebugMsg("Specifiers apply for %s.", item);
 	return true;
 }
 
