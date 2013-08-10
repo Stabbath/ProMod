@@ -39,7 +39,7 @@ public Action:Event_RoundStart(Handle:event, const String:name[], bool:dontBroad
 	        iDefaultCommonLimit = GetConVarInt(hCvarCommonLimit);
 	}
 
-	if (!bInRound) CreateTimer(1.0, Timed_PostRoundStart);
+	if (!bInRound) CreateTimer(1.0, Timed_PostRoundStart, _, TIMER_FLAG_NO_MAPCHANGE);
 
 	bInRound = true;
 }
