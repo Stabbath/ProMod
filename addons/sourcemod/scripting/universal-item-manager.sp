@@ -53,7 +53,7 @@ new Handle:g_hArrayItemsToSpawn;      //for spawning wanted items on both rounds
 public OnPluginStart() {
 	g_hCvarForceExistAll = CreateConVar("uim_force_exist_all", "1",
 										"Forces all available weapon spawns to exist and lets the plugin sort them out all on its own.",
-										FCVAR_PLUGIN, true, 0.0, true, 1.0); 
+										FCVAR_PLUGIN, true, 0.0, true, 1.0);
 
 	RegServerCmd("uim_limit",            Cmd_Limit,            "Sets limits for an entity.");
 	RegServerCmd("uim_limit_createcvar", Cmd_Limit_CreateCvar, "Creates cvars for the different item limits that can be used to change limits instead of using uim_limit (still need to use uim_limit first though to register the entity).");
@@ -102,28 +102,36 @@ stock Handle:GetItemName(Handle:spawnArray, String:item[]) {
 	new Handle:itemNameArray = GetArrayCell(spawnArray, 0);
 	GetArrayString(itemNameArray, 0, item, BUF_SZ);
 }
+stock GetMeleeScriptName(Handle:spawnArray, String:name[]) {
+	new Handle:meleeScriptName = GetArrayCell(spawnArray, 2);
+	GetArrayString(meleeScriptName, 0, name, BUF_SZ);
+}
 
-stock AddToWantedList(String:item[], entity) {
+stock AddToWantedList(String:item[], entity, String:name[]="") {
 	decl Float:pos[3], Float:ang[3];
 	GetEntPropVector(entity, Prop_Send, "m_vecOrigin", pos);
 	GetEntPropVector(entity, Prop_Send, "m_angRotation", ang);
 	
 	new Handle:spawnArray = CreateArray();
+
 	new Handle:itemNameArray = CreateArray(BUF_SZ/4);
 	PushArrayString(itemNameArray, item);		
-	PushArrayCell(spawnArray, itemNameArray);	//0 handle_item_array
+	PushArrayCell(spawnArray, itemNameArray);	//0 handle_item_name_array
 	new Handle:coordArray = CreateArray(3);
 	PushArrayArray(coordArray, pos);	//1:0 pos
 	PushArrayArray(coordArray, ang);	//1:1 ang
 	PushArrayCell(spawnArray, coordArray);		//1 handle_coords
-
-	PushArrayCell(g_hArrayItemsToSpawn, spawnArray);	
+	new Handle:meleeScriptName = CreateArray(BUF_SZ/4);
+	PushArrayString(meleeScriptName, name);
+	PushArrayCell(spawnArray, meleeScriptName);	//2 melee script name
+	
+	PushArrayCell(g_hArrayItemsToSpawn, spawnArray);
 }
 
 stock SelectWantedItems() {
 //	decl spread, spread_ignore;
 	decl j, entity, limit[LIMIT_COUNT];
-	decl String:item[BUF_SZ], String:classname[BUF_SZ];
+	decl String:item[BUF_SZ], String:classname[BUF_SZ], String:buffer[BUF_SZ];
 	for (new i = 0; i < GetArraySize(g_hArrayItemSettings); i++) {
 		GetArrayString(g_hArrayItemSettings, i, item, BUF_SZ);
 //		spread = UIM_GetSpread(item);
@@ -148,7 +156,11 @@ stock SelectWantedItems() {
 			count = 0;
 			while (GetArraySize(hEntityArray[j]) > 0 && count < limit[j]) {
 				new randIdx = GetRandomInt(0, GetArraySize(hEntityArray[j]) - 1);
-				AddToWantedList(item, GetArrayCell(hEntityArray[j], randIdx));
+				
+				/* special case: melee weapons */
+				if (!GetMeleeWeaponNameFromEntity(randIdx, buffer, BUF_SZ)) buffer = "";
+				
+				AddToWantedList(item, GetArrayCell(hEntityArray[j], randIdx), buffer);
 				RemoveFromArray(hEntityArray[j], randIdx);
 				count++;
 			}
@@ -162,15 +174,18 @@ stock SelectWantedItems() {
 }
 
 stock FindEntityByClassname2(entity, String:classname[]) {
-	if (StrContains(classname, "weapon_") == 0) {
-		new count = GetEntityCount();
-		for (new i = entity + 1; i < count; i++) {
-			if (WeaponNameToId(classname) == IdentifyWeapon(i))
-				return i;
-		}
-		return -1;
+	/* if it doesnt start with weapon_ treat as regular old weapon */
+	static String:regex[8] = "weapon_";
+	for (new i = 0; i < 8; i++) {
+		if (classname[i] != regex[i]) return FindEntityByClassname(entity, classname);
 	}
-	else return FindEntityByClassname(entity, classname);
+	
+	new count = GetEntityCount();
+	for (new i = entity + 1; i < count; i++) {
+		if (WeaponNameToId(classname) == IdentifyWeapon(i))
+			return i;
+	}
+	return -1;
 }
 
 stock RemoveAllItems() {
@@ -224,7 +239,8 @@ stock SetAllSendProps(entity, String:item[]) {
 }
 
 static SpawnWantedItems() {
-	decl Handle:spawnArray, String:classname[BUF_SZ], String:item[BUF_SZ];
+	decl Handle:spawnArray;
+	decl String:classname[BUF_SZ], String:item[BUF_SZ], String:melee[BUF_SZ];
 	decl Float:pos[3], Float:ang[3];
 	decl entity;
 	for (new i = 0; i < GetArraySize(g_hArrayItemsToSpawn); i++) {
@@ -238,6 +254,11 @@ static SpawnWantedItems() {
 			continue;
 		}
 		
+		GetMeleeScriptName(spawnArray, melee);
+		if (!StrEqual(melee, "")) {
+			DispatchKeyValue(entity, "melee_script_name", melee);
+		}
+
 		DispatchKeyValueVector(entity, "origin", pos);
 		DispatchKeyValueVector(entity, "angles", ang);
  		DispatchAllKeyValues(entity, item);
