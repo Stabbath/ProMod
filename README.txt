@@ -150,8 +150,7 @@ Changelog
     - Normal mob sizes are set to 0.83 times common limit.
     - Starting common limit is set to 0.33 times common limit (from l4d2_startercommon).
     - Tank healths are 1000/2000/3000/4000 (multiply by 1.5 for the real versus value).
-- Changed the way plugins are loaded to be more developer-friendly. Major features are divided into .cfg's, selectively executed by each config that wants them.
-- Split up server commands and cvar settings into different .cfg's:
+- Changed the way plugins are loaded to be more developer-friendly. Plugin loads and cvar settings are divided into .cfg modules, selectively executed by each config that wants that module's features:
     - There's a .cfg for the standard promod settings.
     - There's a .cfg for each possible player number (1v1/2v2/3v3/4v4).
     - There's a .cfg for adding hr.
@@ -167,8 +166,10 @@ Changelog
 - Added caster_assister to help spectators, especially casters, move around more naturally.
 - Fixed all past, present and future unwanted throwable/health item spawns ever.
 - Added tank rock selector plugin.
+- Removed l4d_nocans, can and firework removal is now done by universal-item-manager.
 
 TODO:
+- Decide what to do about l4d2pro.com.
 - Block the new material exploit.
 - Update boss percentage plugin to accommodate to custom campaigns, and overall be easier to use.
 - Add custom campaign's spit block to the regular plugin.
