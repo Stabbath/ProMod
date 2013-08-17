@@ -10,7 +10,7 @@ new bool:lateLoad;
 public Plugin:myinfo =
 {
 	name = "L4D2 No Elevator Spit",
-	author = "ProdigySim",
+	author = "ProdigySim & Estoopi",
 	description = "Blocks spit damage on c4m2/c4m3 elevators",
 	version = "1.0",
 	url = "http://bitbucket.org/ProdigySim/misc-sourcemod-plugins/"
@@ -63,6 +63,20 @@ SetupBlocks()
 		block_square[0][1] = -9491.997070;
 		block_square[1][0] = -1545.875244;
 		block_square[1][1] = -9602.097656;
+	}
+	else if(StrEqual(mapname, "l4d_dbd2dc_clean_up"))
+	{
+		block_square[0][0] = -4194.448242;
+		block_square[0][1] = 3614.163818;
+		block_square[1][0] = -4625.936523;
+		block_square[1][1] = 3539.908936;
+	}
+	else if(StrEqual(mapname, "l4d_dbd2dc_undead_center"))
+	{
+		block_square[0][0] = -6902.102539;
+		block_square[0][1] = 8809.659180;
+		block_square[1][0] = -7872.751953;
+		block_square[1][1] = 8522.269531;
 	}
 	else
 	{
