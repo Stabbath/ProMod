@@ -1,19 +1,21 @@
-#include <sourcemod.inc>
+#include <sourcemod>
 #include <sdkhooks>
 #include <sdktools>
 #include <left4downtown>
+#include <l4d2_direct>
+#undef REQUIRE_PLUGIN
+#include <readyup>
 
 #define MAX(%0,%1) (((%0) > (%1)) ? (%0) : (%1))
 
 #define TEAM_SURVIVOR   2
 
-
 public Plugin:myinfo =
 {
 	name = "Damage Scoring",
-	author = "CanadaRox",
+	author = "CanadaRox, Stabby",
 	description = "Custom damage scoring based on damage and a static bonus.  (It sounds as bad as vanilla but its not!!)",
-	version = "0.999",
+	version = "0.99999",
 	url = "https://github.com/CanadaRox/sourcemod-plugins"
 };
 
@@ -28,6 +30,7 @@ new         iTieBreakBonusDefault;
 new Handle: hStaticBonusCvar;
 new Handle: hMaxDamageCvar;
 new Handle: hDamageMultiCvar;
+new Handle: hMapMulti; 
 
 new         iHealth[MAXPLAYERS + 1];
 new         bTookDamage[MAXPLAYERS + 1];
@@ -37,8 +40,18 @@ new bool:   bRoundOver[2];                  // whether the bonus will still chan
 new         iStoreBonus[2];                 // what was the actual bonus?
 new         iStoreSurvivors[2];             // how many survived that round?
 
+new bool:   readyUpIsAvailable;
 
+public APLRes:AskPluginLoad2(Handle:myself, bool:late, String:error[], err_max)
+{
+	CreateNative("DamageBonus_GetCurrentBonus", Native_GetCurrentBonus);
+	CreateNative("DamageBonus_GetRoundBonus", Native_GetRoundBonus);
+	CreateNative("DamageBonus_GetRoundDamage", Native_GetRoundDamage);
+	RegPluginLibrary("l4d2_damagebonus");
 
+	MarkNativeAsOptional("IsInReady");
+	return APLRes_Success;
+}
 
 public OnPluginStart()
 {
@@ -63,7 +76,8 @@ public OnPluginStart()
 	hStaticBonusCvar = CreateConVar("sm_static_bonus", "25.0", "Extra static bonus that is awarded per survivor for completing the map", FCVAR_PLUGIN, true, 0.0);
 	hMaxDamageCvar = CreateConVar("sm_max_damage", "800.0", "Max damage used for calculation (controls x in [x - damage])", FCVAR_PLUGIN);
 	hDamageMultiCvar = CreateConVar("sm_damage_multi", "1.0", "Multiplier to apply to damage before subtracting it from the max damage", FCVAR_PLUGIN, true, 0.0);
-
+	hMapMulti = CreateConVar("sm_damage_mapmulti", "-1", "Disabled if negative, else sm_max_damage will be ignored and max bonus will be replaced by [map distance]*[this factor]", FCVAR_PLUGIN);
+	
 	// Chat cleaning
 	AddCommandListener(Command_Say, "say");
 	AddCommandListener(Command_Say, "say_team");
@@ -78,9 +92,39 @@ public OnPluginEnd()
 	SetConVarInt(hTieBreakBonusCvar, iTieBreakBonusDefault);
 }
 
+public OnAllPluginsLoaded()
+{
+	readyUpIsAvailable = LibraryExists("readyup");
+}
+
+public OnLibraryRemoved(const String:name[])
+{
+	if (StrEqual(name, "readyup")) readyUpIsAvailable = false;
+}
+
+public OnLibraryAdded(const String:name[])
+{
+	if (StrEqual(name, "readyup")) readyUpIsAvailable = true;
+}
+
+public Native_GetCurrentBonus(Handle:plugin, numParams)
+{
+	return CalculateSurvivalBonus() * GetAliveSurvivors();
+}
+
+public Native_GetRoundBonus(Handle:plugin, numParams)
+{
+	return iStoreBonus[GetNativeCell(1)];
+}
+
+public Native_GetRoundDamage(Handle:plugin, numParams)
+{
+	return iTotalDamage[GetNativeCell(1)];
+}
+
 public OnMapStart()
 {
-	for (new i=0; i < 2; i++)
+	for (new i = 0; i < 2; i++)
 	{
 		iTotalDamage[i] = 0;
 		iStoreBonus[i] = 0;
@@ -122,6 +166,18 @@ public RoundEnd_Event(Handle:event, const String:name[], bool:dontBroadcast)
 	if (reason == 5)
 	{
 		DisplayBonus();
+		if (readyUpIsAvailable && bRoundOver[0] && !GameRules_GetProp("m_bInSecondHalfOfRound"))
+		{
+			decl String:readyMsgBuff[65];
+			if (bHasWiped[0])
+			{
+				FormatEx(readyMsgBuff, sizeof(readyMsgBuff), "Round 1: Wipe (%d damage)", iTotalDamage[0]);
+			}
+			else
+			{
+				FormatEx(readyMsgBuff, sizeof(readyMsgBuff), "Round 1: %d (%d damage)", iStoreBonus[0], iTotalDamage[0]);
+			}
+		}
 	}
 }
 
@@ -147,7 +203,7 @@ public PlayerDeath_Event(Handle:event, const String:name[], bool:dontBroadcast)
 
 public FinaleVehicleLeaving_Event(Handle:event, const String:name[], bool:dontBroadcast)
 {
-	for (new i = 1; i < MaxClients; i++)
+	for (new i = 1; i <= MaxClients; i++)
 	{
 		if (IsClientInGame(i) && IsSurvivor(i) && IsPlayerIncap(i))
 		{
@@ -168,8 +224,8 @@ public OnTakeDamage(victim, attacker, inflictor, Float:damage, damagetype)
 public PlayerLedgeGrab_Event(Handle:event, const String:name[], bool:dontBroadcast)
 {
 	new client = GetClientOfUserId(GetEventInt(event, "userid"));
-	new health = GetEntData(client, 14804, 4);
-	new temphealth = GetEntData(client, 14808, 4);
+	new health = L4D2Direct_GetPreIncapHealth(client);
+	new temphealth = L4D2Direct_GetPreIncapHealthBuffer(client);
 
 	iTotalDamage[GameRules_GetProp("m_bInSecondHalfOfRound")] += health + temphealth;
 }
@@ -231,31 +287,44 @@ stock StoreBonus()
 
 stock DisplayBonus(client=-1)
 {
-	new String:msgPartHdr[48];
-	new String:msgPartDmg[48];
+	decl String:msgPartHdr[48];
+	decl String:msgPartDmg[48];
 
 	for (new round = 0; round <= GameRules_GetProp("m_bInSecondHalfOfRound"); round++)
 	{
-		if (bRoundOver[round]) {
-			Format(msgPartHdr, sizeof(msgPartHdr), "Round \x05%i\x01 bonus", round+1);
-		} else {
-			Format(msgPartHdr, sizeof(msgPartHdr), "Current Bonus");
+		if (bRoundOver[round])
+		{
+			FormatEx(msgPartHdr, sizeof(msgPartHdr), "Round \x05%i\x01 Bonus", round+1);
+		}
+		else
+		{
+			FormatEx(msgPartHdr, sizeof(msgPartHdr), "Current Bonus");
 		}
 
-		if (bHasWiped[round]) {
-			Format(msgPartDmg, sizeof(msgPartDmg), "\x03wipe\x01 (\x05%4d\x01 damage)", iTotalDamage[round]);
-		} else {
-			Format(msgPartDmg, sizeof(msgPartDmg), "\x04%4d\x01 (\x05%4d\x01 damage)",
+		if (bHasWiped[round])
+		{
+			FormatEx(msgPartDmg, sizeof(msgPartDmg), "\x03wipe\x01 (\x05%d\x01 damage)", iTotalDamage[round]);
+		}
+		else
+		{
+			FormatEx(msgPartDmg, sizeof(msgPartDmg), "\x04%d\x01 (\x05%d\x01 damage)",
 					(bRoundOver[round]) ? iStoreBonus[round] : CalculateSurvivalBonus() * GetAliveSurvivors(),
-					iTotalDamage[round]
-				  );
+					iTotalDamage[round]);
 		}
 
-		if (client == -1) {
+		if (client == -1)
+		{
+			PrintToChatAll("Map Distance: \x05%d\x01", L4D_GetVersusMaxCompletionScore());
 			PrintToChatAll("\x01%s: %s", msgPartHdr, msgPartDmg);
-		} else if (client) {
+		}
+		else if (client)
+		{
+			PrintToChat(client, "Map Distance: \x05%d\x01", L4D_GetVersusMaxCompletionScore());
 			PrintToChat(client, "\x01%s: %s", msgPartHdr, msgPartDmg);
-		} else {
+		}
+		else
+		{
+			PrintToServer("Map Distance: \x05%d\x01", L4D_GetVersusMaxCompletionScore());
 			PrintToServer("\x01%s: %s", msgPartHdr, msgPartDmg);
 		}
 	}
@@ -275,7 +344,14 @@ stock GetSurvivorPermanentHealth(client) return GetEntProp(client, Prop_Send, "m
 
 stock CalculateSurvivalBonus()
 {
-	return RoundToFloor(( MAX(GetConVarFloat(hMaxDamageCvar) - GetDamage() * GetConVarFloat(hDamageMultiCvar), 0.0) ) / 4 + GetConVarFloat(hStaticBonusCvar));
+	if (GetConVarFloat(hMapMulti) < 0)
+	{
+		return RoundToFloor(( MAX(GetConVarFloat(hMaxDamageCvar) - GetDamage() * GetConVarFloat(hDamageMultiCvar), 0.0) ) / 4 + GetConVarFloat(hStaticBonusCvar));
+	}
+	else
+	{
+		return RoundToFloor((MAX(GetConVarFloat(hMapMulti) * L4D_GetVersusMaxCompletionScore() - GetDamage() * GetConVarFloat(hDamageMultiCvar), 0.0)) / 4 + GetConVarFloat(hStaticBonusCvar));
+	}
 }
 
 stock GetAliveSurvivors()
@@ -283,7 +359,7 @@ stock GetAliveSurvivors()
 	new iAliveCount;
 	new iSurvivorCount;
 	new maxSurvs = (hTeamSize != INVALID_HANDLE) ? GetConVarInt(hTeamSize) : 4;
-	for (new i = 1; i < MaxClients && iSurvivorCount < maxSurvs; i++)
+	for (new i = 1; i <= MaxClients && iSurvivorCount < maxSurvs; i++)
 	{
 		if (IsSurvivor(i))
 		{
@@ -299,10 +375,13 @@ stock GetUprightSurvivors()
 	new iAliveCount;
 	new iSurvivorCount;
 	new maxSurvs = (hTeamSize != INVALID_HANDLE) ? GetConVarInt(hTeamSize) : 4;
-	for (new i=1; i < MaxClients && iSurvivorCount < maxSurvs; i++) {
-		if (IsSurvivor(i)) {
+	for (new i = 1; i <= MaxClients && iSurvivorCount < maxSurvs; i++)
+	{
+		if (IsSurvivor(i))
+		{
 			iSurvivorCount++;
-			if (IsPlayerAlive(i) && !IsPlayerIncap(i) && !IsPlayerLedgedAtAll(i)) {
+			if (IsPlayerAlive(i) && !IsPlayerIncap(i) && !IsPlayerLedgedAtAll(i))
+			{
 				iAliveCount++;
 			}
 		}
