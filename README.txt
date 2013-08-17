@@ -164,14 +164,14 @@ Changelog
     - ... for promod's regular items.
     - ... for cocaine items.
 - Converted everything to lgofnoc.
-TODO:
-- Add crox's caster/spec movement helper.
-- Maybe add SMAC?
+- Added caster_assister to help spectators, especially casters, move around more naturally.
 - Fixed all past, present and future unwanted throwable/health item spawns ever.
-- Add tank rock selector plugin.
+- Added tank rock selector plugin.
+
+TODO:
 - Block the new material exploit.
 - Update boss percentage plugin to accommodate to custom campaigns, and overall be easier to use.
-- Check what other new plugins are needed.
+- Add custom campaign's spit block to the regular plugin.
 - Add epi's new plugin which allows custom connection messages. "Jacob (Admin) has connected."
 - Remove the secret room from dark carnival 4 that could spawn up to 4 pills in unobtainable places.
 - Separate custom map distances into a separate plugin from scoremod.
