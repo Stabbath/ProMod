@@ -101,7 +101,7 @@ public OnPluginStart() {
     for ( new i = 0; i < MAX_ATTRS; i++ ) {
         hWeaponDefaultAttsTrie[i] = INVALID_HANDLE;
         hWeaponNamesInTrie[i] = INVALID_HANDLE;
-	}
+    }
 
     if ( bLateLoad ) {
         for ( new i = 1; i <= MaxClients; i++ ) {
@@ -122,25 +122,25 @@ public OnPluginEnd() {
         hTankDamageKVs = INVALID_HANDLE;
     }
 
-	decl i, j, String:sWeaponName[32], buf, Float:fub;
-	for ( i = 0; i < 3; i++ ) {
-		if (hWeaponDefaultAttsTrie[i] != INVALID_HANDLE) {
-			for ( j = 0; j < GetArraySize(hWeaponNamesInTrie[i]); j++ ) {
-				GetArrayString(hWeaponNamesInTrie, j, sWeaponName, 32);
-				GetTrieValue(hWeaponDefaultAttsTrie[i], sWeaponName, buf);
-				SetWeaponAttributeInt(sWeaponName, iAttrIdx, buf);
-			}
-		}
-	}
-	for ( i = 0; i < MAX_ATTRS - 1; i++ ) {
-		if (hWeaponDefaultAttsTrie[i] != INVALID_HANDLE) {
-			for ( j = 0; j < GetArraySize(hWeaponNamesInTrie[i]); j++ ) {
-				GetArrayString(hWeaponNamesInTrie, j, sWeaponName, 32);
-				GetTrieValue(hWeaponDefaultAttsTrie[i], sWeaponName, fub);
-				SetWeaponAttributeFloat(sWeaponName, iAttrIdx, fub);
-			}
-		}
-	}
+    decl i, j, String:sWeaponName[32], buf, Float:fub;
+    for ( i = 0; i < 3; i++ ) {
+        if (hWeaponDefaultAttsTrie[i] != INVALID_HANDLE) {
+            for ( j = 0; j < GetArraySize(hWeaponNamesInTrie[i]); j++ ) {
+                GetArrayString(hWeaponNamesInTrie[i], j, sWeaponName, 32);
+                GetTrieValue(hWeaponDefaultAttsTrie[i], sWeaponName, buf);
+                SetWeaponAttributeInt(sWeaponName, i, buf);
+            }
+        }
+    }
+    for ( i = 0; i < MAX_ATTRS - 1; i++ ) {
+        if (hWeaponDefaultAttsTrie[i] != INVALID_HANDLE) {
+            for ( j = 0; j < GetArraySize(hWeaponNamesInTrie[i]); j++ ) {
+                GetArrayString(hWeaponNamesInTrie[i], j, sWeaponName, 32);
+                GetTrieValue(hWeaponDefaultAttsTrie[i], sWeaponName, fub);
+                SetWeaponAttributeFloat(sWeaponName, i, fub);
+            }
+        }
+    }
 }
 
 GetWeaponAttributeIndex( String:sAttrName[128] ) {
@@ -204,21 +204,21 @@ public Action:Weapon( args ) {
     StrCat(sWeaponNameFull, sizeof(sWeaponNameFull), sWeaponName);
 
     if (hWeaponDefaultAttsTrie[iAttrIdx] == INVALID_HANDLE) {
-		hWeaponDefaultAttsTrie[iAttrIdx] = CreateTrie();
-		hWeaponNamesInTrie[iAttrIdx] = CreateArray(32);
+        hWeaponDefaultAttsTrie[iAttrIdx] = CreateTrie();
+        hWeaponNamesInTrie[iAttrIdx] = CreateArray(32);
     }
-	PushArrayString(hWeaponNamesInTrie[iAttrIdx], sWeaponNameFull);
+    PushArrayString(hWeaponNamesInTrie[iAttrIdx], sWeaponNameFull);
 
     iValue = StringToInt(sAttrValue);
     fValue = StringToFloat(sAttrValue);
 
     if ( iAttrIdx < 3 ) {
-		SetTrieValue(hWeaponDefaultAttsTrie[iAttrIdx], sWeaponNameFull, GetWeaponAttributeInt(sWeaponNameFull, iAttrIdx), false);
+        SetTrieValue(hWeaponDefaultAttsTrie[iAttrIdx], sWeaponNameFull, GetWeaponAttributeInt(sWeaponNameFull, iAttrIdx), false);
         SetWeaponAttributeInt(sWeaponNameFull, iAttrIdx, iValue);
         PrintToServer("%s for %s set to %d", sWeaponAttrNames[iAttrIdx], sWeaponName, iValue);
     }
     else if ( iAttrIdx < MAX_ATTRS-1 ) {
-		SetTrieValue(hWeaponDefaultAttsTrie[iAttrIdx], sWeaponNameFull, GetWeaponAttributeFloat(sWeaponNameFull, iAttrIdx), false);
+        SetTrieValue(hWeaponDefaultAttsTrie[iAttrIdx], sWeaponNameFull, GetWeaponAttributeFloat(sWeaponNameFull, iAttrIdx), false);
         SetWeaponAttributeFloat(sWeaponNameFull, iAttrIdx, fValue);
         PrintToServer("%s for %s set to %.2f", sWeaponAttrNames[iAttrIdx], sWeaponName, fValue);
     }
