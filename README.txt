@@ -153,7 +153,7 @@ Changelog
 - Changed the way plugins are loaded to be more developer-friendly. Plugin loads and cvar settings are divided into .cfg modules, selectively executed by each config that wants that module's features:
     - There's a .cfg for the standard promod settings.
     - There's a .cfg for each possible player number (1v1/2v2/3v3/4v4).
-    - There's a .cfg for adding hr.
+    - There's a .cfg for adding a nerfed hr.
     - There's a .cfg to have hunters only.
     - ... for db.
     - ... for hb.
@@ -165,17 +165,19 @@ Changelog
 - Converted everything to lgofnoc.
 - Added caster_assister to help spectators, especially casters, move around more naturally.
 - Fixed all past, present and future unwanted throwable/health item spawns ever.
-- Added tank rock selector plugin.
-- Removed l4d_nocans, can and firework removal is now done by universal-item-manager.
+- Added tank rock selector plugin, CanadaRox's version: just pressing Use or Reload alone will start the rock throw.
+- Removed l4d_nocans, all canister, can and firework removal is now done by universal-item-manager.
+- Added l4d2_spitdontswallow to allow people to opt for a spitter during tank fights.
+- Added staggersolver to block button presses during stumbles.
+- Added custom campaign's spit block to the regular plugin.
 
 TODO:
 - Decide what to do about l4d2pro.com.
 - Block the new material exploit.
 - Update boss percentage plugin to accommodate to custom campaigns, and overall be easier to use.
-- Add custom campaign's spit block to the regular plugin.
 - Add epi's new plugin which allows custom connection messages. "Jacob (Admin) has connected."
-- Remove the secret room from dark carnival 4 that could spawn up to 4 pills in unobtainable places.
 - Separate custom map distances into a separate plugin from scoremod.
+- Remove the secret room from dark carnival 4 that could spawn up to 4 pills in unobtainable places.
 - Revise and implement the following stripper changes:
   - c1m1: Removed props from burning room.
   - c1m1: Removed 2 props from the final room before saferoom.
@@ -191,7 +193,7 @@ TODO:
   - c5m3: Removed big blue dumpster from open area outside saferoom.
   - c5m3: Removed semi truck from street just before manhole drop.
   - c5m3: Made the bushes at the back of the street just before the manhole inaccessible for survivors, however infected can now use these to get behind the fence.
-  - c5m5: Removed all props except for the side railings along the bridge, and the alternate route at the end of the map.
+  - c5m5: Removed bridge props other than the side railings. Ending is still as CircleSquared made it.
   - c10m4: Removed army truck that I have never seen do any good but block hittables.
   - c10m4: Removed semi-truck that served no purpose.
 
