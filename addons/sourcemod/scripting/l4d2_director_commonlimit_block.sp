@@ -51,7 +51,7 @@ public OnMapStart()
     // do something?
 }
 
-public L4D_OnGetScriptValueInt(const String:key[], &retVal)
+public Action:L4D_OnGetScriptValueInt(const String:key[], &retVal)
 {
     if (StrEqual(key,"CommonLimit"))
     {
