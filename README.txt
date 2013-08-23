@@ -172,11 +172,12 @@ Changelog
 - Added custom campaign's spit block to the regular plugin.
 
 TODO:
+- Remove No Mercy 5 flow tank.
 - Decide what to do about l4d2pro.com.
 - Block the new material exploit.
 - Update boss percentage plugin to accommodate to custom campaigns, and overall be easier to use.
 - Add epi's new plugin which allows custom connection messages. "Jacob (Admin) has connected."
-- Separate custom map distances into a separate plugin from scoremod.
+- Separate custom map distances into a separate plugin from scoremod (done but not added to repo yet).
 - Remove the secret room from dark carnival 4 that could spawn up to 4 pills in unobtainable places.
 - Revise and implement the following stripper changes:
   - c1m1: Removed props from burning room.
