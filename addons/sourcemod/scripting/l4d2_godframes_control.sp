@@ -174,7 +174,7 @@ public Action:OnTakeDamage(victim, &attacker, &inflictor, &Float:damage, &damage
 	}
 	if (IsClientAndInGame(attacker) && GetClientTeam(victim) == GetClientTeam(attacker)) //friendly fire
 	{
-		if (fTimeLeft < GetConVarFloat(hFF)) {
+		if (fTimeLeft < GetConVarFloat(hFF) && fTimeLeft > 0.0) {
 			fTimeLeft = GetConVarFloat(hFF);
 		}
 	}
