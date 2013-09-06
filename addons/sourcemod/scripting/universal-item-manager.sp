@@ -174,18 +174,15 @@ stock SelectWantedItems() {
 }
 
 stock FindEntityByClassname2(entity, String:classname[]) {
-	/* if it doesnt start with weapon_ treat as regular old weapon */
-	static String:regex[8] = "weapon_";
-	for (new i = 0; i < 8; i++) {
-		if (classname[i] != regex[i]) return FindEntityByClassname(entity, classname);
+	if (StrContains(classname, "weapon_") == 0) {
+		new count = GetEntityCount();
+		for (new i = entity + 1; i < count; i++) {
+			if (WeaponNameToId(classname) == IdentifyWeapon(i))
+				return i;
+		}
+		return -1;
 	}
-	
-	new count = GetEntityCount();
-	for (new i = entity + 1; i < count; i++) {
-		if (WeaponNameToId(classname) == IdentifyWeapon(i))
-			return i;
-	}
-	return -1;
+	else return FindEntityByClassname(entity, classname);
 }
 
 stock RemoveAllItems() {
