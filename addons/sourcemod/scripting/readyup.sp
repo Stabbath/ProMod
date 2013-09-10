@@ -100,7 +100,6 @@ public OnPluginStart()
 #if DEBUG
 	RegAdminCmd("sm_initready", InitReady_Cmd, ADMFLAG_ROOT);
 	RegAdminCmd("sm_initlive", InitLive_Cmd, ADMFLAG_ROOT);
-	RegAdminCmd("sm_findsaferoom", FindSaferoom_Cmd, ADMFLAG_ROOT);
 #endif
 
 	LoadTranslations("common.phrases");
@@ -594,6 +593,8 @@ ReturnPlayerToSaferoom(client, bool:flagsSet = true)
 		SetEntProp(client, Prop_Send, "m_isHangingFromLedge", 0);
 		SetEntProp(client, Prop_Send, "m_isFallingFromLedge", 0);
 		SetEntProp(client, Prop_Send, "m_iHealth", L4D2Direct_GetPreIncapHealth(client));
+		SetEntProp(client, Prop_Send, "m_reviveOwner", 0);
+		SetEntProp(client, Prop_Send, "m_reviveTarget", 0);
 		SetSurvivorTempHealth(client, Float:L4D2Direct_GetPreIncapHealthBuffer(client));
 		ClientCommand(client, "music_dynamic_stop_playing Event.LedgeHangTwoHands");
 		ClientCommand(client, "music_dynamic_stop_playing Event.LedgeHangOneHand");

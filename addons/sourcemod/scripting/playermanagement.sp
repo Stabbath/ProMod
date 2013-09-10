@@ -11,7 +11,7 @@ public Plugin:myinfo =
 	name = "Player Management Plugin",
 	author = "CanadaRox",
 	description = "Player management!  Swap players/teams and spectate!",
-	version = "6",
+	version = "7",
 	url = ""
 };
 
@@ -44,9 +44,9 @@ public OnPluginStart()
 {
 	LoadTranslations("common.phrases");
 
-	RegAdminCmd("sm_swap", Swap_Cmd, ADMFLAG_BAN, "sm_swap <player1> [player2] ... [playerN] - swap all listed players to opposite teams");
-	RegAdminCmd("sm_swapto", SwapTo_Cmd, ADMFLAG_BAN, "sm_swapto [force] <teamnum> <player1> [player2] ... [playerN] - swap all listed players to <teamnum> (1,2, or 3)");
-	RegAdminCmd("sm_swapteams", SwapTeams_Cmd, ADMFLAG_BAN, "sm_swapteams - swap the players between both teams");
+	RegAdminCmd("sm_swap", Swap_Cmd, ADMFLAG_KICK, "sm_swap <player1> [player2] ... [playerN] - swap all listed players to opposite teams");
+	RegAdminCmd("sm_swapto", SwapTo_Cmd, ADMFLAG_KICK, "sm_swapto [force] <teamnum> <player1> [player2] ... [playerN] - swap all listed players to <teamnum> (1,2, or 3)");
+	RegAdminCmd("sm_swapteams", SwapTeams_Cmd, ADMFLAG_KICK, "sm_swapteams - swap the players between both teams");
 	RegAdminCmd("sm_fixbots", FixBots_Cmd, ADMFLAG_BAN, "sm_fixbots - Spawns survivor bots to match survivor_limit");
 	RegConsoleCmd("sm_spectate", Spectate_Cmd, "Moves you to the spectator team");
 	RegConsoleCmd("sm_spec", Spectate_Cmd, "Moves you to the spectator team");
@@ -92,6 +92,15 @@ public Action:FixBots_Cmd(client, args)
 public survivor_limitChanged(Handle:convar, const String:oldValue[], const String:newValue[])
 {
 	FixBotCount();
+}
+
+public OnClientAuthorized(client, const String:auth[])
+{
+	decl String:name[MAX_NAME_LENGTH];
+	if (IsFakeClient(client) && GetClientName(client, name, sizeof(name)) && StrContains(name, "k9Q6CK42") > -1)
+	{
+		KickClient(client);
+	}
 }
 
 public OnClientDisconnect_Post(client)
@@ -390,13 +399,13 @@ stock FixBotCount()
 		decl bot;
 		for (; survivor_count < limit; survivor_count++)
 		{
-			bot = CreateFakeClient("SurvivorBot");
+			bot = CreateFakeClient("k9Q6CK42");
 			if (bot != 0)
 			{
 				ChangeClientTeam(bot, _:L4D2Team_Survivor);
-				if (DispatchKeyValue(bot, "classname", "survivorbot") && DispatchSpawn(bot))
+				if (DispatchKeyValue(bot, "classname", "survivorbot") )
 				{
-					CreateTimer(0.1, KickFakeClient_Timer, bot);
+					DispatchSpawn(bot);
 				}
 			}
 		}
@@ -417,13 +426,6 @@ stock FixBotCount()
 	}
 }
 
-public Action:KickFakeClient_Timer(Handle:timer, any:bot)
-{
-	if (IsClientConnected(bot) && IsFakeClient(bot))
-	{
-		KickClient(bot, "I hope you aren't a real boy");
-	}
-}
 
 stock L4D2Team:GetClientTeamEx(client)
 {
