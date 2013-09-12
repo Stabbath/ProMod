@@ -143,6 +143,8 @@ Main Changes:
 - Added staggersolver to block button presses during stumbles.
 - Removed No Mercy 5 and Dead Center 4 wipefest flow tanks.
 - The 2nd finale tank (not counting possible flow tanks) is now blocked, to makes finales shorter and more survivable.
+- Hard Rain 2 has multiple witches again, but with reduced health (only 500).
+- Hard Rain 1 only has 1 SMG and 1 pump shotgun in saferoom: to get more primary weapons players must go into the diner.
 
 Other Changes:
 - Added witch_announce and a bunch of other small plugins that were popularly requested.
