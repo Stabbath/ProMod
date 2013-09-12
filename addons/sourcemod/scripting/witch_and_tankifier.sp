@@ -7,7 +7,6 @@
 #include <sourcemod>
 #include <sdktools>
 #include <l4d2_direct>
-#include <l4d2lib>
 #define L4D2UTIL_STOCKS_ONLY
 #include <l4d2util>
 #include <left4downtown>
@@ -16,7 +15,7 @@ public Plugin:myinfo =
 {
 	name = "Witch and Tankifier!",
 	author = "CanadaRox",
-	version = "1",
+	version = "1a",
 	description = "Sets a tank and witch spawn point on every map with a 0.2 safety zone around tank"
 };
 
@@ -130,8 +129,8 @@ public Action:AdjustBossFlow(Handle:timer)
 #if DEBUG
 		PrintToChatAll("Not static tank map");
 #endif
-		new Float:fMinBanFlow = L4D2_GetMapValueInt("tank_ban_flow_min", -1) / 100.0;
-		new Float:fMaxBanFlow = L4D2_GetMapValueInt("tank_ban_flow_max", -1) / 100.0;
+		new Float:fMinBanFlow = LGO_GetMapValueInt("tank_ban_flow_min", -1) / 100.0;
+		new Float:fMaxBanFlow = LGO_GetMapValueInt("tank_ban_flow_max", -1) / 100.0;
 		new Float:fBanRange = fMaxBanFlow - fMinBanFlow;
 		if (fMinBanFlow > 0 && fMinBanFlow < fCvarMinFlow)
 		{
@@ -168,8 +167,8 @@ public Action:AdjustBossFlow(Handle:timer)
 #if DEBUG
 		PrintToChatAll("Not static witch map");
 #endif
-		new iMinWitchFlow = L4D2_GetMapValueInt("witch_flow_min", -1);
-		new iMaxWitchFlow = L4D2_GetMapValueInt("witch_flow_max", -1);
+		new iMinWitchFlow = LGO_GetMapValueInt("witch_flow_min", -1);
+		new iMaxWitchFlow = LGO_GetMapValueInt("witch_flow_max", -1);
 		new Float:fMinWitchFlow = iMinWitchFlow == -1 ? fCvarMinFlow : iMinWitchFlow / 100.0;
 		new Float:fMaxWitchFlow = iMaxWitchFlow == -1 ? fCvarMaxFlow : iMaxWitchFlow / 100.0;
 		new Float:witchFlowRange = fMaxWitchFlow - fMinWitchFlow;
