@@ -3,9 +3,6 @@
 #include <sourcemod>
 #include <sdktools>
 #include <left4downtown>
-#undef REQUIRE_PLUGIN
-#include <l4d2lib>
-#define REQUIRE_PLUGIN
 
 #define DEBUG_SM	0
 
@@ -15,11 +12,9 @@ public Plugin:myinfo =
 	name = "L4D2 Scoremod",
 	author = "CanadaRox, ProdigySim",
 	description = "L4D2 Custom Scoring System (Health Bonus)",
-	version = "1.1",
+	version = "1.1a",
 	url = "https://bitbucket.org/CanadaRox/random-sourcemod-stuff"
 };
-
-new bool:l4d2lib_available = false;
 
 new SM_iDefaultSurvivalBonus;
 new SM_iDefaultTieBreaker;
@@ -113,27 +108,6 @@ public OnPluginStart()
 	
 	RegConsoleCmd("sm_health", SM_Cmd_Health);
 }
- 
-public OnAllPluginsLoaded()
-{
-	l4d2lib_available = LibraryExists("l4d2lib");
-}
- 
-public OnLibraryRemoved(const String:name[])
-{
-	if (StrEqual(name, "l4d2lib"))
-	{
-		l4d2lib_available = false;
-	}
-}
- 
-public OnLibraryAdded(const String:name[])
-{
-	if (StrEqual(name, "l4d2lib"))
-	{
-		l4d2lib_available = true;
-	}
-}
 
 public OnPluginEnd()
 {
@@ -151,7 +125,6 @@ public OnMapStart()
 	if (SM_bModuleIsEnabled) SetConVarInt(SM_hTieBreaker, 0);
 	if (SM_bModuleIsEnabled && GetConVarBool(SM_hCustomMaxDistance) && GetCustomMapMaxScore() > -1) 
 	{
-		SetMapMaxScore(GetCustomMapMaxScore());
 		// to allow a distance score of 0 and a health bonus
 		if (GetCustomMapMaxScore() > 0) SM_fMapMulti = float(GetCustomMapMaxScore()) / 400.0;
 	}
@@ -466,17 +439,7 @@ stock GetSurvivorIncapCount(client)
     return GetEntProp(client, Prop_Send, "m_currentReviveCount");
 }
 
-stock GetCustomMapMaxScore()
-{
-	return l4d2lib_available ? L4D2_GetMapValueInt("max_distance", -1) : -1;
-}
-
 stock GetMapMaxScore()
 {
 	return L4D_GetVersusMaxCompletionScore();
-}
-
-stock SetMapMaxScore(score)
-{
-	L4D_SetVersusMaxCompletionScore(score);
 }
