@@ -133,23 +133,35 @@ Changelog
 ===============================================================================
 
 4.0
-- ProMod now uses damage bonus. Parity will now be the health bonus equivalent of ProMod.
-- Removed starting_items from all configs. Pills will once again spawn in saferooms.
-- Removed the remains of l4d_tankpunchstuckfix.
+Main Changes:
+- ProMod now uses damage bonus. Parity will now be the exact health bonus equivalent of ProMod.
 - Removed l4d_hots and l4d2_nobhaps from every config, enabling instant pill health and tank bhops.
-- Removed l4d2_temphealthmedkits from parity in addition to making it HB.
+- Tweaked l4d2_startercommon: it now lowers the common limit on round start and instantly resets it upon leaving saferoom.
+- Added caster_assister to help spectators, especially streamers/casters, move around more naturally.
+- Added tank rock selector plugin, CanadaRox's version: just pressing Use or Reload alone will start the rock throw.
+- Added l4d2_spitdontswallow to allow people to opt for a spitter during tank fights.
+- Added staggersolver to block button presses during stumbles.
+- Removed No Mercy 5 and Dead Center 4 wipefest flow tanks.
+- The 2nd finale tank (not counting possible flow tanks) is now blocked, to makes finales shorter and more survivable.
+
+Other Changes:
+- Added witch_announce and a bunch of other small plugins that were popularly requested.
 - Removed l4d_tank_rush from whichever configs had it.
-- Added l4d2_startercommon to every config that didn't have it yet (I think it was just 1v1s).
-- Tweaked l4d2_startercommon: it now changes the common limit between a cvar'd value on round start and the normal cvar's common limit upon leaving saferoom (instantly).
+- Converted from confogl+l4d2lib to lgofnoc.
+- Added CCT's spit damage blockers to the regular plugin.
+- Separated custom map distances into a separate plugin from scoremod.
+- Removed the remains of l4d_tankpunchstuckfix.
 - Uniformized a lot of settings:
-    - Every config uses the same stripper configuration, since they were already the same anyway.
+    - Every config uses the same stripper setup (they were already 99% the same).
     - There is a limit of 2 equipped melee weapons in every config (will probably be tweaked).
-    - Respawn intervals for all 1v1/2v2/3v3/4v4 configs are set to 8/11
+    - Respawn intervals for all 1v1/2v2/3v3/4v4 configs are set to 8/11/13/17.
     - Common limits are set to 7/15/22/30.
     - Mega mob sizes are set to 1.33 times common limit.
     - Normal mob sizes are set to 0.83 times common limit.
     - Starting common limit is set to 0.33 times common limit (from l4d2_startercommon).
     - Tank healths are 1000/2000/3000/4000 (multiply by 1.5 for the real versus value).
+- All item spawns are now handled by universal-item-manager.
+- Removed l4d_nocans, all canister, can and firework removal is now done by universal-item-manager.
 - Changed the way plugins are loaded to be more developer-friendly. Plugin loads and cvar settings are divided into .cfg modules, selectively executed by each config that wants that module's features:
     - There's a .cfg for the standard promod settings.
     - There's a .cfg for each possible player number (1v1/2v2/3v3/4v4).
@@ -157,27 +169,13 @@ Changelog
     - There's a .cfg to have hunters only.
     - ... for db.
     - ... for hb.
-    - ... for removing tanks.
-    - ... for removing witches.
-    - ... for retro-styled SI and item changes.
-    - ... for promod's regular items.
-    - ... for cocaine items.
-- Converted everything to lgofnoc.
-- Added caster_assister to help spectators, especially casters, move around more naturally.
-- Fixed all past, present and future unwanted throwable/health item spawns ever.
-- Added tank rock selector plugin, CanadaRox's version: just pressing Use or Reload alone will start the rock throw.
-- Removed l4d_nocans, all canister, can and firework removal is now done by universal-item-manager.
-- Added l4d2_spitdontswallow to allow people to opt for a spitter during tank fights.
-- Added staggersolver to block button presses during stumbles.
-- Added custom campaign's spit block to the regular plugin.
+	- etc...
+- Likely other smaller changes that were forgotten.
 
 TODO:
-- Remove No Mercy 5 flow tank.
 - Decide what to do about l4d2pro.com.
 - Block the new material exploit.
-- Update boss percentage plugin to accommodate to custom campaigns, and overall be easier to use.
 - Add epi's new plugin which allows custom connection messages. "Jacob (Admin) has connected."
-- Separate custom map distances into a separate plugin from scoremod (done but not added to repo yet).
 - Remove the secret room from dark carnival 4 that could spawn up to 4 pills in unobtainable places.
 - Revise and implement the following stripper changes:
   - c1m1: Removed props from burning room.
