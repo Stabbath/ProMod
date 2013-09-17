@@ -24,6 +24,10 @@ function TeleTank()
 			
 			// Kill the timer that keeps running this script
 			EntFire( "tank_spawned_timer", "Disable", 0 );
+			
+			// Start the timer that monitors whether the tank is in play or not
+			// and resets the commonlimit once the tank dies
+			EntFire( "tank_spawned_timer_2", "Enable", 0 );
 		}
 	}
 }
