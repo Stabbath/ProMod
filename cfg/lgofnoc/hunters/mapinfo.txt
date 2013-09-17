@@ -617,6 +617,8 @@
         "start_point"       "-11160.266602 2500.985107 656.031250"
         "start_dist"        "248.178223"
         "start_extra_dist"  "251.028473"
+		"end_point"			"13739.563477 7775.639648 1054.943604"
+		"end_dist"			"191.200378"
         "tank_ban_flow_min" "0"
         "tank_ban_flow_max" "28"
     }
@@ -627,7 +629,7 @@
         "start_extra_dist"  "269.938385"
         "end_point"         "-12561.050781 -11283.779297 985.953308"
         "end_dist"          "245.495361"
-        "tank_ban_flow_min" "1"
+        "tank_ban_flow_min" "0"
         "tank_ban_flow_max" "70"
     }
     "l4d_deathaboard01_prison"
@@ -683,6 +685,7 @@
         "start_extra_dist"  "387.249268"
         "end_point"         "1704.728271 -8333.527344 87.642601"
         "end_dist"          "247.891632"
+		"max_distance"		"300"
     }
     "l4d_ihm02_manor"
     {
@@ -782,6 +785,8 @@
         "start_extra_dist"  "159.655685"
         "end_point"         "3538.319580 -2976.031250 29.974674"
         "end_dist"          "245.566330"
+		"tank_ban_flow_min" "73"
+		"tank_ban_flow_max" "83"
     }
     "cwm4_building"
     {
@@ -800,6 +805,7 @@
         "end_dist"          "133.006638"
         "tank_ban_flow_min" "0"
         "tank_ban_flow_max" "45"
+		"max_distance"		"500"
     }
     "l4d2_vs_stadium2_riverwalk"
     {
@@ -808,6 +814,7 @@
         "start_extra_dist"  "149.953766"
         "end_point"         "524.056885 10057.031250 -806.850220"
         "end_dist"          "264.000458"
+		"max_distance"		"600"
     }
     "l4d2_stadium3_city1"
     {
@@ -818,6 +825,7 @@
         "end_dist"          "298.808014"
         "tank_ban_flow_min" "0"
         "tank_ban_flow_max" "40"
+		"max_distance"		"700"
     }
     "l4d2_stadium4_city2"
     {
@@ -826,6 +834,9 @@
         "start_extra_dist"  "259.126312"
         "end_point"         "-8466.472656 7044.023438 -334.468750"
         "end_dist"          "642.662781"
+		"tank_ban_flow_min" "60"
+        "tank_ban_flow_max" "100"
+		"max_distance"		"700"
     }
     "l4d2_stadium5_stadium"
     {
@@ -834,6 +845,8 @@
         "start_extra_dist"  "349.691711"
         "end_point"         "-8753.460938 -3717.820068 407.562927"
         "end_dist"          "2375.248535"
+		"tank_ban_flow_min" "0"
+        "tank_ban_flow_max" "50"
     }
     "l4d2_city17_01"
     {
@@ -908,6 +921,8 @@
         "start_extra_dist"  "123.490318"
         "end_point"         "-3424.100586 1176.238281 440.031250"
         "end_dist"          "389.248535"
+		"tank_ban_flow_min" "0"
+        "tank_ban_flow_max" "65"
     }
     "hf04_escape"
     {
@@ -916,6 +931,8 @@
         "start_extra_dist"  "409.378784"
         "end_point"         "1585.235596 8390.712891 -1028.968750"
         "end_dist"          "885.892273"
+		"tank_ban_flow_min" "0"
+        "tank_ban_flow_max" "50"
     }
     "ddg1_tower_v1_6"
     {
@@ -952,6 +969,8 @@
         "start_extra_dist"  "357.132141"
         "end_point"         "2948.021729 7602.731445 -604.782043"
         "end_dist"          "142.267410"
+		"tank_ban_flow_min" "72"
+        "tank_ban_flow_max" "74"
     }
     "l4d_dbd2dc_the_mall"
     {
@@ -960,6 +979,8 @@
         "start_extra_dist"  "577.908813"
         "end_point"         "137.894608 5129.338867 -637.909546"
         "end_dist"          "464.308899"
+		"tank_ban_flow_min" "53"
+        "tank_ban_flow_max" "71"
     }
     "l4d_dbd2dc_clean_up"
     {
@@ -976,6 +997,8 @@
         "start_extra_dist"  "188.167191"
         "end_point"         "-7367.650391 8434.535156 -671.968750"
         "end_dist"          "365.062012"
+		"tank_ban_flow_min" "60"
+        "tank_ban_flow_max" "80"
     }
     "l4d_dbd2dc_new_dawn"
     {
@@ -984,8 +1007,8 @@
         "start_extra_dist"  "306.183685"
         "end_point"         "-463.786469 876.165771 -243.441345"
         "end_dist"          "1558.433960"
-        "tank_ban_flow_min" "0"
-        "tank_ban_flow_max" "70"
+        "tank_ban_flow_min" "40"
+        "tank_ban_flow_max" "100"
     }
     "uf1_boulevard"
     {
@@ -1249,6 +1272,7 @@
         "end_dist"          "50.000000"
         "tank_ban_flow_min" "1"
         "tank_ban_flow_max" "40"
+		"max_distance"		"800"
     }
     "l4d2_bts03_town"
     {
@@ -1257,7 +1281,6 @@
         "start_dist"        "50.000000"
         "start_extra_dist"  "300.000000"
         "end_dist"          "100.000000"
-        "max_distance"      "800"
     }
     "l4d2_bts04_cinema"
     {
@@ -1274,7 +1297,7 @@
         "start_dist"        "100.000000"
         "start_extra_dist"  "350.000000"
         "end_dist"          "75.000000"
-        "max_distance"      "800"
+        "max_distance"      "700"
     }
     "l4d2_bts06_school"
     {
@@ -1283,6 +1306,7 @@
         "start_dist"        "250.000000"
         "start_extra_dist"  "350.000000"
         "end_dist"          "100.000000"
+		"max_distance"		"900"
     }
     "AirCrash"
     {
@@ -1301,6 +1325,7 @@
         "end_dist"          "50.000000"
         "tank_ban_flow_min" "20"
         "tank_ban_flow_max" "55"
+		"max_distance"		"700"
     }
     "OutSkirts"
     {
@@ -1309,6 +1334,8 @@
         "start_dist"        "50.000000"
         "start_extra_dist"  "200.000000"
         "end_dist"          "180.000000"
+		"tank_ban_flow_min" "20"
+        "tank_ban_flow_max" "60"
     }
     "CityHall"
     {
@@ -1317,8 +1344,8 @@
         "start_dist"        "180.000000"
         "start_extra_dist"  "320.000000"
         "end_dist"          "50.000000"
-        "tank_ban_flow_min" "35"
-        "tank_ban_flow_max" "72"
+        "tank_ban_flow_min" "0"
+        "tank_ban_flow_max" "35"
         "max_distance"      "800"
     }
     "BombShelter"

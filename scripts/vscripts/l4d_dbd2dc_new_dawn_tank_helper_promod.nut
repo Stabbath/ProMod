@@ -1,4 +1,5 @@
 // Used to convert Dead Before Dawn: DC's finale to a gauntlet.
+// This script ensures the tank spawns in the same place for both teams.
 // Refer to the corresponding stripper file.
 
 tanks <-{

@@ -1,4 +1,5 @@
 // Used to convert Dead Before Dawn: DC's finale to a gauntlet.
+// This script makes sure the tank music is playing when it's supposed to.
 // Refer to the corresponding stripper file.
 
 if (!Director.IsTankInPlay())
