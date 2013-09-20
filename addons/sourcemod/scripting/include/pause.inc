@@ -25,8 +25,8 @@ forward OnUnpause();
 
 public SharedPlugin:__pl_pause =
 {
-	name = "pause",
-	file = "pause.smx",
+        name = "pause",
+        file = "pause.smx",
 #if defined REQUIRE_PLUGIN
         required = 1,
 #else
@@ -36,7 +36,7 @@ public SharedPlugin:__pl_pause =
 
 public __pl_pause_SetNTVOptional()
 {
-	MarkNativeAsOptional("IsInPause");
+        MarkNativeAsOptional("IsInPause");
 }
 
 // vim: ft=sourcepawn et sw=8

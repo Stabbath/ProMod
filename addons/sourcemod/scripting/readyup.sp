@@ -109,7 +109,7 @@ public OnPluginStart()
 public OnPluginEnd()
 {
 	if (inReadyUp)
-		InitiateLive();
+		InitiateLive(false);
 }
 
 public OnMapStart()
@@ -126,7 +126,7 @@ public OnMapStart()
 public OnMapEnd()
 {
 	if (inReadyUp)
-		InitiateLive();
+		InitiateLive(false);
 }
 
 public OnClientDisconnect(client)
@@ -183,7 +183,7 @@ stock bool:IsIDCaster(const String:AuthID[])
 
 public Action:Caster_Cmd(client, args)
 {
-	if(args < 1)
+	if (args < 1)
 	{
 		ReplyToCommand(client, "[SM] Usage: sm_caster <player>");
 		return Plugin_Handled;
@@ -230,7 +230,7 @@ public Action:NotCasting_Cmd(client, args)
 {
 	decl String:buffer[64];
 	
-	if(args < 1) // If no target is specified
+	if (args < 1) // If no target is specified
 	{
 		GetClientAuthString(client, buffer, sizeof(buffer));
 		RemoveFromTrie(casterTrie, buffer);
@@ -242,12 +242,12 @@ public Action:NotCasting_Cmd(client, args)
 		id = GetUserAdmin(client);
 		new bool:hasFlag = false;
 		
-		if(id != INVALID_ADMIN_ID)
+		if (id != INVALID_ADMIN_ID)
 		{
 			hasFlag = GetAdminFlag(id, Admin_Ban); // Check for specific admin flag
 		}
 		
-		if(!hasFlag) 
+		if (!hasFlag)
 		{
 			ReplyToCommand(client, "Only admins can remove other casters. Use sm_notcasting without arguments if you wish to remove yourself.");
 			return Plugin_Handled;
@@ -458,7 +458,7 @@ UpdatePanel()
 	decl dummy;
 	for (new client = 1; client <= MaxClients; client++)
 	{
-		if(IsClientInGame(client) && !IsFakeClient(client))
+		if (IsClientInGame(client) && !IsFakeClient(client))
 		{
 			++playerCount;
 			GetClientName(client, nameBuf, sizeof(nameBuf));
@@ -533,7 +533,7 @@ UpdatePanel()
 
 	for (new client = 1; client <= MaxClients; client++)
 	{
-		if(IsClientInGame(client) && !IsFakeClient(client) && !hiddenPanel[client])
+		if (IsClientInGame(client) && !IsFakeClient(client) && !hiddenPanel[client])
 		{
 			SendPanelToClient(menuPanel, client, DummyHandler, 1);
 		}
@@ -567,12 +567,12 @@ InitiateReadyUp()
 	L4D2_CTimerStart(L4D2CT_VersusStartTimer, 99999.9);
 }
 
-InitiateLive()
+InitiateLive(bool:real = true)
 {
 	inReadyUp = false;
 	inLiveCountdown = false;
 
-	SetTeamFrozen(L4D2Team_Survivor, GetConVarBool(l4d_ready_survivor_freeze));
+	SetTeamFrozen(L4D2Team_Survivor, false);
 
 	SetConVarBool(director_no_specials, false);
 	SetConVarFlags(god, GetConVarFlags(god) & ~FCVAR_NOTIFY);
@@ -588,8 +588,11 @@ InitiateLive()
 	}
 
 	footerCounter = 0;
-	Call_StartForward(liveForward);
-	Call_Finish();
+	if (real)
+	{
+		Call_StartForward(liveForward);
+		Call_Finish();
+	}
 }
 
 ReturnPlayerToSaferoom(client, bool:flagsSet = true)
@@ -627,7 +630,7 @@ ReturnTeamToSaferoom(L4D2Team:team)
 
 	for (new client = 1; client <= MaxClients; client++)
 	{
-		if(IsClientInGame(client) && L4D2Team:GetClientTeam(client) == L4D2Team_Survivor)
+		if (IsClientInGame(client) && L4D2Team:GetClientTeam(client) == team)
 		{
 			ReturnPlayerToSaferoom(client, true);
 		}
@@ -661,7 +664,7 @@ bool:CheckFullReady()
 				casterCount++;
 			}
 
-			if((IsPlayer(client) || IsClientCaster(client)) && isPlayerReady[client])
+			if ((IsPlayer(client) || IsClientCaster(client)) && isPlayerReady[client])
 			{
 				readyCount++;
 			}
@@ -689,6 +692,7 @@ public Action:ReadyCountdownDelay_Timer(Handle:timer)
 	{
 		PrintHintTextToAll("Round is live!");
 		InitiateLive();
+		readyCountdownTimer = INVALID_HANDLE;
 		return Plugin_Stop;
 	}
 	else
@@ -740,7 +744,7 @@ stock GetTeamHumanCount(L4D2Team:team)
 stock DoSecrets(client)
 {
 	PrintCenterTextAll("\x42\x4f\x4e\x45\x53\x41\x57\x20\x49\x53\x20\x52\x45\x41\x44\x59\x21");
-	if (GetClientTeam(client) == 2 && !blockSecretSpam[client])
+	if (L4D2Team:GetClientTeam(client) == L4D2Team_Survivor && !blockSecretSpam[client])
 	{
 		new particle = CreateEntityByName("info_particle_system");
 		decl Float:pos[3];
@@ -766,7 +770,7 @@ public Action:SecretSpamDelay(Handle:timer, any:client)
 
 public Action:killParticle(Handle:timer, any:entity)
 {
-	if(entity > 0 && IsValidEntity(entity) && IsValidEdict(entity))
+	if (entity > 0 && IsValidEntity(entity) && IsValidEdict(entity))
 	{
 		AcceptEntityInput(entity, "Kill");
 	}
