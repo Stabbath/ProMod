@@ -1,6 +1,7 @@
 #pragma semicolon 1
 
 #include <sourcemod>
+#include <sdktools>
 #include <weapons>
 
 #define TEAM_SURVIVOR 2
@@ -18,7 +19,7 @@ public Plugin:myinfo =
 
 public Action:OnPlayerRunCmd(client, &buttons, &impulse, Float:vel[3], Float:angles[3], &weapon)
 {
-	if (buttons & IN_RELOAD && !(buttons & IN_USE))
+	if (buttons & IN_RELOAD && !(buttons & IN_USE) && !IsFakeClient(client))
 	{
 		decl String:weapon_name[64];
 		GetClientWeapon(client, weapon_name, sizeof(weapon_name));
