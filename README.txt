@@ -1,5 +1,5 @@
 Pro Mod - L4D2 Competitive Config - Version 3.4
-Website: http://www.l4d2pro.com/
+Website: http://promod.zka.so/
 
 Pro Mod is a configuration for Left 4 Dead 2 built for Confogl with the purpose of
 making competitive play more balanced and interesting. It's the most recent set of
@@ -12,6 +12,8 @@ Plugins    : CanadaRox, ProdigySim, Blade, Jahze, Jacob, Tabun, Vintik, Stabby, 
 VScripts   : Jacob, Tabun, CircleSquared
 Stripper   : Jacob, Blade, Tabun, Stabby, CircleSquared, Visor
 Testing    : Ammo, bink, Button, cepS, Critical, Cuda, Dolemite, DustY, epilimic, Fever, Fig, hoveller, K9, Kobra, Laugh, Lazy, Lid, marr, Martine, Murtagh, purpletreefactory, Rjven, scalar, and everyone at L4DNation.com
+
+Special thanks to epilimic for all the time spent testing things himself and getting people to play full games during testing.
 
 ================================================================================
 Installation Instructions (Must be done in ORDER)
@@ -63,14 +65,14 @@ If you are really late to the party of updating your L4D2 server you'll need to 
 
 If they are, DELETE them. They are left overs of an outdated version of SDK Hooks and will cause conflicts on your server. Confogl and required files are now installed.
 
-Download: http://www.l4d2pro.com/downloads.html
+Download: http://promod.zka.so/downloads.html
 -------------------------------------------------------------------------------
 
 
 -----------------[Step 5 - Install Promod]-------------------------------------
 Download Pro Mod from the official Pro Mod website. Extract all of the files into the same directory structure of your server and overwrite anything that it asks to. Promod is now installed. If you intend to install additional configs such as Equilibrium, then remember to remove any mapinfo.txt in the l4d2lib path and place it directly into the directory of the config itself (see below). If you're installing Equilibrium 1.3 or less make sure Pro Mod's plugins aren't overwritten by them as they are the latest version.
 
-Download: http://www.l4d2pro.com/downloads.html
+Download: http://promod.zka.so/downloads.html
 -------------------------------------------------------------------------------
 
 
@@ -145,9 +147,11 @@ Main Changes:
 - The 2nd finale tank (not counting possible flow tanks) is now blocked, to makes finales shorter and more survivable.
 - Hard Rain 2 has multiple witches again, but with reduced health (only 500).
 - Hard Rain 1 only has 1 SMG and 1 pump shotgun in saferoom: to get more primary weapons players must go into the diner.
+- 4v4 configs now have 1 extra pill.
+- Added zombie bat.
 
 Other Changes:
-- Added witch_announce and a bunch of other small plugins that were popularly requested.
+- Added witch_announce and other small plugins that were popularly requested.
 - Removed l4d_tank_rush from whichever configs had it.
 - Converted from confogl+l4d2lib to lgofnoc.
 - Added CCT's spit damage blockers to the regular plugin.
@@ -175,7 +179,6 @@ Other Changes:
 - Likely other smaller changes that were forgotten.
 
 TODO:
-- Decide what to do about l4d2pro.com.
 - Block the new material exploit.
 - Add epi's new plugin which allows custom connection messages. "Jacob (Admin) has connected."
 - Remove the secret room from dark carnival 4 that could spawn up to 4 pills in unobtainable places.
