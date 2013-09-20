@@ -1,5 +1,4 @@
-// Used to fix Carried Off's Gauntlet Finale.
-// The tank will now spawn in the same place for boths teams.
+// Used to control the spawn of I Hate Mountains 2 (map 2) tank.
 // Refer to the corresponding stripper file.
 
 tanks <-{
@@ -17,11 +16,10 @@ function TeleTank()
 			pos <- tank.GetOrigin();
 			
 			// Coordinates to where we want to teleport the tank
-			// "284.567841 668.269165 1406.031250"
-			// -172.901581 515.258118 1406.031250;
-			pos.x = -172.901581;
-			pos.y = 515.258118;
-			pos.z = 1406.031250;
+			// -1304.231079 -702.810608 967.286316;
+			pos.x = -1304.231079;
+			pos.y = -702.810608;
+			pos.z = 967.286316;
 			tank.SetOrigin(pos);
 			
 			// Kill the timer that keeps running this script

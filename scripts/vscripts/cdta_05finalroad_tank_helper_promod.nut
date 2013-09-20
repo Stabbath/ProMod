@@ -1,4 +1,5 @@
 // Used to fix Detour Ahead's Gauntlet Finale.
+// The tank will now spawn in the same place for boths teams.
 // Refer to the corresponding stripper file.
 
 // For Detour Ahead, we consider a Y coord higher than -5031 to be "pushing the tank".
@@ -39,9 +40,9 @@ function StartGauntlet()
 	{
 		ProhibitBosses = true
 		PreferredMobDirection = SPAWN_IN_FRONT_OF_SURVIVORS
-		MobMaxPending = 30
-		MobMinSize = 30
-		MobMaxSize = 30
+		MobMaxPending = 20
+		MobMinSize = 20
+		MobMaxSize = 20
 		MobRechargeRate = 0.003
 		SustainPeakMinTime = 3
 		SustainPeakMaxTime = 3
@@ -56,12 +57,12 @@ function StartGauntlet()
 
 		LockTempo = 0
 		SpecialRespawnInterval = 20
-		PreTankMobMax = 30
+		PreTankMobMax = 20
 		ZombieSpawnRange = 3000
 		ZombieSpawnInFog = true
 
-		MobSpawnSize = 30
-		CommonLimit = 30
+		MobSpawnSize = 20
+		CommonLimit = 20
 
 		// length of bridge to test progress against.
 		BridgeSpan = 10000
@@ -69,8 +70,8 @@ function StartGauntlet()
 		MobSpawnMinTime = 2
 		MobSpawnMaxTime = 2
 
-		MobSpawnSizeMin = 30
-		MobSpawnSizeMax = 30
+		MobSpawnSizeMin = 20
+		MobSpawnSizeMax = 20
 	}
 
 	Director.ResetMobTimer();
