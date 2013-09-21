@@ -36,7 +36,7 @@
     }
     "c1m4_atrium"
     {
-        "max_distance"      "1000"
+        "max_distance"      "650"
         "start_point"       "-2207.119141 -4694.244141 615.226318"
         "end_point"         "-4467.291016 -4060.759277 88.031250"
         "start_dist"        "50.000000"
@@ -87,7 +87,7 @@
     }
     "c2m5_concert"
     {
-        "max_distance"      "750"
+        "max_distance"      "600"
         "start_point"       "-648.774109 2223.472168 -176.998734"
         "end_point"         "-2209.094238 3460.875244 -99.968750"
         "start_dist"        "100.000000"
@@ -129,7 +129,7 @@
     }
     "c3m4_plantation"
     {
-        "max_distance"      "850"
+        "max_distance"      "700"
         "start_point"       "-5023.209473 -1574.434448 -20.564751"
         "end_point"         "1056.862549 806.977112 208.031250"
         "start_dist"        "50.000000"
@@ -185,7 +185,7 @@
     }
     "c4m5_milltown_escape"
     {
-        "max_distance"      "500"
+        "max_distance"      "400"
         "start_point"       "-3378.816895 7770.011230 182.031250"
         "end_point"         "-6006.484375 7381.770508 192.909409"
         "start_dist"        "50.000000"
@@ -268,7 +268,7 @@
     }
     "c6m3_port"
     {
-        "max_distance"      "850"
+        "max_distance"      "600"
         "start_point"       "-2259.96948 -606.96893 -214.962753"
         "end_point"         "-283.08215 -823.07836 37.001598"
         "start_dist"        "50.000000"
@@ -353,7 +353,7 @@
     }
     "c8m5_rooftop"
     {
-        "max_distance"      "1000"
+        "max_distance"      "650"
         "start_point"       "5287.943848 8467.129883 5536.031250"
         "start_dist"        "149.711517"
         "start_extra_dist"  "421.803650"
@@ -375,7 +375,7 @@
     }
     "c9m2_lots"
     {
-        "max_distance"      "1000"
+        "max_distance"      "800"
         "start_point"       "150.086899 -1372.455322 -139.968750"
         "start_dist"        "90.983040"
         "start_extra_dist"  "301.270020"
@@ -427,7 +427,7 @@
     }
     "c10m5_houseboat"
     {
-        "max_distance"      "1000"
+        "max_distance"      "800"
         "start_point"       "2019.751953 4538.839844 -34.821182"
         "start_dist"        "76.933571"
         "start_extra_dist"  "317.183868"
@@ -476,7 +476,7 @@
     }
     "c11m5_runway"
     {
-        "max_distance"      "1000"
+        "max_distance"      "800"
         "start_point"       "-6726.473145 12007.691406 181.974670"
         "start_dist"        "75.086731"
         "start_extra_dist"  "344.831299"
@@ -529,7 +529,7 @@
     }
     "c12m5_cornfield"
     {
-        "max_distance"      "1000"
+        "max_distance"      "800"
         "start_point"       "10399.091797 -312.162628 2.031253"
         "start_dist"        "97.089050"
         "start_extra_dist"  "315.198547"
