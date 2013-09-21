@@ -12,7 +12,7 @@ public Plugin:myinfo =
 {
 	name = "Engine Fix",
 	author = "raziEiL [disawar1]",
-	description = "Blocking ladder speed glitch, no fall damage bug, health boost glitch.",
+	description = "Blocking no fall damage bug, health boost glitch.",
 	version = PLUGIN_VERSION,
 	url = ""
 }
@@ -40,7 +40,6 @@ public OnPluginStart()
 	#endif
 }
 /*										+==========================================+
-										|		 		LADDER GLITCH			   |
 										|			  NO FALL DMG GLITCH		   |
 										+==========================================+	
 */
@@ -53,24 +52,6 @@ public OnClientDisconnect(client)
 public Action:OnPlayerRunCmd(client, &buttons)
 {
 	if(IsPlayerAlive(client) && !IsFakeClient(client))
-	{
-		if (GetEntityMoveType(client) == MOVETYPE_LADDER){
-		
-			if (g_CvarWarn){
-			
-				if (buttons & 512 && (8 || 16) || buttons & 1024 && (8 || 16)){
-					count[client]++;
-					
-					if (count[client] > 48){
-						WarningsMsg(client, 1);
-						count[client] = 0;
-					}
-				}
-				else if (count[client] != 0) count[client] = 0;
-			}
-			if (buttons & 512 && (8 || 16)) buttons &=~IN_MOVELEFT;
-			if (buttons & 1024 && (8 || 16)) buttons &=~IN_MOVERIGHT;
-		}
 		if (GetClientTeam(client) == 2 && IsFallDamage(client) && buttons & IN_USE){
 			buttons &=~IN_USE;
 			
@@ -186,8 +167,6 @@ WarningsMsg(client, msg)
 	decl String:STEAM_ID[32];
 	GetClientAuthString(client, STEAM_ID, sizeof(STEAM_ID));
 	
-	if (msg == 1)
-		PrintToChatAll("%N (%s) attempted to use a ladder speed glitch.", client, STEAM_ID);
 	if (msg == 2)
 		PrintToChatAll("%N (%s) is suspected of using a no fall damage bug.", client, STEAM_ID);
 	if (msg == 3)
@@ -244,13 +223,7 @@ public Action:DebugMe(Handle:timer, any:client)
 		
 		PrintCenterText(client, "%d/%d", GetEntProp(client, Prop_Data, "m_idrownrestored"), GetEntProp(client, Prop_Data, "m_idrowndmg"));
 		
-		if (GetEntityMoveType(client) == MOVETYPE_LADDER){
-			if (speed > 130)
-				PrintHintText(client, "Ground Speed %f WARNING!!!!", speed);
-			else 
-				PrintHintText(client, "Ground Speed %f", speed);
-		}
-		else {
+		if (GetEntityMoveType(client) != MOVETYPE_LADDER){
 			if (fall != 0){
 				PrintHintText(client, "Move type %d | Flags %d\n Fall Speed: %f\n Health %d/%d", GetEntityMoveType(client), GetEntityFlags(client), fall, GetClientHealth(client), CalculateLife(client));
 				if (fall > 500)
