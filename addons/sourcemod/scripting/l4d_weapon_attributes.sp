@@ -4,7 +4,7 @@
 #include <sdkhooks>
 #include <left4downtown>
 
-#define MAX_ATTRS           19
+#define MAX_ATTRS           21
 #define TANK_ZOMBIE_CLASS   8
 
 public Plugin:myinfo =
@@ -34,6 +34,8 @@ new iWeaponAttributes[MAX_ATTRS] = {
     L4D2FWA_Range,
     L4D2FWA_RangeModifier,
     L4D2FWA_CycleTime,
+    L4D2FWA_PelletScatterPitch,	 	
+    L4D2FWA_PelletScatterYaw,
     -1
 };
 
@@ -56,6 +58,8 @@ new String:sWeaponAttrNames[MAX_ATTRS][32] = {
     "Range",
     "Range modifier",
     "Cycle time",
+    "Pellet scatter pitch",
+    "Pellet scatter yaw",
     "Tank damage multiplier"
 };
 
@@ -78,6 +82,8 @@ new String:sWeaponAttrShortName[MAX_ATTRS][32] = {
     "range",
     "rangemod",
     "cycletime",
+    "scatterpitch"
+    "scatteryaw",
     "tankdamagemult"
 };
 
