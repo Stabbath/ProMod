@@ -8,7 +8,7 @@ and Metafogl, as well as the community.
 
 Developer  : CircleSquared (inactive), Jacob, Stabby
 Customfogl : EsToOpi, Jacob, Sir
-Plugins    : CanadaRox, ProdigySim, Blade, Jahze, Jacob, Tabun, Vintik, Stabby, CircleSquared, Grego, purpletreefactory, Greenice
+Plugins    : CanadaRox, ProdigySim, Blade, Jahze, Jacob, Tabun, Vintik, Stabby, CircleSquared, Grego, purpletreefactory, Greenice, raziEiL
 VScripts   : Jacob, Tabun, CircleSquared
 Stripper   : Jacob, Blade, Tabun, Stabby, CircleSquared, Visor
 Testing    : Ammo, bink, Button, cepS, Critical, Cuda, Dolemite, DustY, epilimic, Fever, Fig, hoveller, K9, Kobra, Laugh, Lazy, Lid, marr, Martine, Murtagh, purpletreefactory, Rjven, scalar, and everyone at L4DNation.com
@@ -151,7 +151,7 @@ Main Changes:
 - Added zombie bat.
 
 Other Changes:
-- Added witch_announce and other small plugins that were popularly requested.
+- Added witch_announce and other small plugins that were needed or popularly requested, among them l4d2_drop_secondary, a block for raz1n's mathacks, and others (thanks to Jahze, Sir and Visor).
 - Removed l4d_tank_rush from whichever configs had it.
 - Converted from confogl+l4d2lib to lgofnoc.
 - Added CCT's spit damage blockers to the regular plugin.
@@ -179,7 +179,6 @@ Other Changes:
 - Likely other smaller changes that were forgotten.
 
 TODO:
-- Block the new material exploit.
 - Add epi's new plugin which allows custom connection messages. "Jacob (Admin) has connected."
 - Remove the secret room from dark carnival 4 that could spawn up to 4 pills in unobtainable places.
 - Revise and implement the following stripper changes:
