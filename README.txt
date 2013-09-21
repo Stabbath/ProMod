@@ -149,9 +149,14 @@ Main Changes:
 - Hard Rain 1 only has 1 SMG and 1 pump shotgun in saferoom: to get more primary weapons players must go into the diner.
 - 4v4 configs now have 1 extra pill.
 - Added zombie bat.
+- Insta pounce is fixed (Hunters & Jockeys)
+- Ladderblocking is fixed, the blocker will simply be pushed away.
+- When a survivor dies, he/she will always drop his secondary weapon (Pistol, Melee)
+- Engine Fixes are applied (Picking up players won't prevent fall damage)
+- Blocked texture manager mathack.
 
 Other Changes:
-- Added witch_announce and other small plugins that were needed or popularly requested, among them l4d2_drop_secondary, a block for raz1n's mathacks, and others (thanks to Jahze, Sir and Visor).
+- Added witch_announce and other small plugins that were needed or popularly requested, like the ones listed at the end of the Main Changes (thanks to Jahze, Sir and Visor).
 - Removed l4d_tank_rush from whichever configs had it.
 - Converted from confogl+l4d2lib to lgofnoc.
 - Added CCT's spit damage blockers to the regular plugin.
