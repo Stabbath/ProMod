@@ -299,7 +299,7 @@
     }
     "c7m3_port"
     {
-        "max_distance"      "650"
+        "max_distance"      "500"
         "start_point"       "960.031250 3247.345459 262.430115"
         "end_point"         "-272.031250 -834.873291 97.001595"
         "start_dist"        "75.000000"
