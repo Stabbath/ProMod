@@ -6,8 +6,11 @@
 #include <l4d2_saferoom_detect>
 //#include <all that other shit>
 
-/* Notes:
-	spread is currently disabled
+/* Current Issues:
+	- spread is currently disabled
+	- getmeleeweaponnamefromentity call on line 173 leads to error on line 172 of l4d2util, on getedictclassname: invalid edict. Maybe it should be getentityclassname?
+	- items that require specifiers must have their limits set before the specifiers are set
+	- to limit weapon_smg, weapon_smg_spawn should be named instead. Weapons will be identified the same way, but on being spawned on each round, weapon_smg_spawn creates an unlimited spawn whereas weapon_smg creates a single weapon regarless of what's normally there
 */
 
 #define DEBUG
@@ -32,7 +35,7 @@
 
 #define BUF_SZ 64
 
-#define TIME_POST_ROUNDSTART 10.0
+#define TIME_POST_ROUNDSTART 5.0
 #define TIME_POST_MAPSTART   10.0
 
 public Plugin:myinfo = {
@@ -129,6 +132,7 @@ stock AddToWantedList(String:item[], entity, String:name[]="") {
 }
 
 stock SelectWantedItems() {
+	decl count[3];
 //	decl spread, spread_ignore;
 	decl j, entity, limit[LIMIT_COUNT];
 	decl String:item[BUF_SZ], String:classname[BUF_SZ], String:buffer[BUF_SZ];
@@ -137,7 +141,10 @@ stock SelectWantedItems() {
 //		spread = UIM_GetSpread(item);
 //		spread_ignore = UIM_GetIgnoreSpread(item);
 		UIM_GetItemClassname(item, classname);
-		for (j = 0; j < LIMIT_COUNT; j++) limit[j] = UIM_GetItemLimit(j, item);
+		for (j = 0; j < LIMIT_COUNT; j++) {
+			limit[j] = UIM_GetItemLimit(j, item);
+			count[j] = 0;
+		}
 
 		entity = -1;
 		decl Handle:hEntityArray[LIMIT_COUNT];
@@ -145,16 +152,24 @@ stock SelectWantedItems() {
 		for (j = 0; j < LIMIT_COUNT; j++) hEntityArray[j] = CreateArray();
 		while ((entity = FindEntityByClassname2(entity, classname)) != -1) {
 			if (!IsInBanRange(item, entity) && DoSpecifiersApply(item, entity)) {
-				if (SAFEDETECT_IsEntityInStartSaferoom(entity)) PushArrayCell(hEntityArray[LIMIT_START], entity);
-				else if (SAFEDETECT_IsEntityInEndSaferoom(entity)) PushArrayCell(hEntityArray[LIMIT_END], entity);
-				else PushArrayCell(hEntityArray[LIMIT_MAP], entity);
+				if (SAFEDETECT_IsEntityInStartSaferoom(entity)) {
+					PushArrayCell(hEntityArray[LIMIT_START], entity);
+					count[LIMIT_START]++;
+				} else if (SAFEDETECT_IsEntityInEndSaferoom(entity)) {
+					PushArrayCell(hEntityArray[LIMIT_END], entity);
+					count[LIMIT_END]++;
+				} else {
+					PushArrayCell(hEntityArray[LIMIT_MAP], entity);
+					count[LIMIT_MAP]++;
+				}
 			}
 		}
+		DebugPrint("Found %d/%d/%d instances of %s.", count[LIMIT_START], count[LIMIT_MAP], count[LIMIT_END], item);
+
 		/* select until happy */
-		decl count;
 		for (j = 0; j < LIMIT_COUNT; j++) {
-			count = 0;
-			while (GetArraySize(hEntityArray[j]) > 0 && count < limit[j]) {
+			count[j] = 0;
+			while (GetArraySize(hEntityArray[j]) > 0 && count[j] < limit[j]) {
 				new randIdx = GetRandomInt(0, GetArraySize(hEntityArray[j]) - 1);
 				
 				/* special case: melee weapons */
@@ -162,9 +177,11 @@ stock SelectWantedItems() {
 				
 				AddToWantedList(item, GetArrayCell(hEntityArray[j], randIdx), buffer);
 				RemoveFromArray(hEntityArray[j], randIdx);
-				count++;
+				count[j]++;
 			}
 		}
+		DebugPrint("Keeping %d/%d/%d instances of %s.", count[LIMIT_START], count[LIMIT_MAP], count[LIMIT_END], item);
+
 		/* clear mem */
 		for (j = 0; j < LIMIT_COUNT; j++) {
 			ClearArray(hEntityArray[j]);
@@ -186,18 +203,21 @@ stock FindEntityByClassname2(entity, String:classname[]) {
 }
 
 stock RemoveAllItems() {
-	decl entity;
+	decl entity, count, appliecount;
 	decl String:item[BUF_SZ], String:classname[BUF_SZ];
 	for (new i = 0; i < GetArraySize(g_hArrayItemSettings); i++) {
 		GetArrayString(g_hArrayItemSettings, i, item, BUF_SZ);
 		UIM_GetItemClassname(item, classname);
 		
-		entity = -1;
+		entity = -1, count = 0, appliecount = 0;
 		while ((entity = FindEntityByClassname2(entity, classname)) != -1) {
+			count++;
 			if (DoSpecifiersApply(item, entity)) {
+				appliecount++;
 				AcceptEntityInput(entity, "Kill");
 			}
 		}
+		DebugPrint("Removed all of %s (class %s). ClassCount %d SpecifiersApply %d", item, classname, count, appliecount);
 	}
 }
 
@@ -210,6 +230,7 @@ stock DispatchAllKeyValues(entity, String:item[]) {
 		GetArrayString(pair, 0, key, BUF_SZ);
 		GetArrayString(pair, 1, value, BUF_SZ);
 		DispatchKeyValue(entity, key, value);
+		DebugPrint("\tDispatched KV: %s %s", key, value);
 	}
 }
 stock SetAllDataProps(entity, String:item[]) {
@@ -220,7 +241,8 @@ stock SetAllDataProps(entity, String:item[]) {
 		pair = GetArrayCell(hProps, i);
 		GetArrayString(pair, 0, key, BUF_SZ);
 		GetArrayString(pair, 1, value, BUF_SZ);
-		SetEntProp(entity, Prop_Data, key, value);
+		SetEntPropString(entity, Prop_Data, key, value);
+		DebugPrint("\tSet data: %s %s", key, value);
 	}
 }
 stock SetAllSendProps(entity, String:item[]) {
@@ -231,7 +253,8 @@ stock SetAllSendProps(entity, String:item[]) {
 		pair = GetArrayCell(hProps, i);
 		GetArrayString(pair, 0, key, BUF_SZ);
 		GetArrayString(pair, 1, value, BUF_SZ);
-		SetEntProp(entity, Prop_Send, key, value);
+		SetEntPropString(entity, Prop_Send, key, value);
+		DebugPrint("\tSet prop: %s %s", key, value);
 	}
 }
 
@@ -247,21 +270,25 @@ static SpawnWantedItems() {
 		UIM_GetItemClassname(item, classname);
 
 		if ((entity = CreateEntityByName(classname)) < 0) {
-			LogMessage("Tried to spawn %s but failed.", classname);
+			DebugPrint("Tried to spawn %s but failed.", classname);
 			continue;
 		}
+		DebugPrint("Spawning %s with id %d.", classname, entity);
 		
 		GetMeleeScriptName(spawnArray, melee);
 		if (!StrEqual(melee, "")) {
 			DispatchKeyValue(entity, "melee_script_name", melee);
+			DebugPrint("\tDispatched KV: melee_script_name %s", melee);
 		}
 
 		DispatchKeyValueVector(entity, "origin", pos);
 		DispatchKeyValueVector(entity, "angles", ang);
+		DebugPrint("\torigin %.2f %.2f %.2f\n\tangles %.2f %.2f %.2f", pos[0], pos[1], pos[2], ang[0], ang[1], ang[2]);
  		DispatchAllKeyValues(entity, item);
 //		SetAllDataProps(entity, item);
 //		SetAllSendProps(entity, item);
 		DispatchSpawn(entity);
+		DebugPrint("Spawned.");
 	}
 }
 
@@ -294,6 +321,7 @@ public Action:Cmd_Limit(args) {
 	for (new i = 2; i <= 4; i++) {
 		GetCmdArg(i, buffer, BUF_SZ);
 		UIM_SetItemLimit(i - 2, item, StringToInt(buffer));
+		DebugPrint("Limited %s to %d in %d.", item, StringToInt(buffer), i - 2);
 	}
 
 	return Plugin_Handled;
@@ -338,7 +366,9 @@ public Action:Cmd_Limit_CreateCvar(args) {
 			StrCat(cvarName, BUF_SZ, buffer);
 			HookConVarChange(CreateConVar(cvarName, "", "", FCVAR_PLUGIN), LimitConVarChanged);
 			if (!SetTrieString(g_hTrieItemNameByCvarName, itemName, cvarName, false))
-				PrintToServer("Tried to create a limit's cvar when one already exists.");
+				DebugPrint("Tried to create a limit's cvar when one already exists.");
+			else
+				DebugPrint("Created limit cvar for %s: %s.", itemName, cvarName);
 		}
 	}
 	return Plugin_Handled;
@@ -522,7 +552,7 @@ stock bool:DoSpecifiersApply(String:item[], entity) {
 	return true;
 }
 
-stock DebugMsg(const String:format[], any:...) {
+stock DebugPrint(const String:format[], any:...) {
 	#if defined DEBUG
 		decl String:output[256];
 		VFormat(output, sizeof(output), format, 2);
