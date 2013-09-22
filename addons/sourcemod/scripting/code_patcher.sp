@@ -11,6 +11,8 @@ new Handle:hPatchNames;
 new Handle:hPatchAddresses;
 new Handle:hPatchBytes;
 
+new Handle:hPatchAppliedForward;
+
 static GetPackedByte(cell, i)
 {
 	return (cell >> ((3-i)*8)) & 0xff;
@@ -151,6 +153,12 @@ static ApplyPatch(const String:name[], Address:addr, const String:bytes[], lengt
 	PushArrayString(hPatchNames, name);
 	PushArrayCell(hPatchAddresses, addr);
 	PushBytes(hPatchBytes, oldBytes, length);
+
+	new Action:result;
+
+	Call_StartForward(hPatchAppliedForward);
+	Call_PushString(name);
+	Call_Finish(_:result);
 }
 
 static bool:RevertPatch(const String:name[])
@@ -176,6 +184,7 @@ static bool:RevertPatch(const String:name[])
 
 public OnPluginStart()
 {
+	hPatchAppliedForward = CreateGlobalForward("OnPatchApplied", ET_Event, Param_String);
 	hGameConfig = LoadGameConfigFile("code_patcher");
 
 	if (hGameConfig == INVALID_HANDLE)
@@ -380,7 +389,7 @@ public GetPatchAddress(Handle:plugin, nArgs)
  	return GetArrayCell(hPatchAddresses, patchId);
 }
 
-public IsWindowsPlatform(Handle:plugin, nArgs)
+public IsPlatformWindows(Handle:plugin, nArgs)
 {
 	return _:bIsWindows;
 }
@@ -389,6 +398,6 @@ public APLRes:AskPluginLoad2(Handle:myself, bool:late, String:error[], err_max)
 {
 	CreateNative("IsPatchApplied", IsPatchApplied);
 	CreateNative("GetPatchAddress", GetPatchAddress);
-	CreateNative("IsWindowsPlatform", IsWindowsPlatform);
+	CreateNative("IsPlatformWindows", IsPlatformWindows);
 	RegPluginLibrary("code_patcher");
 }

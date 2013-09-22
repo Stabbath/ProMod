@@ -9,7 +9,9 @@ native bool:IsPatchApplied(const String:name[]);
 
 native Address:GetPatchAddress(const String:name[]);
 
-native bool:IsWindowsPlatform();
+native bool:IsPlatformWindows();
+
+forward OnPatchApplied(const String:name[]);
 
 public SharedPlugin:__pl_l4d2util =
 {
@@ -26,5 +28,5 @@ public __pl_lgofnoc_SetNTVOptional()
 {
 	MarkNativeAsOptional("IsPatchApplied");
 	MarkNativeAsOptional("GetPatchAddress");
-	MarkNativeAsOptional("IsWindowsPlatform");
+	MarkNativeAsOptional("IsPlatformWindows");
 }
