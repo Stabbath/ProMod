@@ -154,6 +154,7 @@ Main Changes:
 - When a survivor dies, he/she will always drop his secondary weapon (Pistol, Melee)
 - Engine Fixes are applied (Picking up players won't prevent fall damage)
 - Blocked texture manager mathack.
+- Heavily reworked map distances. They were initially based on a mix of the typical distance and health scores as logged by the l4d2-logger, on a scale of 300 to 1000 (300 for parish 1, which was used as the base), with small human adjustments and about ~150-200 points being removed for each tank that will be blocked in 4.0. With the shift to DB, the goal will be to base the maximum distance scores strictly on the average damage bonus people have at the end of the map (another benefit of DB is that we can do that and end up with perfect scoring balance).
 
 Other Changes:
 - Added witch_announce and other small plugins that were needed or popularly requested, like the ones listed at the end of the Main Changes (thanks to Jahze, Sir and Visor).
