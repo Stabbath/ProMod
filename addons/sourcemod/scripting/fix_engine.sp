@@ -17,7 +17,7 @@ public Plugin:myinfo =
 	url = ""
 }
 
-static		Handle:g_Warning, Handle:g_HRate, Handle:Timer[MAXPLAYERS+1], count[MAXPLAYERS+1], chat[MAXPLAYERS+1],
+static		Handle:g_Warning, Handle:g_HRate, Handle:Timer[MAXPLAYERS+1], chat[MAXPLAYERS+1],
 			Float:g_CvarHRate, bool:g_CvarWarn;
 
 public OnPluginStart()
@@ -51,7 +51,7 @@ public OnClientDisconnect(client)
 
 public Action:OnPlayerRunCmd(client, &buttons)
 {
-	if(IsPlayerAlive(client) && !IsFakeClient(client))
+	if(IsPlayerAlive(client) && !IsFakeClient(client)){
 		if (GetClientTeam(client) == 2 && IsFallDamage(client) && buttons & IN_USE){
 			buttons &=~IN_USE;
 			
