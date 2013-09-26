@@ -10,6 +10,7 @@
 #define L4D2UTIL_STOCKS_ONLY
 #include <l4d2util>
 #include <left4downtown>
+#include <lgofnoc>
 
 public Plugin:myinfo =
 {
