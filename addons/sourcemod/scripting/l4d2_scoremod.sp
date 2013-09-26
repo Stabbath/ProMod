@@ -123,10 +123,10 @@ public OnMapStart()
 	
 	if (SM_bModuleIsEnabled && !SM_bHooked) PluginEnable();
 	if (SM_bModuleIsEnabled) SetConVarInt(SM_hTieBreaker, 0);
-	if (SM_bModuleIsEnabled && GetConVarBool(SM_hCustomMaxDistance) && GetCustomMapMaxScore() > -1) 
+	if (SM_bModuleIsEnabled && GetConVarBool(SM_hCustomMaxDistance) && GetMapMaxScore() > -1) 
 	{
 		// to allow a distance score of 0 and a health bonus
-		if (GetCustomMapMaxScore() > 0) SM_fMapMulti = float(GetCustomMapMaxScore()) / 400.0;
+		if (GetMapMaxScore() > 0) SM_fMapMulti = float(GetMapMaxScore()) / 400.0;
 	}
 	
 	SM_bIsFirstRoundOver = false;
@@ -228,7 +228,7 @@ public Action:SM_RoundEnd_Event(Handle:event, const String:name[], bool:dontBroa
 		// If the score is nonzero, trust the SurvivalBonus var.
 		SM_iFirstScore = (SM_iFirstScore ? GetConVarInt(SM_hSurvivalBonus) *iAliveCount : 0);
 		PrintToChatAll("\x01[ScoreMod] Round 1 Bonus: \x05%d\x01", SM_iFirstScore);
-		if (GetConVarBool(SM_hCustomMaxDistance) && GetCustomMapMaxScore() > -1) PrintToChatAll("\x01[ScoreMod] Custom Max Distance: \x05%d\x01", GetCustomMapMaxScore());
+		if (GetConVarBool(SM_hCustomMaxDistance) && GetMapMaxScore() > -1) PrintToChatAll("\x01[ScoreMod] Custom Max Distance: \x05%d\x01", GetMapMaxScore());
 	}
 	else if (SM_bIsSecondRoundStarted && !SM_bIsSecondRoundOver)
 	{
@@ -244,7 +244,7 @@ public Action:SM_RoundEnd_Event(Handle:event, const String:name[], bool:dontBroa
 		iDifference = SM_iFirstScore - iScore;
 		if (iScore > SM_iFirstScore) iDifference = (~iDifference) + 1;
 		PrintToChatAll("\x01[ScoreMod] Difference: \x05%d\x01", iDifference);
-		if (GetConVarBool(SM_hCustomMaxDistance) && GetCustomMapMaxScore() > -1) PrintToChatAll("\x01[ScoreMod] Custom Max Distance: \x05%d\x01", GetCustomMapMaxScore());
+		if (GetConVarBool(SM_hCustomMaxDistance) && GetMapMaxScore() > -1) PrintToChatAll("\x01[ScoreMod] Custom Max Distance: \x05%d\x01", GetMapMaxScore());
 	}
 }
 public Action:SM_RoundStart_Event(Handle:event, const String:name[], bool:dontBroadcast)
@@ -300,12 +300,12 @@ public Action:SM_Cmd_Health(client, args)
 		if (SM_fSurvivalBonusRatio != 0.0) PrintToServer("[ScoreMod] Static Survival Bonus Per Survivor: %d", RoundToFloor(400 * SM_fMapMulti * SM_fSurvivalBonusRatio));
 	}
 
-	if (GetConVarBool(SM_hCustomMaxDistance) && GetCustomMapMaxScore() > -1) {
+	if (GetConVarBool(SM_hCustomMaxDistance) && GetMapMaxScore() > -1) {
 		if (client) {
-			PrintToChat(client, "\x01[ScoreMod] Custom Max Distance: \x05%d\x01", GetCustomMapMaxScore());
+			PrintToChat(client, "\x01[ScoreMod] Custom Max Distance: \x05%d\x01", GetMapMaxScore());
 		}
 		else {
-			PrintToServer("[ScoreMod] Custom Max Distance: %d", GetCustomMapMaxScore());
+			PrintToServer("[ScoreMod] Custom Max Distance: %d", GetMapMaxScore());
 		}
 	}
 }
