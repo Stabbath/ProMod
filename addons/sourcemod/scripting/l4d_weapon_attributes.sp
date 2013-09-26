@@ -82,7 +82,7 @@ new String:sWeaponAttrShortName[MAX_ATTRS][32] = {
     "range",
     "rangemod",
     "cycletime",
-    "scatterpitch"
+    "scatterpitch",
     "scatteryaw",
     "tankdamagemult"
 };
