@@ -32,7 +32,6 @@ public TankSpawn_Event(Handle:event, const String:name[], bool:dontBroadcast)
 	{
 		isTankActive = true;
 		CreateTimer(0.5, MenuRefresh_Timer, _, TIMER_REPEAT);
-		UpdatePanel();
 	}
 }
 
