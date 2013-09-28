@@ -1,4 +1,4 @@
-Pro Mod - L4D2 Competitive Config - Version 3.4
+Pro Mod - L4D2 Competitive Config - Version 4.0
 Website: http://promod.zka.so/
 
 Pro Mod is a configuration for Left 4 Dead 2 built for Confogl with the purpose of
