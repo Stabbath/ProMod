@@ -9,7 +9,7 @@
 				"windows"
 				{
 					"signature" "DirectorMusicBanks_OnRoundStart"
-					"read" "8"
+					"read" "12"
 				}
 				"linux"
 				{
@@ -51,56 +51,56 @@
 
 			"CDirectorTacticalServices"
 			{
-				"windows"	"1424"
-				"linux"		"1444"
+				"windows"	"1384"
+				"linux"		"1384"
 			}
 
 			"CDirectorItemManager"
 			{
-				"windows"	"1428"
-				"linux"		"1448"
+				"windows"	"1388"
+				"linux"		"1388"
 			}
 
 			"CDirectorMusicBanks"
 			{
-				"windows"	"1432"
-				"linux"		"1452"
+				"windows"	"1392"
+				"linux"		"1392"
 			}
 
 			"CDirectorSessionManager"
 			{
-				"windows"	"1436"
-				"linux"		"1456"
+				"windows"	"1396"
+				"linux"		"1396"
 			}
 
 			"CDirectorScriptedEventManager"
 			{
-				"windows"	"1440"
-				"linux"		"1460"
+				"windows"	"1400"
+				"linux"		"1400"
 			}
 
 			"CDirectorVersusMode"
 			{
-				"windows" 	"1444"
-				"linux"		"1464"
+				"windows" 	"1404"
+				"linux"		"1404"
 			}
 
 			"CDirectorSurvivalMode"
 			{
-				"windows"	"1448"
-				"linux"		"1468"
+				"windows"	"1408"
+				"linux"		"1408"
 			}
 
 			"CDirectorScavengeMode"
 			{
-				"windows"	"1452"
-				"linux"		"1472"
+				"windows"	"1412"
+				"linux"		"1412"
 			}
 
 			"CDirectorChallengeMode"
 			{
-				"windows"	"1464"
-				"linux"		"1484"
+				"windows"	"1416"
+				"linux"		"1416"
 			}
 			
 			/* CDirector Variable Offsets */
@@ -137,20 +137,20 @@
 
 			"CDirector::m_fMobSpawnSize"
 			{
-				"windows"	"712"
-				"linux"		"712"
+				"windows"	"708"
+				"linux"		"708"
 			}
 
 			"CDirector::m_bIsFirstRoundFinished"
 			{
-				"windows"	"1121"
-				"linux"		"1121"
+				"windows"	"1161"
+				"linux"		"1161"
 			}
 
 			"CDirector::m_bIsSecondroundFinished"
 			{
-				"windows"	"1122"
-				"linux"		"1122"
+				"windows"	"1162"
+				"linux"		"1162"
 			}
 			
 			"CDirector::m_iTankPassedCount"
@@ -290,6 +290,7 @@
 			{
 				"windows"	"1528"
 				"linux"		"1524"
+				// Compared against inside of the current_flow_distance ccommand.
 			}
 			
 			/* Structure Sizes */
@@ -297,8 +298,8 @@
 			
 			"sizeof_CDirector"
 			{
-				"windows"	"1460"
-				"linux"		"1480"
+				"windows"	"1420"
+				"linux"		"1420"
 			}
 			
 			/* Google: sizeof empty */
@@ -328,8 +329,8 @@
 			
 			"sizeof_CDirectorScriptedEventManager"
 			{
-				"windows"	"156"
-				"linux"		"156"
+				"windows"	"340"
+				"linux"		"340"
 			}
 			
 			"sizeof_CDirectorVersusMode"
@@ -352,8 +353,8 @@
 			
 			"sizeof_CDirectorChallengeMode"
 			{
-				"windows"	"8"
-				"linux"		"8"
+				"windows"	"412"
+				"linux"		"412"
 			}
 			
 			"sizeof_TerrorNavMesh"
@@ -364,6 +365,20 @@
 			
 			/* CTerrorPlayer Variable Offsets */
 			
+			"CTerrorPlayer::m_preIncapacitatedHealth"
+			{
+				"windows"	"14876"
+				"linux"		"14856"
+			}
+			
+			"CTerrorPlayer::m_preIncapacitatedHealthBuffer"
+			{
+				"windows"	"14880"
+				"linux"		"14860"
+			}
+			
+			// I have no idea what this variable is supposed to be so I'm skipping it!
+			// Offsets seem to have been wrong for some time.
 			"CTerrorPlayer::SpawnTimer"
 			{
 				"windows"	"11260"
@@ -372,26 +387,26 @@
 			
 			"CTerrorPlayer::InvulnerabilityTimer"
 			{
-				"windows"	"11900"
-				"linux"		"11888"
+				"windows"	"11924"
+				"linux"		"11904"
 			}	
 			
 			"CTerrorPlayer::m_iTankTickets"
 			{
-				"windows"	"12448"
-				"linux"		"12436"
+				"windows"	"12476"
+				"linux"		"12456"
 			}
 			
 			"CTerrorPlayer::m_iShovePenalty"
 			{
-				"windows"	"11512"
-				"linux"		"11500"
+				"windows"	"11536"
+				"linux"		"11516"
 			}
 			
 			"CTerrorPlayer::m_fNextShoveTime"
 			{
-				"windows"	"11508"
-				"linux"		"11496"
+				"windows"	"11532"
+				"linux"		"11512"
 			}
 			
 			/* TerrorNavArea Variable Offsets */
@@ -406,8 +421,10 @@
 			
 			"CInferno::m_maxFlames"
 			{
-				"windows"	"2944"
-				"linux"		"2968"
+				"windows"	"2960"
+				"linux"		"2980"
+				// This offset is cmp'd against 64 at the start
+				// of CInferno::CreateFire. Look for 2 refs to "insect_swarm" in 1 func.
 			}
 		}
 		
@@ -416,9 +433,9 @@
 			/* Used solely to get the offset for TheDirector */
 			"DirectorMusicBanks_OnRoundStart"
 			{
-				"library"	"server"
-				"windows"       "\x83\xEC\x14\x57\x8B\xF9\x8B\x0D\x2A\x2A\x2A\x2A\xE8\x2A\x2A\x2A\x2A\x84\xC0\x0F\x2A\x2A\x2A\x2A\x2A\x53\x55\x6A\x24\xE8"
-				/* 83 EC 14 57 8B F9 8B 0D ? ? ? ? E8 ? ? ? ? 84 C0 0F ? ? ? ? ? 53 55 6A 24 E8 */
+				"library"  "server"
+				"windows"  "\x55\x8B\xEC\x83\xEC\x2A\x56\x57\x8B\xF9\x8B\x0D\x2A\x2A\x2A\x2A\xE8\x2A\x2A\x2A\x2A\x84"
+				/* 55 8B EC 83 EC ? 56 57 8B F9 8B 0D ? ? ? ? E8 ? ? ? ? 84 */
 			}
 			
 			/* Used solely to get the offset for TheNavMesh 
@@ -426,8 +443,8 @@
 			"CommandNavSave"
 			{
 				"library"	"server"
-				"windows"	"\xE8\x2A\x2A\x2A\x2A\x84\xC0\x74\x49\x8B\x0D\x2A\x2A\x2A\x2A\x8B\x01"
-				/* E8 ? ? ? ? 84 C0 74 49 8B 0D ? ? ? ? 8B 01 */
+				"windows"  "\xE8\x2A\x2A\x2A\x2A\x84\xC0\x74\x2A\x8B\x0D\x2A\x2A\x2A\x2A\x8B\x01\x8B\x50\x2A\xFF\xD2\x8B\x0D\x2A\x2A\x2A\x2A\x84\xC0"
+				/* E8 ? ? ? ? 84 C0 74 ? 8B 0D ? ? ? ? 8B 01 8B 50 ? FF D2 8B 0D ? ? ? ? 84 C0 */
 			}
 
 			/* Find the Director/ZombieManager singleton classes */
@@ -444,30 +461,33 @@
 				"linux"		"@TheNavMesh"
 			}
 
+			// find string " Highest survivor flow distance = %f  Tank at = %f witch at %f\n" in CDirectorVersusMode::UpdateVersusBossSpawning
+			// look for __RTDynamicCast which is called on the result of this function.
 			"CNavMesh::GetNavArea"
 			{
-				"library"	"server"
-				"windows"	"\x83\xEC\x10\x56\x8B\xF1\x83\x7E\x2A\x2A\x75\x2A\x33\xC0\x5E\x83\xC4\x10\xC2\x08"
-				/* 83 EC 10 56 8B F1 83 7E ? ? 75 ? 33 C0 5E 83 C4 10 C2 08 */
-				"linux"		"@_ZNK8CNavMesh10GetNavAreaERK6Vectorf"
+				"library"  "server"
+				"linux"    "@_ZNK8CNavMesh10GetNavAreaERK6Vectorf"
+				"windows"  "\x55\x8B\xEC\x83\xEC\x2A\x83\x79\x2A\x00\x75\x08\x33\xC0\x8B\xE5\x5D\xC2\x08"
+				/* 55 8B EC 83 EC ? 83 79 ? 00 75 08 33 C0 8B E5 5D C2 08 */
 			}
 
 			"CDirector::TryOfferingTankBot"
 			{
-				"library"	"server"
-				"linux"		"@_ZN9CDirector18TryOfferingTankBotEP11CBaseEntityb"
-				"windows"	"\x51\x83\x7C\x24\x08\x00\x55\x8B\xE9\x0F\x84"
-				/* 51 83 7C 24 08 00 55 8B E9 0F 84  - No addresses-fairly unique call*/
+				"library"  "server"
+				"linux"    "@_ZN9CDirector18TryOfferingTankBotEP11CBaseEntityb"
+				"windows"  "\x55\x8B\xEC\x51\x83\x7D\x08\x00\x56\x8B\xF1\x89"
+				/* 55 8B EC 51 83 7D 08 0  56 8B F1 89 */
 			}
 
 			"CTerrorPlayer::GetFlowDistance"
 			{
-				"library"	"server"
-				"linux"		"@_ZNK13CTerrorPlayer15GetFlowDistanceEN13TerrorNavArea8FlowTypeE"
-				"windows"	"\x8B\x01\x8B\x90\x2A\x2A\x2A\x2A\xFF\xD2\x85\xC0\x74\x2A\x8B\x4C\x2A\x2A\xD9\x84"
-				/* 8B 01 8B 90 ? ? ? ? FF D2 85 C0 74 ? 8B 4C ? ? D9 84 */
+				"library"  "server"
+				"linux"    "@_ZNK13CTerrorPlayer15GetFlowDistanceEN13TerrorNavArea8FlowTypeE"
+				"windows"  "\x55\x8B\xEC\x8B\x01\x8B\x90\x2A\x2A\x2A\x2A\xFF\xD2\x85"
+				/* 55 8B EC 8B 01 8B 90 ? ? ? ? FF D2 85 */
 			}
 		}
 		
 	}
 }
+
