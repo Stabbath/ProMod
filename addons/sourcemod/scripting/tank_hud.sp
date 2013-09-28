@@ -137,14 +137,10 @@ public Action:MenuRefresh_Timer(Handle:timer)
 			SetPanelTitle(tankPanel, "Tank HUD");
 			DrawPanelText(tankPanel, rageBuffer);
 
-			SendPanelToClient(menuPanel, tankClient, DummyHandler, 3);
-		} else if (tankPanel != INVALID_HANDLE) {
-			CloseHandle(tankPanel);
+			SendPanelToClient(tankPanel, tankClient, DummyHandler, 3);
 		}
 
 		return Plugin_Continue;
-	} else if (menuPanel != INVALID_HANDLE) {
-		CloseHandle(menuPanel);
 	}
 
 	return Plugin_Stop;
