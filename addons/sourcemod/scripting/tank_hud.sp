@@ -8,7 +8,7 @@
 new bool:isTankActive;
 new tankClient = -1;
 new Handle:burnDurationCvar;
-new bool:hiddenPanel[MAXPLAYERS + 1];
+new bool:hiddenTankPanel[MAXPLAYERS + 1];
 
 public OnPluginStart()
 {
@@ -19,8 +19,7 @@ public OnPluginStart()
 
 	burnDurationCvar = FindConVar("tank_burn_duration");
 	
-	RegConsoleCmd("sm_hide", Hide_Cmd, "Hides the tank panel so other menus can be seen");
-	RegConsoleCmd("sm_show", Show_Cmd, "Shows the hidden tank panel");
+	RegConsoleCmd("sm_tankhud", ToggleTankPanel_Cmd, "Toggles the tank panel visibility so other menus can be seen");
 }
 
 public Round_Event(Handle:event, const String:name[], bool:dontBroadcast)
@@ -122,7 +121,7 @@ public Action:MenuRefresh_Timer(Handle:timer)
 
 		for (new i = 1; i <= MaxClients; i++)
 		{
-			if (IsClientInGame(i) && !IsFakeClient(i) && GetClientTeam(i) != 2 && i != tankClient && !hiddenPanel[tankClient])
+			if (IsClientInGame(i) && !IsFakeClient(i) && GetClientTeam(i) != 2 && i != tankClient && !hiddenTankPanel[tankClient])
 			{
 				SendPanelToClient(menuPanel, i, DummyHandler, 3);
 			}
@@ -131,7 +130,7 @@ public Action:MenuRefresh_Timer(Handle:timer)
 
 		// tank-only hud
 		static Handle:tankPanel = INVALID_HANDLE;
-		if (!IsFakeClient(tankClient) && !hiddenPanel[tankClient]) {
+		if (!IsFakeClient(tankClient) && !hiddenTankPanel[tankClient]) {
 			if (tankPanel != INVALID_HANDLE)
 			{
 				CloseHandle(tankPanel);
@@ -153,19 +152,15 @@ public Action:MenuRefresh_Timer(Handle:timer)
 stock GetZombieClass(client) return GetEntProp(client, Prop_Send, "m_zombieClass");
 public DummyHandler(Handle:menu, MenuAction:action, param1, param2) { }
 
-public Action:Hide_Cmd(client, args)
+public Action:ToggleTankPanel_Cmd(client,args)
 {
-	hiddenPanel[tankClient] = true;
-	return Plugin_Handled;
-}
-
-public Action:Show_Cmd(client, args)
-{
-	hiddenPanel[tankClient] = false;
-	return Plugin_Handled;
-}
-
-public OnClientDisconnect(client)
-{
-	hiddenPanel[tankClient] = false;
+	hiddenTankPanel[tankClient] = !hiddenTankPanel[tankClient];
+	if(hiddenTankPanel[tankClient])
+	{
+		ReplyToCommand(client,"[Lgofnoc] Tank HUD is now disabled.");
+	}
+	else
+	{
+		ReplyToCommand(client,"[lgofnoc] Tank HUD is now enabled.");
+	}
 }
