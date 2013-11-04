@@ -8,6 +8,7 @@
 new bool:isTankActive;
 new tankClient = -1;
 new Handle:burnDurationCvar;
+new bool:hiddenPanel[MAXPLAYERS + 1];
 
 public OnPluginStart()
 {
@@ -17,6 +18,9 @@ public OnPluginStart()
 	HookEvent("player_death", PlayerDeath_Event);
 
 	burnDurationCvar = FindConVar("tank_burn_duration");
+	
+	RegConsoleCmd("sm_hide", Hide_Cmd, "Hides the tank panel so other menus can be seen");
+	RegConsoleCmd("sm_show", Show_Cmd, "Shows the hidden tank panel");
 }
 
 public Round_Event(Handle:event, const String:name[], bool:dontBroadcast)
@@ -118,7 +122,7 @@ public Action:MenuRefresh_Timer(Handle:timer)
 
 		for (new i = 1; i <= MaxClients; i++)
 		{
-			if (IsClientInGame(i) && !IsFakeClient(i) && GetClientTeam(i) != 2 && i != tankClient)
+			if (IsClientInGame(i) && !IsFakeClient(i) && GetClientTeam(i) != 2 && i != tankClient && !hiddenPanel[tankClient])
 			{
 				SendPanelToClient(menuPanel, i, DummyHandler, 3);
 			}
@@ -127,7 +131,7 @@ public Action:MenuRefresh_Timer(Handle:timer)
 
 		// tank-only hud
 		static Handle:tankPanel = INVALID_HANDLE;
-		if (!IsFakeClient(tankClient)) {
+		if (!IsFakeClient(tankClient) && !hiddenPanel[tankClient]) {
 			if (tankPanel != INVALID_HANDLE)
 			{
 				CloseHandle(tankPanel);
@@ -149,3 +153,19 @@ public Action:MenuRefresh_Timer(Handle:timer)
 stock GetZombieClass(client) return GetEntProp(client, Prop_Send, "m_zombieClass");
 public DummyHandler(Handle:menu, MenuAction:action, param1, param2) { }
 
+public Action:Hide_Cmd(client, args)
+{
+	hiddenPanel[tankClient] = true;
+	return Plugin_Handled;
+}
+
+public Action:Show_Cmd(client, args)
+{
+	hiddenPanel[tankClient] = false;
+	return Plugin_Handled;
+}
+
+public OnClientDisconnect(client)
+{
+	hiddenPanel[tankClient] = false;
+}
