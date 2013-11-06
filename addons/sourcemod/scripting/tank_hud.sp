@@ -103,7 +103,7 @@ public Action:MenuRefresh_Timer(Handle:timer)
 			maxHealth = RoundToNearest(GetConVarFloat(FindConVar("z_tank_health"))*1.5);
 		}
 		new health = GetClientHealth(tankClient);
-		Format(buffer, sizeof(buffer), "Health : %i / %.1f%%", health, 100*health/maxHealth);
+		Format(buffer, sizeof(buffer), "Health : %i / %.1f%%", health, 100.0*health/maxHealth);
 		DrawPanelText(menuPanel, buffer);
 
 		// Rage
@@ -157,11 +157,11 @@ public Action:ToggleTankPanel_Cmd(client,args)
 	hiddenTankPanel[tankClient] = !hiddenTankPanel[tankClient];
 	if(hiddenTankPanel[tankClient])
 	{
-		ReplyToCommand(client,"[Lgofnoc] Tank HUD is now disabled.");
+		ReplyToCommand(client,"Tank HUD is now disabled.");
 	}
 	else
 	{
-		ReplyToCommand(client,"[lgofnoc] Tank HUD is now enabled.");
+		ReplyToCommand(client,"Tank HUD is now enabled.");
 	}
 }
 
