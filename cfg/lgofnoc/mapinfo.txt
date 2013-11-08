@@ -1186,6 +1186,8 @@
         "start_extra_dist"  "1489.374390"
         "end_point"         "-2698.415771 -4883.087402 96.336136"
         "end_dist"          "321.482483"
+		"tank_ban_flow_min" "0"
+        "tank_ban_flow_max" "25"
     }
     "plaza_espana"
     {
@@ -1428,5 +1430,48 @@
         "start_dist"        "50.000000"
         "start_extra_dist"  "400.000000"
         "end_dist"          "50.000000"
+    }
+	"damitdc1"
+    {
+        "start_point"       "1733.933838 11597.541016 -606.293701"
+        "end_point"         "-983.111633 -4413.025879 -1257.968750"
+        "start_dist"        "80.000000"
+        "start_extra_dist"  "270.000000"
+        "end_dist"          "50.000000"
+        "tank_ban_flow_min" "30"
+        "tank_ban_flow_max" "50"
+		"max_distance"      "600"
+    }
+	"damitdc2"
+    {
+        "start_point"       "-990.591675 -4410.679199 -1257.968750"
+        "end_point"         "-2508.393555 1425.824219 -839.968750"
+        "start_dist"        "50.000000"
+        "start_extra_dist"  "450.000000"
+        "end_dist"          "50.000000"
+		"tank_ban_flow_min" "0"
+        "tank_ban_flow_max" "75"
+		"max_distance"      "500"
+    }
+	"damitdc3"
+    {
+        "start_point"       "-2506.914063 1422.134155 -839.968750"
+        "end_point"         "-1643.718018 3088.899414 674.281250"
+        "start_dist"        "50.000000"
+        "start_extra_dist"  "350.000000"
+        "end_dist"          "150.000000"
+		"tank_ban_flow_min" "0"
+        "tank_ban_flow_max" "45"
+		"max_distance"      "700"
+    }
+	"damitdc4"
+    {
+        "start_point"       "-1649.614258 3086.075684 674.281250"
+        "end_point"         "-3019.174805 -2739.631104 1150.908936"
+        "start_dist"        "150.000000"
+        "start_extra_dist"  "300.000000"
+        "end_dist"          "50.000000"
+		"tank_ban_flow_min" "0"
+        "tank_ban_flow_max" "70"
     }
 }
