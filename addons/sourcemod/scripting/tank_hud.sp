@@ -38,26 +38,29 @@ public TankSpawn_Event(Handle:event, const String:name[], bool:dontBroadcast)
 	}
 }
 
+stock UpdateTank(client) {
+	new newTank = -1;
+	for (new i = 1; i <= MaxClients; i++)
+	{
+		if (client != i && IsClientInGame(i) && GetClientTeam(i) == 3
+				&& GetZombieClass(i) == 8)
+		{
+			newTank = i;
+			break;
+		}
+	}
+	if (newTank <= 0)
+	{
+		isTankActive = false;
+	}
+}
+
 public PlayerDeath_Event(Handle:event, const String:name[], bool:dontBroadcast)
 {
 	new client = GetClientOfUserId(GetEventInt(event, "userid"));
-	if (client > 0 && client <= MaxClients && GetClientTeam(client) == 3
-			&& GetZombieClass(client) == 8)
+	if (client > 0 && client <= MaxClients && GetClientTeam(client) == 3 && GetZombieClass(client) == 8)
 	{
-		new newTank = -1;
-		for (new i = 1; i <= MaxClients; i++)
-		{
-			if (client != i && IsClientInGame(i) && GetClientTeam(i) == 3
-					&& GetZombieClass(i) == 8)
-			{
-				newTank = i;
-				break;
-			}
-		}
-		if (newTank <= 0)
-		{
-			isTankActive = false;
-		}
+		UpdateTank(client);
 	}
 }
 
@@ -167,5 +170,8 @@ public Action:ToggleTankPanel_Cmd(client,args)
 
 public OnClientDisconnect(client)
 {
-hiddenTankPanel[client] = false;
+	if (client == tankClient) {
+		UpdateTank(client);
+	}
+	hiddenTankPanel[client] = false;
 }
