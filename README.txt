@@ -10,14 +10,18 @@ Developer  : CircleSquared (inactive), Jacob, Stabby, epilimic
 Customfogl : EsToOpi, Jacob, Sir
 Plugins    : CanadaRox, ProdigySim, Blade, Jahze, Jacob, Tabun, Vintik, Stabby, CircleSquared, Grego, purpletreefactory, Greenice, raziEiL
 VScripts   : Jacob, Tabun, CircleSquared
-Stripper   : Jacob, Blade, Tabun, Stabby, CircleSquared, Visor
+Stripper   : Jacob, Blade, Tabun, Stabby, CircleSquared, Visor, NF
 Testing    : Ammo, bink, Button, cepS, Critical, Cuda, Dolemite, DustY, epilimic, Fever, Fig, hoveller, K9, Kobra, Laugh, Lazy, Lid, marr, Martine, Murtagh, purpletreefactory, Rjven, scalar, and everyone at L4DNation.com
+Website    : Xan
 
 Special thanks to epilimic for all the time spent testing things himself and getting people to play full games during testing.
 
 ================================================================================
 Installation Instructions (Must be done in ORDER)
 ================================================================================
+Pre-install note: This guide and linked packages are for LINUX servers only. 
+At this time windows is not fully supported. For more information on setting up a windows server please visit: http://www.l4dnation.com/confogl-and-other-configs/does-promod-work-on-windows-server/ and also note that you will still need LGOFNOC and the updated Match Vote to play Pro Mod 4.0
+
 Step 1 - Stop Server
 Step 2 - Install MM+SM+Updated Files combo, or skip to Step 3
 Step 3 - Install Metamod: Source
@@ -36,8 +40,6 @@ Stop your server in the control panel of your GSP. Not doing this step sometimes
 -----------------[Step 2 - Install MM+SM+Updated Files combo]-------------------
 This is a fully working server package with all prerequisite files included and covers steps 3-6. If you do not wish to install this package and prefer to install everything separate, skip to Step 3 - Install Metamod: Source.
 
-Please note that this package is for LINUX servers only. We do not have windows servers available to test anything with and at this time windows is not fully supported.
-
 Also keep in mind that this is a full install, if you have configs edited (admin_simple.ini), this will overwrite it.
 
 This package contains:
@@ -47,7 +49,12 @@ Left4Downtown
 L4DToolz
 Stripper:Source
 DHooks
-LGOFNOC / Match Vote
+Builtin Votes
+L4D2 Direct
+LGOFNOC
+Match Vote
+
+We have removed a few files that aren't needed for the sake of keeping the package a bit smaller. Things removed include binaries/gamedata for games other than l4d2, and the entire scripting folder of sourcemod.
 
 Again note that this package is only for Linux servers.
 
@@ -95,6 +102,14 @@ Install: First go to your addons folder and create a new folder named "Stripper"
 Dhooks
 Download: http://forums.alliedmods.net/showthread.php?t=180114
 Install: Extract the files and copy the extensions and gamedata folders into your server's addons/sourcemod/ folder.
+
+Builtin Votes (0.5.8)
+Download: http://forums.alliedmods.net/showthread.php?t=162164
+Install: Extract the files and copy to your server's left4dead2/ folder.
+
+L4D2 Direct
+Download: https://github.com/ConfoglTeam/l4d2_direct/blob/master/gamedata/l4d2_direct.txt
+Install: Upload l4d2_direct.txt to your server's sourcemod/gamedata/ folder.
 
 LGOFNOC 
 Download: http://l4dpromod.com/downloads.php
