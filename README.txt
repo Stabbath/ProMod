@@ -1,12 +1,12 @@
 Pro Mod - L4D2 Competitive Config - Version 4.0
-Website: http://promod.zka.so/
+Website: http://l4dpromod.com
 
-Pro Mod is a configuration for Left 4 Dead 2 built for Confogl with the purpose of
+Pro Mod is a configuration for Left 4 Dead 2 built for LGOFNOC [pre 4.0: Confogl] with the purpose of
 making competitive play more balanced and interesting. It's the most recent set of
 changes from an evolving set of ideas put forth from other configs such as Fresh
 and Metafogl, as well as the community.
 
-Developer  : CircleSquared (inactive), Jacob, Stabby
+Developer  : CircleSquared (inactive), Jacob, Stabby, epilimic
 Customfogl : EsToOpi, Jacob, Sir
 Plugins    : CanadaRox, ProdigySim, Blade, Jahze, Jacob, Tabun, Vintik, Stabby, CircleSquared, Grego, purpletreefactory, Greenice, raziEiL
 VScripts   : Jacob, Tabun, CircleSquared
@@ -19,11 +19,12 @@ Special thanks to epilimic for all the time spent testing things himself and get
 Installation Instructions (Must be done in ORDER)
 ================================================================================
 Step 1 - Stop Server
-Step 2 - Install Metamod: Source
-Step 3 - Install Sourcemod
-Step 4 - Install Confogl (Updated + Files)
-Step 5 - Install Pro Mod
-Step 6 - Start Server
+Step 2 - Install MM+SM+Updated Files combo, or skip to Step 3
+Step 3 - Install Metamod: Source
+Step 4 - Install Sourcemod
+Step 5 - Install Critical files
+Step 6 - Install Pro Mod
+Step 7 - Start Server
 ====================================================================================
 
 
@@ -32,51 +33,100 @@ Stop your server in the control panel of your GSP. Not doing this step sometimes
 --------------------------------------------------------------------------------
 
 
------------------[Step 2 - Install Metamod: Source]-----------------------------
-If you already have Metamod: Source installed, skip this step.
+-----------------[Step 2 - Install MM+SM+Updated Files combo]-------------------
+This is a fully working server package with all prerequisite files included and covers steps 3-6. If you do not wish to install this package and prefer to install everything separate, skip to Step 3 - Install Metamod: Source.
 
-If you are using Nuclear Fallout, instead just install it on the Autoinstallers tab of your control panel.
+Please note that this package is for LINUX servers only. We do not have windows servers available to test anything with and at this time windows is not fully supported.
+
+Also keep in mind that this is a full install, if you have configs edited (admin_simple.ini), this will overwrite it.
+
+This package contains:
+Metamod v1.10.1
+Sourcemod v1.6.0-hg4140
+Left4Downtown
+L4DToolz
+Stripper:Source
+DHooks
+LGOFNOC / Match Vote
+
+Again note that this package is only for Linux servers.
+
+Once installed, skip to Step 6 - Install Pro Mod.
+
+Download: http://l4dpromod.com/downloads.php
+--------------------------------------------------------------------------------
+
+-----------------[Step 3 - Install Metamod: Source]-----------------------------
+If you already have Metamod: Source installed, check your version. If you are using at least 1.10.1, skip this step.
 
 Download Metamod: Source. Determine which OS your server runs on and download that version (if you are not sure ask your GSP). Extract the files to the same directory structure of your server. After that, go to the metamod site and click Make your VDF and choose Left 4 Dead 2. Download the metamod.vdf put it inside the "../addons/" folder. Metamod: Source is now installed.
 
-Download: http://www.sourcemm.net
+Download: http://sourcemm.net/snapshots
+
+We Recommend: Version 1.10.1+
 --------------------------------------------------------------------------------
 
 
------------------[Step 3 - Install Sourcemod]-----------------------------------
-If you already have Sourcemod installed, skip this step.
-
-If you are using Nuclear Fallout, instead just install it on the autoinstallers tab of your control panel.
+-----------------[Step 4 - Install Sourcemod]-----------------------------------
+If you already have Sourcemod installed, check your version. If you are using at least 1.6.0-hg4140, skip this step.
 
 Download Sourcemod. As with step 2 determine which OS your server runs on and download that version. Extract the files into the same directory structure of your server. Sourcemod is now installed.
 
-Download: http://www.sourcemod.net/downloads.php
+Download: http://www.sourcemod.net/snapshots.php
+
+We Recommend: Version 1.6.0-hg4140+
+(below this and the latest SMAC won't fully work)
 --------------------------------------------------------------------------------
 
+-----------------[Step 5 - Install Critical files]------------------------------
+Left4Downtown2
+Download: http://l4dpromod.com/files/left4downtown2.zip
+Source: https://code.google.com/p/left4downtown2
+Install: Extract the files and copy left4downtown2.ext.so to your server's sourcemod/extensions/ folder. Then copy left4downtown.l4d2.txt to your server's sourcemod/gamedata/ folder.
 
------------------[Step 4 - Install Confogl (Updated + Files)]-------------------
-Download the fixed confogl from the official Pro Mod website. MAKE SURE you get the one on the Pro Mod website, the one on the google code page contains outdated files that might cause conflicts. Extract all of the files into the same directory structure of your server. You must install this even if you are only going to use Pro Mod! The package on the Pro Mod website now has all the updated and required files in one easy to install package. This package contains Left4Downtown, L4DToolz, SDKHooks, Stripper Source, and DHooks. The Confogl in this package additionally supports and includes an updated version of match votes and an updated version of Readyup. Vanilla confogl and it's extra configs (1v1/2v2/ESL) have been removed so if you want them you'll need to include them yourself.
+L4DToolz
+Download: http://forums.alliedmods.net/showthread.php?t=93600
+Install: Extract the files and copy the two folders into your servers's addons/ folder.
 
-If you are really late to the party of updating your L4D2 server you'll need to make sure these files aren't in your sourcemod folder:
+Stripper:Source
+Download: http://forums.alliedmods.net/showpost.php?p=1987339&postcount=1146
+Install: First go to your addons folder and create a new folder named "Stripper". Inside that create a folder named "bin". Extract the .zip and copy the 3 files into your server's addons/stripper/bin/ folder.
+
+Dhooks
+Download: http://forums.alliedmods.net/showthread.php?t=180114
+Install: Extract the files and copy the extensions and gamedata folders into your server's addons/sourcemod/ folder.
+
+LGOFNOC 
+Download: http://l4dpromod.com/downloads.php
+Source: https://github.com/ConfoglTeam/LGOFNOC
+Install: copy lgofnoc.smx into your server's sourcemod/plugins/ folder. 
+Important: LGOFNOC & Pro Mod 4.0+ is not compatible with Confogl. You must remove confoglcompmod.smx from your server's addons/plugins/ folder for Pro Mod 4.0 to work.
+
+Match Vote
+Download: http://l4dpromod.com/downloads.php
+Source: https://github.com/Stabbath/sm_plugins/tree/master/match_vote
+Install: copy match_vote.smx into your server's sourcemod/plugins/ folder.
+Important: All prior versions of match_vote is not compatible with LGOFNOC. You must replace your existing match_vote.smx from your server's addons/plugins/ folder for LGOFNOC to work.
+
+Lastly, if you already have sdkhooks installed, you'll need to make sure these files aren't in your sourcemod folder:
 
     gamedata/sdkhooks.games.txt
     extensions/sdkhooks.ext.dll
     extensions/sdkhooks.ext.so
 
-If they are, DELETE them. They are left overs of an outdated version of SDK Hooks and will cause conflicts on your server. Confogl and required files are now installed.
-
-Download: http://promod.zka.so/downloads.html
+If they are, DELETE them. They are left overs of an outdated version of SDK Hooks and will cause conflicts on your server. SDKHooks is now built into the recommended version of Sourcemod.
+All prerequired files for Pro Mod are now installed.
 -------------------------------------------------------------------------------
 
 
------------------[Step 5 - Install Promod]-------------------------------------
-Download Pro Mod from the official Pro Mod website. Extract all of the files into the same directory structure of your server and overwrite anything that it asks to. Promod is now installed. If you intend to install additional configs such as Equilibrium, then remember to remove any mapinfo.txt in the l4d2lib path and place it directly into the directory of the config itself (see below). If you're installing Equilibrium 1.3 or less make sure Pro Mod's plugins aren't overwritten by them as they are the latest version.
+-----------------[Step 6 - Install Promod]-------------------------------------
+Download Pro Mod from the official Pro Mod website. Extract all of the files into the same directory structure of your server and overwrite anything that it asks to. Promod is now installed. If you're installing other configs, make sure Pro Mod's plugins aren't overwritten by them as they may not work as intended.
 
-Download: http://promod.zka.so/downloads.html
+Download: http://l4dpromod.com/downloads.php
 -------------------------------------------------------------------------------
 
 
------------------[Step 6 - Start Server]---------------------------------------
+-----------------[Step 7 - Start Server]---------------------------------------
 Restart your server and connect to it. Once in game type in console "sm version" and "meta version" to check if both are installed. Try to start a config with !match whatever. To check plugins are loaded type "sm plugins" and then !resetmatch to see if it correctly unloads then try another config. Your server is now installed, gg.
 -------------------------------------------------------------------------------
 
@@ -107,14 +157,12 @@ Additional Q/A
         sm plugins load match_vote.smx
 
   Additionally you may add the above line to your confogl_personalize.cfg so that it is
-  universally loaded for all configs, but you must still edit matchmodes.txt. The fixed
-  confogl package already has the plugin loading line added.
-
+  universally loaded for all configs, but you must still edit matchmodes.txt.
 
   ["SI sounds are off, I can hear SI spawns on survivor, or my teammates are invisible."]
 
   SMAC's wallhack plugin causes these issues as well as causes hit registration issues.
-  I really don't recommend using it with Left 4 Dead 2. Other SMAC plugins however are
+  We really don't recommend using it with Left 4 Dead 2. Other SMAC plugins however are
   very much recommended to prevent cheating.
 
 
