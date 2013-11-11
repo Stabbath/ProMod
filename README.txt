@@ -141,14 +141,18 @@ All prerequired files for Pro Mod are now installed.
 
 
 -----------------[Step 6 - Install Promod]-------------------------------------
-Download Pro Mod from the official Pro Mod website. Extract all of the files into the same directory structure of your server and overwrite anything that it asks to. Promod is now installed. If you're installing other configs, make sure Pro Mod's plugins aren't overwritten by them as they may not work as intended.
-
 Download: http://l4dpromod.com/downloads.php
+Install: Extract all of the files into the same directory structure of your server and overwrite anything that it asks to.
+Promod is now installed. If you're installing other configs, make sure Pro Mod's plugins aren't overwritten by them as they may not work as intended.
 -------------------------------------------------------------------------------
 
 
 -----------------[Step 7 - Start Server]---------------------------------------
-Restart your server and connect to it. Once in game type in console "sm version" and "meta version" to check if both are installed. Try to start a config with !match whatever. To check plugins are loaded type "sm plugins" and then !resetmatch to see if it correctly unloads then try another config. Your server is now installed, gg.
+Restart your server and connect to it.
+Once in game type in console "sm version" and "meta version" to check if both are installed.
+Try to start a config with !forcematch promod.
+To check plugins are loaded type "sm plugins" in console, then say !resetmatch in chat to see if it correctly unloads then try another config.
+Your server is now installed, gg.
 -------------------------------------------------------------------------------
 
 
