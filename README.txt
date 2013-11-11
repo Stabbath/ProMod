@@ -38,7 +38,7 @@ Stop your server in the control panel of your GSP. Not doing this step sometimes
 
 
 -----------------[Step 2 - Install MM+SM+Updated Files combo]-------------------
-Combo Pack: MetaMod + SourceMod + All Required Files 
+Combo Pack: MetaMod + SourceMod + All Required Files (except Pro Mod)
 Download: http://l4dpromod.com/files/required/metamod_1.10.1-hg870.zip
 Install: Extract and upload to your server's /left4dead2/ folder.
 
