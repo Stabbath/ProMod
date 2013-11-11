@@ -26,7 +26,7 @@ Step 1 - Stop Server
 Step 2 - Install MM+SM+Updated Files combo, or skip to Step 3
 Step 3 - Install Metamod: Source
 Step 4 - Install Sourcemod
-Step 5 - Install Critical files
+Step 5 - Install Required files
 Step 6 - Install Pro Mod
 Step 7 - Start Server
 ====================================================================================
@@ -38,13 +38,17 @@ Stop your server in the control panel of your GSP. Not doing this step sometimes
 
 
 -----------------[Step 2 - Install MM+SM+Updated Files combo]-------------------
+Combo Pack: MetaMod + SourceMod + All Required Files 
+Download: http://l4dpromod.com/files/required/metamod_1.10.1-hg870.zip
+Install: Extract and upload to your server's /left4dead2/ folder.
+
 This is a fully working server package with all prerequisite files included and covers steps 3-6. If you do not wish to install this package and prefer to install everything separate, skip to Step 3 - Install Metamod: Source.
 
 Also keep in mind that this is a full install, if you have configs edited (admin_simple.ini), this will overwrite it.
 
 This package contains:
-Metamod v1.10.1
-Sourcemod v1.6.0-hg4140
+Metamod
+Sourcemod
 Left4Downtown
 L4DToolz
 Stripper:Source
@@ -56,72 +60,74 @@ Match Vote
 
 We have removed a few files that aren't needed for the sake of keeping the package a bit smaller. Things removed include binaries/gamedata for games other than l4d2, and the entire scripting folder of sourcemod.
 
-Again note that this package is only for Linux servers.
-
 Once installed, skip to Step 6 - Install Pro Mod.
-
-Download: http://l4dpromod.com/downloads.php
 --------------------------------------------------------------------------------
 
 -----------------[Step 3 - Install Metamod: Source]-----------------------------
 If you already have Metamod: Source installed, check your version. If you are using at least 1.10.1, skip this step.
 
-Download Metamod: Source. Determine which OS your server runs on and download that version (if you are not sure ask your GSP). Extract the files to the same directory structure of your server. After that, go to the metamod site and click Make your VDF and choose Left 4 Dead 2. Download the metamod.vdf put it inside the "../addons/" folder. Metamod: Source is now installed.
+Download: http://l4dpromod.com/files/required/metamod_1.10.1-hg870.zip
+Source: http://sourcemm.net/snapshots
+Install: Extract and upload to your server's /left4dead2/ folder.
 
-Download: http://sourcemm.net/snapshots
-
-We Recommend: Version 1.10.1+
+After that, go to the metamod site and click Make your VDF and choose Left 4 Dead 2. This is not required if you download MetaMod from our Downloads page.
+Download the metamod.vdf put it inside the "../addons/" folder. Also not required if you downloaded from our Downloads page.
 --------------------------------------------------------------------------------
 
 
 -----------------[Step 4 - Install Sourcemod]-----------------------------------
 If you already have Sourcemod installed, check your version. If you are using at least 1.6.0-hg4140, skip this step.
 
-Download Sourcemod. As with step 2 determine which OS your server runs on and download that version. Extract the files into the same directory structure of your server. Sourcemod is now installed.
+Download: http://l4dpromod.com/files/required/sourcemod_1.6.0-hg4140.zip
+Source: http://www.sourcemod.net/snapshots.php
+Install: Extract and upload to your server's /left4dead2/ folder.
 
-Download: http://www.sourcemod.net/snapshots.php
-
-We Recommend: Version 1.6.0-hg4140+
-(below this and the latest SMAC won't fully work)
+We Recommend: Version 1.6.0-hg4140+ (below this and the latest SMAC won't fully work)
 --------------------------------------------------------------------------------
 
------------------[Step 5 - Install Critical files]------------------------------
+-----------------[Step 5 - Install Required files]------------------------------
 Left4Downtown2
-Download: http://l4dpromod.com/files/left4downtown2.zip
+Download: Left4Downtown2 (0.5.4.2) http://l4dpromod.com/files/required/left4downtown2_0.5.4.2.zip
 Source: https://code.google.com/p/left4downtown2
-Install: Extract the files and copy left4downtown2.ext.so to your server's sourcemod/extensions/ folder. Then copy left4downtown.l4d2.txt to your server's sourcemod/gamedata/ folder.
+Install: Extract and upload to your server's /left4dead2/ folder.
 
 L4DToolz
-Download: http://forums.alliedmods.net/showthread.php?t=93600
-Install: Extract the files and copy the two folders into your servers's addons/ folder.
+Download: L4D Toolz (1.0.0.9h) http://l4dpromod.com/files/required/l4dtoolz_1.0.0.9h.zip
+Source: http://forums.alliedmods.net/showthread.php?t=93600
+Install: Extract and upload to your server's /left4dead2/ folder.
 
 Stripper:Source
-Download: http://forums.alliedmods.net/showpost.php?p=1987339&postcount=1146
-Install: First go to your addons folder and create a new folder named "Stripper". Inside that create a folder named "bin". Extract the .zip and copy the 3 files into your server's addons/stripper/bin/ folder.
+Download: Stripper (1.2.2) http://l4dpromod.com/files/required/stripper_1.2.2.zip
+Source: http://forums.alliedmods.net/showpost.php?p=1987339&postcount=1146
+Install: Extract and upload to your server's /left4dead2/ folder.
 
 Dhooks
-Download: http://forums.alliedmods.net/showthread.php?t=180114
-Install: Extract the files and copy the extensions and gamedata folders into your server's addons/sourcemod/ folder.
+Download: Dhooks (1.0.12-alpha) http://l4dpromod.com/files/required/dhooks_1.0.12-alpha.zip
+Source: http://forums.alliedmods.net/showthread.php?t=180114
+Install: Extract and upload to your server's /left4dead2/ folder.
 
-Builtin Votes (0.5.8)
-Download: http://forums.alliedmods.net/showthread.php?t=162164
-Install: Extract the files and copy to your server's left4dead2/ folder.
+Builtin Votes
+Download: Builtin Votes (0.5.8) http://l4dpromod.com/files/required/builtinvotes_0.5.8.zip
+Source: http://forums.alliedmods.net/showthread.php?t=162164
+Install: Extract and upload to your server's /left4dead2/ folder.
 
 L4D2 Direct
-Download: https://github.com/ConfoglTeam/l4d2_direct/blob/master/gamedata/l4d2_direct.txt
-Install: Upload l4d2_direct.txt to your server's sourcemod/gamedata/ folder.
+Download: L4D2 Direct (latest) http://l4dpromod.com/files/required/l4d2_direct.zip
+Source: https://github.com/ConfoglTeam/l4d2_direct/blob/master/gamedata/l4d2_direct.txt
+Install: Extract and upload to your server's /left4dead2/ folder.
 
-LGOFNOC 
-Download: http://l4dpromod.com/downloads.php
+LGOFNOC
+Download: LGOFNOC (1.0) http://l4dpromod.com/files/required/lgofnoc_1.0.zip
 Source: https://github.com/ConfoglTeam/LGOFNOC
-Install: copy lgofnoc.smx into your server's sourcemod/plugins/ folder. 
+Install: Extract and upload to your server's /left4dead2/ folder.
 Important: LGOFNOC & Pro Mod 4.0+ is not compatible with Confogl. You must remove confoglcompmod.smx from your server's addons/plugins/ folder for Pro Mod 4.0 to work.
 
 Match Vote
-Download: http://l4dpromod.com/downloads.php
+Download: Match Vote(1.2) http://l4dpromod.com/files/required/match_vote_1.2.zip
 Source: https://github.com/Stabbath/sm_plugins/tree/master/match_vote
-Install: copy match_vote.smx into your server's sourcemod/plugins/ folder.
-Important: All prior versions of match_vote is not compatible with LGOFNOC. You must replace your existing match_vote.smx from your server's addons/plugins/ folder for LGOFNOC to work.
+Install: Extract and upload to your server's /left4dead2/ folder.
+Important: Any prior version of match_vote is not compatible with LGOFNOC. You must replace your existing match_vote.smx from your server's addons/plugins/ folder for LGOFNOC to work.
+
 
 Lastly, if you already have sdkhooks installed, you'll need to make sure these files aren't in your sourcemod folder:
 
@@ -154,15 +160,6 @@ Additional Q/A
 
   If everything else works, you probably need to set admins in sourcemod.
   See here: http://wiki.alliedmods.net/Adding_Admins_%28SourceMod%29
-
-
-  ["I'm finding throwables, map distance issues, or tank are spawning in weird places."]
-
-  Since Pro Mod 2.5, mapinfo.txt is read from each individual config directory instead of
-  one static location. Make sure you place the mapinfo.txt of any additional configs you
-  want to use such as EQ in their directory (ie, cfg/cfgogl/eq/mapinfo.txt) instead of
-  in the old default (addons/sourcemod/configs/l4d2lib/) directory.
-
 
   ["How do I get other configs like EQ into the match vote menu?"]
 
