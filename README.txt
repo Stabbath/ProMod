@@ -19,7 +19,7 @@ Special thanks to epilimic for all the time spent testing things himself and get
 ================================================================================
 Installation Instructions (Must be done in ORDER)
 ================================================================================
-Pre-install note: This guide and linked packages are for LINUX servers only. 
+Pre-install note: This guide and linked packages are for LINUX servers only. This guide also assumes you have a clean vanilla server to start with.
 At this time windows is not fully supported. For more information on setting up a windows server please visit: http://www.l4dnation.com/confogl-and-other-configs/does-promod-work-on-windows-server/ and also note that you will still need LGOFNOC and the updated Match Vote to play Pro Mod 4.0
 
 Step 1 - Stop Server
@@ -37,9 +37,9 @@ Stop your server in the control panel of your GSP. Not doing this step sometimes
 --------------------------------------------------------------------------------
 
 
------------------[Step 2 - Install MM+SM+Updated Files combo]-------------------
+-----------------[Step 2 - Install MM+SM+Required Files combo]------------------
 Combo Pack: MetaMod + SourceMod + All Required Files (except Pro Mod)
-Download: http://l4dpromod.com/files/required/metamod_1.10.1-hg870.zip
+Download: http://l4dpromod.com/files/required/lgofnoc_fullpackage_1.0.zip
 Install: Extract and upload to your server's /left4dead2/ folder.
 
 This is a fully working server package with all prerequisite files included and covers steps 3-6. If you do not wish to install this package and prefer to install everything separate, skip to Step 3 - Install Metamod: Source.
@@ -141,8 +141,8 @@ All prerequired files for Pro Mod are now installed.
 
 
 -----------------[Step 6 - Install Promod]-------------------------------------
-Download: http://l4dpromod.com/downloads.php
-Install: Extract all of the files into the same directory structure of your server and overwrite anything that it asks to.
+Download Pro Mod 4.0. http://l4dpromod.com/files/ver/ProMod4.0.zip
+Extract and upload to your server's /left4dead2/ folder and overwrite anything that it asks to.
 Promod is now installed. If you're installing other configs, make sure Pro Mod's plugins aren't overwritten by them as they may not work as intended.
 -------------------------------------------------------------------------------
 
