@@ -11,8 +11,8 @@ Customfogl : EsToOpi, Jacob, Sir
 Plugins    : CanadaRox, ProdigySim, Blade, Jahze, Jacob, Tabun, Vintik, Stabby, CircleSquared, Grego, purpletreefactory, Greenice, raziEiL
 VScripts   : Jacob, Tabun, CircleSquared
 Stripper   : Jacob, Blade, Tabun, Stabby, CircleSquared, Visor, NF
-Testing    : Ammo, bink, Button, cepS, Critical, Cuda, Dolemite, DustY, epilimic, Fever, Fig, hoveller, K9, Kobra, Laugh, Lazy, Lid, marr, Martine, Murtagh, purpletreefactory, Rjven, scalar, and everyone at L4DNation.com
-Website    : Xan
+Testing    : Ammo, bink, Button, cepS, Critical, Cuda, Dolemite, DustY, epilimic, Fever, Fig, hoveller, K9, Kobra, Laugh, Lazy, Lid, marr, Martine, Murtagh, purpletreefactory, Rjven, scalar, the ZKA! crew, and everyone at L4DNation.com
+Website    : Xan, Gen
 
 Special thanks to epilimic for all the time spent testing things himself and getting people to play full games during testing.
 
