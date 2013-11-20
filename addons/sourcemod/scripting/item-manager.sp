@@ -343,7 +343,7 @@ public LimitConVarChanged(Handle:cvar, const String:oldValue[], const String:new
 
 public Action:Cmd_Limit_CreateCvar(args) {
 	if (args != 4) {
-		PrintToServer("Syntax: uim_limit_createcvar <name for starting saferoom cvar> <name for map cvar> <name for end saferoom cvar> ; use @* if you don't want one or more of them to be cvar'd. Note that \" s_\", \"m_\" or \"e_\" will be automatically prefixed to the name, so you'll have to add that when you change the cvar.");
+		PrintToServer("Syntax: uim_limit_createcvar <name for starting saferoom cvar> <name for map cvar> <name for end saferoom cvar> ; use @ if you don't want one or more of them to be cvar'd. Note that \" s_\", \"m_\" or \"e_\" will be automatically prefixed to the name, so you'll have to add that when you change the cvar.");
 		return Plugin_Handled;
 	}
 
@@ -361,10 +361,10 @@ public Action:Cmd_Limit_CreateCvar(args) {
 			if (i == 4)	cvarName[0] = 'e'; 
 			cvarName[1] = '_';
 			cvarName[2] = '\0';
-
 			StrCat(cvarName, BUF_SZ, buffer);
+
 			HookConVarChange(CreateConVar(cvarName, "", "", FCVAR_PLUGIN), LimitConVarChanged);
-			if (!SetTrieString(g_hTrieItemNameByCvarName, itemName, cvarName, false))
+			if (!SetTrieString(g_hTrieItemNameByCvarName, cvarName, itemName, false))
 				DebugPrint("Tried to create a limit's cvar when one already exists.");
 			else
 				DebugPrint("Created limit cvar for %s: %s.", itemName, cvarName);
