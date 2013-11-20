@@ -8,7 +8,6 @@
 
 /* Current Issues:
 	- spread is currently disabled
-	- getmeleeweaponnamefromentity call on line 173 leads to error on line 172 of l4d2util, on getedictclassname: invalid edict. Maybe it should be getentityclassname?
 	- items that require specifiers must have their limits set before the specifiers are set
 	- to limit weapon_smg, weapon_smg_spawn should be named instead. Weapons will be identified the same way, but on being spawned on each round, weapon_smg_spawn creates an unlimited spawn whereas weapon_smg creates a single weapon regarless of what's normally there
 */
@@ -173,7 +172,7 @@ stock SelectWantedItems() {
 				new randIdx = GetRandomInt(0, GetArraySize(hEntityArray[j]) - 1);
 				
 				/* special case: melee weapons */
-				if (!GetMeleeWeaponNameFromEntity(randIdx, buffer, BUF_SZ)) buffer = "";
+				if (!GetMeleeWeaponNameFromEntity(GetArrayCell(hEntityArray[j], randIdx), buffer, BUF_SZ)) buffer = "";
 				
 				AddToWantedList(item, GetArrayCell(hEntityArray[j], randIdx), buffer);
 				RemoveFromArray(hEntityArray[j], randIdx);
