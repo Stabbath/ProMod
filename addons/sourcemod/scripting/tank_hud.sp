@@ -118,7 +118,7 @@ public Action:MenuRefresh_Timer(Handle:timer)
 		// Fire
 		if (GetEntityFlags(tankClient) & FL_ONFIRE)
 		{
-			FormatEx(buffer, sizeof(buffer), "Burning: %.1f sec", health/GetConVarInt(burnDurationCvar));
+			FormatEx(buffer, sizeof(buffer), "Burning: %.1f sec", health/float(GetConVarInt(burnDurationCvar)));
 			DrawPanelText(menuPanel, buffer);
 		}
 
