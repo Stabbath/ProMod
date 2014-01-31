@@ -248,28 +248,6 @@ Other Changes:
 	- etc...
 - Likely other smaller changes that were forgotten.
 
-TODO:
-- Add epi's new plugin which allows custom connection messages. "Jacob (Admin) has connected."
-- Remove the secret room from dark carnival 4 that could spawn up to 4 pills in unobtainable places.
-- Revise and implement the following stripper changes:
-  - c1m1: Removed props from burning room.
-  - c1m1: Removed 2 props from the final room before saferoom.
-  - c1m2: Removed awning on overpass that gave SI spawns at the cost of blocking potential car hits.
-  - c2m1: Blocked survivors getting on top of the ambulance and white van in the open tank fight area.
-  - c2m2: Removed a couple tents at the bottom of the slide.
-  - c2m3: Removed vent block that was for hunters mode in primary config.
-  - c3m2: Removed a bush in the open field after the event to remove a bit of clutter.
-  - c5m1: Added two possible pill spawns early in the map.
-  - c5m2: Removed hedge in open field that gave survivors easy LOS.
-  - c5m2: Made weapon spawns in the park consistent. (Shotgun right, Hunting Rifle middle, SMG left)
-  - c5m3: Removed hittable dumpster from open area outside saferoom.
-  - c5m3: Removed big blue dumpster from open area outside saferoom.
-  - c5m3: Removed semi truck from street just before manhole drop.
-  - c5m3: Made the bushes at the back of the street just before the manhole inaccessible for survivors, however infected can now use these to get behind the fence.
-  - c5m5: Removed bridge props other than the side railings. Ending is still as CircleSquared made it.
-  - c10m4: Removed army truck that I have never seen do any good but block hittables.
-  - c10m4: Removed semi-truck that served no purpose.
-
 3.3 - Undocumented test release with changes to the main promod config alone, with an associated beta version
 - Updated Ready up, Pause, and Player Management.
 - Tweaked god frames to not reward gang bangs, but to still reward spit damage.
