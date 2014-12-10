@@ -35,13 +35,13 @@ public Plugin:myinfo =
     description = "Allowing tweaking of the attributes of all weapons"
 };
 
-new iIntWeaponAttributes[3] = {
+new L4D2IntWeaponAttribute:iIntWeaponAttributes[3] = {
     L4D2IWA_Damage,
     L4D2IWA_Bullets,
     L4D2IWA_ClipSize,
 };
 
-new iFloatWeaponAttributes[17] = {
+new L4D2FloatWeaponAttribute:iFloatWeaponAttributes[17] = {
     L4D2FWA_MaxPlayerSpeed,
     L4D2FWA_SpreadPerShot,
     L4D2FWA_MaxSpread,
