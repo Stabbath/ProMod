@@ -30,15 +30,18 @@
 public Plugin:myinfo =
 {
     name        = "L4D2 Weapon Attributes",
-    author      = "Jahze",
-    version     = "1.2",
+    author      = "Jahze, Stabby",
+    version     = "1.2a",
     description = "Allowing tweaking of the attributes of all weapons"
 };
 
-new iWeaponAttributes[MAX_ATTRS] = {
+new iIntWeaponAttributes[MAX_ATTRS] = {
     L4D2IWA_Damage,
     L4D2IWA_Bullets,
     L4D2IWA_ClipSize,
+};
+
+new iFloatWeaponAttributes[MAX_ATTRS] = {
     L4D2FWA_MaxPlayerSpeed,
     L4D2FWA_SpreadPerShot,
     L4D2FWA_MaxSpread,
@@ -180,19 +183,19 @@ GetWeaponAttributeIndex( String:sAttrName[128] ) {
 }
 
 GetWeaponAttributeInt( const String:sWeaponName[], idx ) {
-    return L4D2_GetIntWeaponAttribute(sWeaponName, iWeaponAttributes[idx]);
+    return L4D2_GetIntWeaponAttribute(sWeaponName, iIntWeaponAttributes[idx]);
 }
 
 Float:GetWeaponAttributeFloat( const String:sWeaponName[], idx ) {
-    return L4D2_GetFloatWeaponAttribute(sWeaponName, iWeaponAttributes[idx]);
+    return L4D2_GetFloatWeaponAttribute(sWeaponName, iFloatWeaponAttributes[idx]);
 }
 
 SetWeaponAttributeInt( const String:sWeaponName[], idx, value ) {
-    L4D2_SetIntWeaponAttribute(sWeaponName, iWeaponAttributes[idx], value);
+    L4D2_SetIntWeaponAttribute(sWeaponName, iIntWeaponAttributes[idx], value);
 }
 
 SetWeaponAttributeFloat( const String:sWeaponName[], idx, Float:value ) {
-    L4D2_SetFloatWeaponAttribute(sWeaponName, iWeaponAttributes[idx], value);
+    L4D2_SetFloatWeaponAttribute(sWeaponName, iFloatWeaponAttributes[idx], value);
 }
 
 public Action:Weapon( args ) {
@@ -243,7 +246,7 @@ public Action:Weapon( args ) {
         SetWeaponAttributeInt(sWeaponNameFull, iAttrIdx, iValue);
         PrintToServer("%s for %s set to %d", sWeaponAttrNames[iAttrIdx], sWeaponName, iValue);
     }
-    else if ( iAttrIdx < MAX_ATTRS-1 ) {
+    else if ( (iAttrIdx -= 3) < MAX_ATTRS - 1 ) {
         SetTrieValue(hWeaponDefaultAttsTrie[iAttrIdx], sWeaponNameFull, GetWeaponAttributeFloat(sWeaponNameFull, iAttrIdx), false);
         SetWeaponAttributeFloat(sWeaponNameFull, iAttrIdx, fValue);
         PrintToServer("%s for %s set to %.2f", sWeaponAttrNames[iAttrIdx], sWeaponName, fValue);
