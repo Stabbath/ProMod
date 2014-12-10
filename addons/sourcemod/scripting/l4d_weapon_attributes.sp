@@ -73,7 +73,7 @@ new String:sWeaponAttrNames[MAX_ATTRS][32] = {
     "Min standing spread",
     "Min in air spread",
     "Max movement spread",
-    "Penetraion num layers",
+    "Penetration num layers",
     "Penetration power",
     "Penetration max dist",
     "Char penetration max dist",
