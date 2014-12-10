@@ -1,23 +1,3 @@
-/*
-	SourcePawn is Copyright (C) 2006-2008 AlliedModders LLC.  All rights reserved.
-	SourceMod is Copyright (C) 2006-2008 AlliedModders LLC.  All rights reserved.
-	Pawn and SMALL are Copyright (C) 1997-2008 ITB CompuPhase.
-	Source is Copyright (C) Valve Corporation.
-	All trademarks are property of their respective owners.
-
-	This program is free software: you can redistribute it and/or modify it
-	under the terms of the GNU General Public License as published by the
-	Free Software Foundation, either version 3 of the License, or (at your
-	option) any later version.
-
-	This program is distributed in the hope that it will be useful, but
-	WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-	General Public License for more details.
-
-	You should have received a copy of the GNU General Public License along
-	with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
 #pragma semicolon 1
 
 #include <sourcemod>
@@ -65,22 +45,40 @@ public Plugin:myinfo = {
 	url = "nourl"
 }
 
-new Handle:g_hCvarForceExistAll;
-
 new Handle:g_hTrieItemSettings;       //stores an adt_array for every item
 new Handle:g_hTrieItemNameByCvarName; //stores the item name for each created cvar
 new Handle:g_hArrayItemSettings;      //for iterating through the eponymous trie
 new Handle:g_hArrayItemsToSpawn;      //for spawning wanted items on both rounds
 
 public OnPluginStart() {
-	g_hCvarForceExistAll = CreateConVar("uim_force_exist_all", "1",
-										"Forces all available weapon spawns to exist and lets the plugin sort them out all on its own.",
-										FCVAR_PLUGIN, true, 0.0, true, 1.0);
-
 	RegServerCmd("uim_limit",            Cmd_Limit,            "Sets limits for an entity.");
 	RegServerCmd("uim_limit_createcvar", Cmd_Limit_CreateCvar, "Creates cvars for the different item limits that can be used to change limits instead of using uim_limit (still need to use uim_limit first though to register the entity).");
 	RegServerCmd("uim_addrule",          Cmd_AddRule,          "Adds a rule to an entity.");
 	RegServerCmd("uim_clearbanranges",   Cmd_ClearBans,        "Removes stored ban intervals.");
+
+/*
+	im_banrange		item startflow endflow
+	im_limit		item insaferoom inmap inendsaferoom
+
+	generic weapon limiting:
+		pills
+		adren
+		medkit
+		defib
+		pipe
+		bile
+		molo
+		pistols
+		magnum
+		melee
+		smg
+		silenced
+		pump
+		chrome
+		hr
+		sniper
+
+*/
 
 	g_hTrieItemSettings = CreateTrie();
 	g_hTrieItemNameByCvarName = CreateTrie();

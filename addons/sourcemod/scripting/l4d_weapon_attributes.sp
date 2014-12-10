@@ -1,3 +1,23 @@
+/*
+	SourcePawn is Copyright (C) 2006-2008 AlliedModders LLC.  All rights reserved.
+	SourceMod is Copyright (C) 2006-2008 AlliedModders LLC.  All rights reserved.
+	Pawn and SMALL are Copyright (C) 1997-2008 ITB CompuPhase.
+	Source is Copyright (C) Valve Corporation.
+	All trademarks are property of their respective owners.
+
+	This program is free software: you can redistribute it and/or modify it
+	under the terms of the GNU General Public License as published by the
+	Free Software Foundation, either version 3 of the License, or (at your
+	option) any later version.
+
+	This program is distributed in the hope that it will be useful, but
+	WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+	General Public License for more details.
+
+	You should have received a copy of the GNU General Public License along
+	with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
 #pragma semicolon 1
 
 #include <sourcemod>
@@ -10,15 +30,18 @@
 public Plugin:myinfo =
 {
     name        = "L4D2 Weapon Attributes",
-    author      = "Jahze",
-    version     = "1.2",
+    author      = "Jahze, Stabby",
+    version     = "1.2a",
     description = "Allowing tweaking of the attributes of all weapons"
 };
 
-new iWeaponAttributes[MAX_ATTRS] = {
+new L4D2IntWeaponAttributes:iIntWeaponAttributes[3] = {
     L4D2IWA_Damage,
     L4D2IWA_Bullets,
     L4D2IWA_ClipSize,
+};
+
+new L4D2FloatWeaponAttributes:iFloatWeaponAttributes[17] = {
     L4D2FWA_MaxPlayerSpeed,
     L4D2FWA_SpreadPerShot,
     L4D2FWA_MaxSpread,
@@ -36,7 +59,6 @@ new iWeaponAttributes[MAX_ATTRS] = {
     L4D2FWA_CycleTime,
     L4D2FWA_PelletScatterPitch,	 	
     L4D2FWA_PelletScatterYaw,
-    -1
 };
 
 new String:sWeaponAttrNames[MAX_ATTRS][32] = {
@@ -160,19 +182,19 @@ GetWeaponAttributeIndex( String:sAttrName[128] ) {
 }
 
 GetWeaponAttributeInt( const String:sWeaponName[], idx ) {
-    return L4D2_GetIntWeaponAttribute(sWeaponName, iWeaponAttributes[idx]);
+    return L4D2_GetIntWeaponAttribute(sWeaponName, iIntWeaponAttributes[idx]);
 }
 
 Float:GetWeaponAttributeFloat( const String:sWeaponName[], idx ) {
-    return L4D2_GetFloatWeaponAttribute(sWeaponName, iWeaponAttributes[idx]);
+    return L4D2_GetFloatWeaponAttribute(sWeaponName, iFloatWeaponAttributes[idx]);
 }
 
 SetWeaponAttributeInt( const String:sWeaponName[], idx, value ) {
-    L4D2_SetIntWeaponAttribute(sWeaponName, iWeaponAttributes[idx], value);
+    L4D2_SetIntWeaponAttribute(sWeaponName, iIntWeaponAttributes[idx], value);
 }
 
 SetWeaponAttributeFloat( const String:sWeaponName[], idx, Float:value ) {
-    L4D2_SetFloatWeaponAttribute(sWeaponName, iWeaponAttributes[idx], value);
+    L4D2_SetFloatWeaponAttribute(sWeaponName, iFloatWeaponAttributes[idx], value);
 }
 
 public Action:Weapon( args ) {
@@ -223,7 +245,7 @@ public Action:Weapon( args ) {
         SetWeaponAttributeInt(sWeaponNameFull, iAttrIdx, iValue);
         PrintToServer("%s for %s set to %d", sWeaponAttrNames[iAttrIdx], sWeaponName, iValue);
     }
-    else if ( iAttrIdx < MAX_ATTRS-1 ) {
+    else if ( (iAttrIdx -= 3) < MAX_ATTRS - 1 ) {
         SetTrieValue(hWeaponDefaultAttsTrie[iAttrIdx], sWeaponNameFull, GetWeaponAttributeFloat(sWeaponNameFull, iAttrIdx), false);
         SetWeaponAttributeFloat(sWeaponNameFull, iAttrIdx, fValue);
         PrintToServer("%s for %s set to %.2f", sWeaponAttrNames[iAttrIdx], sWeaponName, fValue);
