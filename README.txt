@@ -1,6 +1,6 @@
 ================================================================================
 # DEPRECATED
-The  material in this repository is far from fresh, and no longer maintained. It has not been updated with SM 1.1, and I expect it to be mostly broken because of updates made to the L4D2 client since it was last worked on. For an actively-maintained competitive L4D2 framework, refer to https://github.com/SirPlease/L4D2-Competitive-Rework
+The  material in this repository is far from fresh, and no longer maintained. It has not been updated with SM 1.10, and I expect it to be mostly broken because of updates made to the L4D2 client since it was last worked on. For an actively-maintained competitive L4D2 framework and configs, refer to https://github.com/SirPlease/L4D2-Competitive-Rework
 ================================================================================
 
 
