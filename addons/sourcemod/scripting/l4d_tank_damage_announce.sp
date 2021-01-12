@@ -266,6 +266,7 @@ PrintTankDamage()
                                 percent_adjustment = 0;
                         }
                 }
+                last_percent = percent_damage;
                 PrintToChatAll("\x05%4d\x01 [\x04%d%%\x01]: \x03%N\x01", damage, percent_damage, client);
         }
 }
